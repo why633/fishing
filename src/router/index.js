@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routes from './base/'
 import store from '@/store'
-// import { setStorage } from '@/utils/handleStorage'
 Vue.use(Router)
 
 var router = new Router({

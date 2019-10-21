@@ -1,5 +1,5 @@
 import HandleToken from '@/utils/handleToken'
-import { setStorage, getStorage } from '@/utils/handleStorage'
+import { getStorage } from '@/utils/handleStorage'
 const handleToken = new HandleToken()
 
 const user = {

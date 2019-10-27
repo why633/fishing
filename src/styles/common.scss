@@ -177,23 +177,22 @@
   cursor: pointer;
 }
 
-// 边距
+/* 边距 */
 .padding20 {
   padding: 20px;
 }
 
-// 上边距
+/* 上边距 */
 .marginTp20 {
   margin-top: 20px;
 }
-
+/* 公共样式 */
 body{
-  background: #efefef;
+  background: #f4f4f4;
   color: #333333;
-  font-size: .186667rem
+  font-size: .373333rem
 }
 
-// 公共样式
 .title-color{
   background: #0c3255;
 }

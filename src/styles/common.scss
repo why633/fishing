@@ -187,24 +187,8 @@
   margin-top: 20px;
 }
 
-// 多行布局中的两行布局，同意表单元素的样式
-.two-line-form {
-  .el-input {
-    max-width: 400px;
-  }
-   .el-date-editor.el-input, .el-date-editor.el-input__inner {
-    width: 100%!important;
-    max-width: 400px!important;
-  }
-  .el-cascader.el-cascader--small {
-    width: 100%!important;
-    max-width: 400px!important;
-  }
+body{
+  background: #efefef;
+  color: #333333;
+  font-size: .186667rem
 }
-
-//标签页
-.el-tabs__header {
-  margin-bottom:0;
-}
-
-

@@ -5,11 +5,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // Vuex
-import store from './store'
+// import store from './store'
 // 自定义插件
 // import Plugin from './plugin'
 import '@/plugin/flexible.js'
 import '@/styles/normalize.css'
+import '@/styles/index.css'
 
 Vue.config.productionTip = false
 

@@ -3,7 +3,6 @@
 // import * as mixins from '@/mixins'
 import * as components from '@/components'
 
-console.log(components)
 const Plugin = {}
 Plugin.install = Vue => {
   // 遍历注入所有的directive

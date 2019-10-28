@@ -7,10 +7,13 @@ import router from './router'
 // Vuex
 // import store from './store'
 // 自定义插件
-// import Plugin from './plugin'
+import Plugin from './plugin'
 import '@/plugin/flexible.js'
 import '@/styles/normalize.css'
 import '@/styles/index.css'
+
+// 自定义插件
+Vue.use(Plugin)
 
 Vue.config.productionTip = false
 

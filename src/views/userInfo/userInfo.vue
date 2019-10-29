@@ -3,7 +3,7 @@
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="top-ban title-color">
         <div class="avatar">
-          <img src alt srcset>
+          <img :src="avatar" alt srcset>
         </div>
         <div class="user-name text-center">木子</div>
         <div class="sign text-center">
@@ -24,8 +24,6 @@
           <div class="btn">关注</div>
         </div>
       </div>
-
-      <!--内容...-->
       <div id="dataList" class="list-wrap">
         <div class="list-item" v-for="item in listData" :key="item.id">
           <div class="text-wrap">
@@ -33,7 +31,7 @@
             <div class="data-time">{{ item.dateTime }}</div>
           </div>
           <div class="pic-wrap">
-            <img src>
+            <img :src="fishImg">
           </div>
           <div class="line"></div>
         </div>
@@ -46,6 +44,8 @@
 export default {
   data () {
     return {
+      avatar: require('@/assets/avator1.jpeg'),
+      fishImg: require('@/assets/fish1.jpg'),
       listData: [
         {
           title: '我的收获1',
@@ -134,6 +134,10 @@ export default {
     overflow: hidden;
     background: pink;
     margin: 0.666667rem auto 0;
+    img{
+      width: 100%;
+      height: 100%;
+    }
   }
   .user-name {
     font-size: 0.373333rem;
@@ -205,12 +209,5 @@ export default {
       }
     }
   }
-}
-.mescroll {
-  position: fixed;
-  padding-bottom: 1rem;
-  top: 2px;
-  bottom: 0;
-  height: auto;
 }
 </style>

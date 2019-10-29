@@ -21,7 +21,32 @@ Plugin.install = Vue => {
   // })
   // 遍历注入所有的组件
   Object.keys(components).forEach(key => {
-    Vue.component(key, components[key])
+    // Toast插件单独处理为全局
+    if (key == 'Toast') {
+      // 如果toast还在，则不再执行
+      if (document.getElementsByClassName('alertBox').length) {
+        return
+      }
+      let ToastTpl = Vue.extend(components[key]) // 创建vue构造器
+      let $vm = new ToastTpl() // 实例化vue实例
+      let tpl = $vm.$mount().$el
+      document.body.appendChild(tpl)
+      Vue.prototype.$toast = { // 在Vue的原型上添加实例方法，以全局调用
+        show (options) { // 控制toast显示的方法
+          if (typeof options === 'string') { // 对参数进行判断
+            $vm.text = options // 传入props
+          } else if (typeof options === 'object') {
+            Object.assign($vm, options) // 合并参数与实例
+          }
+          $vm.show = true // 显示toast
+        },
+        hide () { // 控制toast隐藏的方法
+          $vm.show = false
+        }
+      }
+    } else {
+      Vue.component(key, components[key])
+    }
   })
 }
 

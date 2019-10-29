@@ -196,3 +196,12 @@ body{
 .title-color{
   background: #0c3255;
 }
+
+/* mescroll组件样式 */
+.mescroll {
+  position: fixed;
+  padding-bottom: 1rem;
+  top: 2px;
+  bottom: 0;
+  height: auto;
+}

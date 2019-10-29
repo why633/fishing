@@ -1,6 +1,6 @@
 <template>
   <div class="follow">
-    <div class="title title-color">我的关注</div>
+    <div class="title title-color"><span class="iconfont icon-back"></span>我的关注</div>
     <div class="follow-list">
       <div class="item" v-for="item in followData" :key="item.id">
         <div class="avatar"><img :src="item.avatar"></div>
@@ -42,6 +42,10 @@ export default {
   line-height: 0.85333rem;
   color: #fff;
   padding-left: 0.4rem;
+  .icon-back{
+    font-size: .37333rem;
+    margin-right: .53333rem;
+  }
 }
 .follow-list {
   display: flex;

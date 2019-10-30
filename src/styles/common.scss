@@ -143,7 +143,7 @@
   text-overflow: ellipsis;
   word-wrap: break-word;
   white-space: normal !important;
-  /* -webkit-line-clamp: 2; */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -217,5 +217,5 @@ body{
   margin-right: .53333rem;
   color: #fff;
   position: relative;
-  top: .04rem;
+  top: .03rem;
 }

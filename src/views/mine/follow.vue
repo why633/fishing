@@ -42,14 +42,11 @@ export default {
   line-height: 0.85333rem;
   color: #fff;
   padding-left: 0.4rem;
-  .icon-back{
-    font-size: .37333rem;
-    margin-right: .53333rem;
-  }
 }
 .follow-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   padding: .26667rem .26667rem;
   .item {
     background: #fff;

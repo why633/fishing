@@ -142,6 +142,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.icon-back{
+  font-size: .426667rem;
+  margin-right: .53333rem;
+  color: #fff;
+  position: relative;
+  // top: -.008rem;
+}
 .top-title {
   height: 1.386667rem;
   line-height: 1.386667rem;

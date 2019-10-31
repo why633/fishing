@@ -1,28 +1,10 @@
 <template>
-  <div class="fishingClassroom">
+  <div class="classDetails">
     <div class="top-title title-color">
-      <span class="iconfont icon-back"></span>钓技课堂
-    </div>
-    <div class="public-class">
-      <div class="title font-b">大众课程</div>
-      <div class="class-wrap">
-        <div
-          class="item"
-          v-for="item in classBlockData"
-          :key="item.id"
-          @click="goClassDetails(item.id)"
-        >
-          <img :src="item.imgUrl">
-          <span>{{ item.name }}</span>
-        </div>
-      </div>
+      <span class="iconfont icon-back" @click="goBack"></span>
+      {{titleId | classTitle}}
     </div>
     <div class="article-wrap">
-      <div class="tab">
-        <div class="tab-item" v-for="item in articleTapData" :key="item.id">
-          <span :class="{'active': item.active}" @click="tabHandleClick(item.id)">{{ item.name }}</span>
-        </div>
-      </div>
       <div class="article-list">
         <div
           class="item"
@@ -57,55 +39,10 @@
 
 <script>
 export default {
-  name: 'fishingClassroom',
+  name: 'classDetails',
   data () {
     return {
-      // 模块数据
-      classBlockData: [
-        {
-          id: '1',
-          name: '黑坑',
-          imgUrl: require('@/assets/fishingClassroom.jpg')
-        },
-        {
-          id: '2',
-          name: '野钓',
-          imgUrl: require('@/assets/fishingClassroom2.jpg')
-        },
-        {
-          id: '3',
-          name: '装备',
-          imgUrl: require('@/assets/fishingClassroom4.jpg')
-        },
-        {
-          id: '4',
-          name: '路亚',
-          imgUrl: require('@/assets/fishingClassroom2.jpg')
-        },
-        {
-          id: '5',
-          name: '海钓',
-          imgUrl: require('@/assets/fishingClassroom3.jpg')
-        },
-        {
-          id: '6',
-          name: '杂谈',
-          imgUrl: require('@/assets/fishingClassroom.jpg')
-        }
-      ],
-      // tab按钮数据
-      articleTapData: [
-        {
-          id: '0',
-          name: '最热',
-          active: true
-        },
-        {
-          id: '1',
-          name: '最新',
-          active: false
-        }
-      ],
+      titleId: '',
       // 文章数据列表
       articleListData: [
         {
@@ -136,25 +73,14 @@ export default {
       ]
     }
   },
-  created () {
-    console.log('fresh')
+  mounted () {
+    console.log(this.$route.query)
+    this.titleId = this.$route.query.id
   },
   methods: {
-    // 最新最热tab切换
-    tabHandleClick (id) {
-      console.log(id)
-      this.articleTapData.map((item, index) => {
-        console.log(index)
-        if (id === item.id) {
-          item.active = true
-        } else {
-          item.active = false
-        }
-      })
-    },
-    // 跳转大众课程模块
-    goClassDetails (id) {
-      this.$router.push(`/fishingClassroom/classDetails?id=${id}`)
+    // 返回
+    goBack () {
+      this.$router.go(-1)
     },
     // 跳转文章详情
     goArticle (id) {
@@ -165,43 +91,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.classDetails {
+  min-height: 100vh;
+  background: #fff;
+}
 .top-title {
   height: 1.386667rem;
   line-height: 1.386667rem;
   padding-left: 0.56rem;
   color: #fff;
   font-size: 0.42667rem;
-}
-.public-class {
-  .title {
-    padding: 0.4rem;
-    font-size: 0.42667rem;
-  }
-  .class-wrap {
-    padding: 0 0.26667rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    .item {
-      position: relative;
-      width: 2.88rem;
-      height: 1.49333rem;
-      color: #fff;
-      margin-bottom: 0.4rem;
-      border-radius: 0.13333rem;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
 }
 .article-wrap {
   padding-bottom: 0.66667rem;

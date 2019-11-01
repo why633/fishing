@@ -21,34 +21,7 @@
           <span :class="{'active': item.active}" @click="tabHandleClick(item.id)">{{ item.name }}</span>
         </div>
       </div>
-      <div class="article-list">
-        <div
-          class="item"
-          v-for="item in articleListData"
-          :key="item.id"
-          @click="goArticle(item.id)"
-        >
-          <div class="single-pic-wrap" v-if="item.picUrl.length == 1">
-            <div class="single-title text-overflowTow">
-              <div>{{ item.title }}</div>
-              <div class="date-time">19/10月10日 10:30</div>
-            </div>
-            <div class="single-pic-item">
-              <img :src="item.picUrl[0]">
-            </div>
-          </div>
-          <div v-if="item.picUrl.length > 1">
-            <div class="title text-overflowTow">{{ item.title }}</div>
-            <div class="pic-wrap">
-              <div class="pic-item" v-for="(picItem, index) in item.picUrl.slice(0,3)" :key="index">
-                <img :src="picItem">
-              </div>
-              <div class="pic-item" v-if="item.picUrl.length == 2"></div>
-            </div>
-            <div class="date-time">19/10月10日 10:30</div>
-          </div>
-        </div>
-      </div>
+      <article-list :articleListData="articleListData"></article-list>
     </div>
   </div>
 </template>
@@ -166,18 +139,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon-back {
-  font-size: 0.426667rem;
-  margin-right: 0.53333rem;
-  color: #fff;
-  position: relative;
-}
-.top-title {
-  height: 1.17333rem;
-  line-height: 1.17333rem;
-  padding-left: 0.56rem;
-  color: #fff;
-  font-size: 0.42667rem;
+.fishingClassroom{
+  min-height: 100vh;
+  background: #fff;
 }
 .public-class {
   .title {

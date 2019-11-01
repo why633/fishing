@@ -9,5 +9,8 @@
 -userInfo               用户
 
 -finshingClassroom      钓技课堂
+--subPage
+ --classDetails         大众课程
+ --articleDetails       文章详情
 
 -fishingHarvest         渔获

@@ -1,9 +1,6 @@
 <template>
   <div class="articleDetails">
-    <div class="top-title title-color">
-      <span class="iconfont icon-back" @click="goBack"></span>
-      文章详情
-    </div>
+    <top-title>文章详情</top-title>
     <div class="content">
       <div>swrwqewqewqe</div>
       <div>swrwqewqewqe</div>

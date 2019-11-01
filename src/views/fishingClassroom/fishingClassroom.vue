@@ -1,8 +1,6 @@
 <template>
   <div class="fishingClassroom">
-    <div class="top-title title-color">
-      <span class="iconfont icon-back"></span>钓技课堂
-    </div>
+    <top-title :isBackPre="false" @backClick="colseWebview">钓技课堂</top-title>
     <div class="public-class">
       <div class="title font-b">大众课程</div>
       <div class="class-wrap">
@@ -159,22 +157,24 @@ export default {
     // 跳转文章详情
     goArticle (id) {
       this.$router.push(`/fishingClassroom/articleDetails?articleId=${id}`)
+    },
+    colseWebview () {
+      console.log('colseWebview')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.icon-back{
-  font-size: .426667rem;
-  margin-right: .53333rem;
+.icon-back {
+  font-size: 0.426667rem;
+  margin-right: 0.53333rem;
   color: #fff;
   position: relative;
-  // top: -.008rem;
 }
 .top-title {
-  height: 1.386667rem;
-  line-height: 1.386667rem;
+  height: 1.17333rem;
+  line-height: 1.17333rem;
   padding-left: 0.56rem;
   color: #fff;
   font-size: 0.42667rem;

@@ -1,9 +1,6 @@
 <template>
   <div class="classDetails">
-    <div class="top-title title-color">
-      <span class="iconfont icon-back" @click="goBack"></span>
-      {{titleId | classTitle}}
-    </div>
+    <top-title @backClick="goBack">{{titleId | classTitle}}</top-title>
     <div class="article-wrap">
       <div class="article-list">
         <div
@@ -80,7 +77,7 @@ export default {
   methods: {
     // 返回
     goBack () {
-      this.$router.go(-1)
+      console.log(123455)
     },
     // 跳转文章详情
     goArticle (id) {
@@ -94,13 +91,6 @@ export default {
 .classDetails {
   min-height: 100vh;
   background: #fff;
-}
-.top-title {
-  height: 1.386667rem;
-  line-height: 1.386667rem;
-  padding-left: 0.56rem;
-  color: #fff;
-  font-size: 0.42667rem;
 }
 .article-wrap {
   padding-bottom: 0.66667rem;

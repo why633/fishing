@@ -5,7 +5,7 @@
       <div class="user">
         <div class="item">
           <div class="avatar">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
         </div>
         <div class="item">
@@ -23,7 +23,7 @@
       <div class="list">
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -33,7 +33,57 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
+          </div>
+          <div class="info left">
+            <div class="name">why</div>
+            <div class="text">哎呦不错呀</div>
+            <div class="date-time">19/10月25日 05:56</div>
+          </div>
+        </div>
+        <div class="item clear-fix">
+          <div class="avatar left">
+            <img :src="imgUrl" />
+          </div>
+          <div class="info left">
+            <div class="name">why</div>
+            <div class="text">哎呦不错呀</div>
+            <div class="date-time">19/10月25日 05:56</div>
+          </div>
+        </div>
+        <div class="item clear-fix">
+          <div class="avatar left">
+            <img :src="imgUrl" />
+          </div>
+          <div class="info left">
+            <div class="name">why</div>
+            <div class="text">哎呦不错呀</div>
+            <div class="date-time">19/10月25日 05:56</div>
+          </div>
+        </div>
+        <div class="item clear-fix">
+          <div class="avatar left">
+            <img :src="imgUrl" />
+          </div>
+          <div class="info left">
+            <div class="name">why</div>
+            <div class="text">哎呦不错呀</div>
+            <div class="date-time">19/10月25日 05:56</div>
+          </div>
+        </div>
+        <div class="item clear-fix">
+          <div class="avatar left">
+            <img :src="imgUrl" />
+          </div>
+          <div class="info left">
+            <div class="name">why</div>
+            <div class="text">哎呦不错呀</div>
+            <div class="date-time">19/10月25日 05:56</div>
+          </div>
+        </div>
+        <div class="item clear-fix">
+          <div class="avatar left">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -43,6 +93,24 @@
         </div>
       </div>
     </div>
+    <div class="input-content">
+      <input
+        ref="input"
+        :class="[{'input-focus': isInput},'input']"
+        v-model="publishText"
+        @focus="inputFocus"
+        @blur="inputBlur"
+        type="text"
+        placeholder="评论一下吧..."
+      />
+      <div v-if="!isInput">
+        <span class="iconfont icon-thumbup"></span>
+        <span class="iconfont icon-xinbaniconshangchuan-"></span>
+      </div>
+      <div v-else class="publish-btn" @click="publish">
+        <span>发布</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,14 +118,35 @@
 export default {
   data () {
     return {
-      imgUrl: require('@/assets/avator1.jpeg')
+      imgUrl: require('@/assets/avator1.jpeg'),
+      publishText: '', // 评论内容
+      isInput: false // 输入状态
     }
   },
   created () {
-    console.log(this)
-    this.$toast.show({
-      text: 'TEST'
-    })
+    // this.$toast.show({
+    //   text: 'TEST'
+    // })
+  },
+  methods: {
+    // input获取焦点事件
+    inputFocus () {
+      console.log('focus')
+      this.isInput = true
+    },
+    // input失去焦点事件
+    inputBlur () {
+      let _this = this
+      setTimeout(function () {
+        _this.isInput = false
+        console.log('blur')
+      }, 200)
+    },
+    // 发布
+    publish () {
+      console.log(this.publishText)
+      this.publishText = ''
+    }
   }
 }
 </script>
@@ -66,6 +155,7 @@ export default {
 .article {
   min-height: 100vh;
   background: #fff;
+  padding-bottom: 1.6rem;
 }
 .info-wrap {
   padding: 0.533333rem 0.4rem 0;
@@ -143,6 +233,48 @@ export default {
         color: gray;
       }
     }
+  }
+}
+.input-content {
+  position: fixed;
+  bottom: 0;
+  height: 1.333333rem;
+  width: 100%;
+  background: #fff;
+  padding: 0 0.4rem;
+  border-top: 1px solid #efefef;
+  .input {
+    height: 0.8rem;
+    width: 7.333333rem;
+    margin-top: 0.266667rem;
+    border-radius: 0.4rem;
+    border: none;
+    outline: none;
+    padding: 0 0.266667rem;
+    background: #efefef;
+  }
+  .input-focus {
+    width: 8rem;
+  }
+  .publish-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.4rem;
+  }
+  .icon-thumbup {
+    font-size: 0.8rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1.2rem;
+  }
+  .icon-xinbaniconshangchuan- {
+    font-size: 0.733333rem;
+    position: absolute;
+    top: 48%;
+    right: 0.4rem;
+    transform: translateY(-50%);
   }
 }
 </style>

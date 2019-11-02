@@ -2,7 +2,7 @@
   <div class="topTitle">
     <div class="title title-color">
       <span class="iconfont icon-back" @click="backClickHandle"></span>
-      <slot>{{ title }}</slot>
+      <span class="title-text"><slot>{{ title }}</slot></span>
     </div>
   </div>
 </template>
@@ -44,5 +44,15 @@ export default {
   color: #fff;
   padding-left: 0.4rem;
   background: #0c3255;
+  position: relative;
+  .icon-back{
+    font-size: .48rem;
+    position: absolute;
+    top: 51.5%;
+    transform: translateY(-50%);
+  }
+  .title-text{
+    padding-left: .8rem;
+  }
 }
 </style>

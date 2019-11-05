@@ -4,6 +4,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
 // Vuex
 // import store from './store'
 // 自定义插件
@@ -12,6 +13,7 @@ import '@/plugin/flexible.js'
 import '@/styles/normalize.css'
 import '@/styles/index.css'
 
+// Vue.use(vuescroll)
 // 自定义插件
 Vue.use(Plugin)
 

@@ -1,98 +1,52 @@
 <template>
-  <div class="datePicker">
-    <vuescroll :ops="ops" class="scroll-wrap" ref="vs" @handle-scroll="handleScroll">
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-      <div class="scroll-item">内容1</div>
-    </vuescroll>
-    <vuescroll :ops="ops" class="scroll-wrap">
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-      <div class="scroll-item">内容2</div>
-    </vuescroll>
+  <div class="picker">
+    <mt-popup class="popup" v-model="popupVisible" position="bottom">
+      <div class="btn">
+        <span>取消</span>
+        <span>确定</span>
+      </div>
+      <div class="picker-wrap">
+        <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
+      </div>
+    </mt-popup>
   </div>
 </template>
 
 <script>
-import vuescroll from 'vuescroll/dist/vuescroll-slide'
-import 'vuescroll/dist/vuescroll.css'
 export default {
   data () {
     return {
-      ops: {
-        vuescroll: {
-          mode: 'slide'
+      popupVisible: true,
+      slots: [
+        {
+          flex: 1,
+          values: ['2019', '2018', '2017', '2016', '2015', '2014'],
+          className: 'slot1',
+          textAlign: 'center'
         },
-        scrollPanel: {
-          scrollingX: false
-        },
-        rail: {
-        },
-        bar: {
-          opacity: 0
+        {
+          flex: 1,
+          values: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+          className: 'slot3',
+          textAlign: 'center'
         }
-      }
+      ]
     }
   },
-  components: {
-    vuescroll
-  },
-  created () {
-    this.$nextTick(function () {
-      const { v, h } = this.$refs['vs'].getScrollProcess()
-      console.log(v, h)
-    })
-  },
   methods: {
-    handleScroll (vertical, horizontal, nativeEvent) {
-      console.log(vertical)
+    onValuesChange (picker, values) {
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.datePicker {
-  height: 4rem;
-  display: flex;
-  .scroll-wrap {
-    flex: 1;
-    .scroll-item {
-      text-align: center;
-      height: 0.66667rem;
-      line-height: 0.66667rem;
-    }
+.popup {
+  width: 100%;
+}
+.picker-wrap {
+  width: 100%;
+  text-align: center !important;
+  .picker-item {
   }
 }
 </style>

@@ -4,7 +4,7 @@
     <div class="date-wrap clear-fix">
       <div class="date-time left">2019-10-22 20:20</div>
       <div class="scan right">
-        <span class="icon"></span>
+        <span class="icon iconfont icon-eye"></span>
         <span class="num">1234</span>
       </div>
     </div>
@@ -43,7 +43,6 @@ export default {
     }
     .scan{
       .icon{
-        display: block;
         width: .4rem;
         height: .26667rem;
         background: pink;

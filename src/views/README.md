@@ -14,3 +14,5 @@
  --articleDetails       文章详情
 
 -fishingHarvest         渔获
+
+-message                消息

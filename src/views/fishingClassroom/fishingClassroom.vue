@@ -36,32 +36,32 @@ export default {
         {
           id: '1',
           name: '黑坑',
-          imgUrl: require('@/assets/fishingClassroom.jpg')
+          imgUrl: require('@/assets/class1.png')
         },
         {
           id: '2',
           name: '野钓',
-          imgUrl: require('@/assets/fishingClassroom2.jpg')
+          imgUrl: require('@/assets/class2.png')
         },
         {
           id: '3',
           name: '装备',
-          imgUrl: require('@/assets/fishingClassroom4.jpg')
+          imgUrl: require('@/assets/class3.png')
         },
         {
           id: '4',
           name: '路亚',
-          imgUrl: require('@/assets/fishingClassroom2.jpg')
+          imgUrl: require('@/assets/class4.png')
         },
         {
           id: '5',
           name: '海钓',
-          imgUrl: require('@/assets/fishingClassroom3.jpg')
+          imgUrl: require('@/assets/class5.png')
         },
         {
           id: '6',
           name: '杂谈',
-          imgUrl: require('@/assets/fishingClassroom.jpg')
+          imgUrl: require('@/assets/class6.png')
         }
       ],
       // tab按钮数据

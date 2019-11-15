@@ -30,6 +30,14 @@ const mine = [
     meta: {
       title: 'billDetails'
     }
+  },
+  {
+    path: '/mine/signIn',
+    name: 'signIn',
+    component: () => import('@/views/mine/signIn'),
+    meta: {
+      title: 'signIn'
+    }
   }
 ]
 

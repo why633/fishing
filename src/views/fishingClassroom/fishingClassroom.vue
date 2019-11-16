@@ -80,25 +80,30 @@ export default {
       ],
       // 文章数据列表
       articleListData: [
-      ]
+      ],
+      order: 'hot'
     }
   },
   created () {
     console.log('fresh')
-    this.getArticleList({ order: 'hot' })
+    this.getArticleList()
   },
   methods: {
     // 最新最热tab切换
     tabHandleClick (id) {
-      console.log(id)
       this.articleTapData.map((item, index) => {
-        console.log(index)
+        if (id === '1') {
+          this.order = 'time'
+        } else {
+          this.order = 'hot'
+        }
         if (id === item.id) {
           item.active = true
         } else {
           item.active = false
         }
       })
+      this.getArticleList()
     },
     // 跳转大众课程模块
     goClassDetails (id) {
@@ -112,7 +117,10 @@ export default {
       console.log('colseWebview')
     },
     // 获取文章列表
-    getArticleList (params) {
+    getArticleList () {
+      const params = {
+        order: this.order
+      }
       getClassroomArticleList(params).then(res => {
         console.log(res.data.data.list)
         const jsonData = res.data.data.list

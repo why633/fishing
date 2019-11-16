@@ -53,6 +53,7 @@ export default {
   }
   .title-text{
     padding-left: .8rem;
+    font-size: .453333rem;
   }
 }
 </style>

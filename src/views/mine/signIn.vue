@@ -13,15 +13,11 @@
 </template>
 
 <script>
-import Calendar from 'vue-calendar-component'
 export default {
   data () {
     return {
       signInDate: ['2019/11/13', '2019/11/19']
     }
-  },
-  components: {
-    Calendar
   },
   methods: {
     clickDay (data) {

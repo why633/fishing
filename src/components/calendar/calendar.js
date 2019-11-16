@@ -85,6 +85,7 @@ const calendar = {
   },
   // format日期
   dateFormat (date) {
+    // eslint-disable-next-line no-useless-escape
     date = typeof date === 'string' ? new Date(date.replace(/\-/g, '/')) : date
     return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate()
   },

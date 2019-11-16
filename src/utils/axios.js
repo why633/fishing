@@ -14,7 +14,8 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor () {
-    var DEV_HOST = 'http://47.94.139.201:9000/fishing'
+    // var DEV_HOST = 'http://47.94.139.201:9000/fishing'
+    var DEV_HOST = 'http://192.168.0.136:9000/fishing'
     this.api = DEV_HOST
     // this.apiVersion = '2.1.0'
   }

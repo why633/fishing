@@ -14,6 +14,14 @@ const message = [
     meta: {
       title: 'followMessage'
     }
+  },
+  {
+    path: '/message/eventMessage',
+    name: 'eventMessage',
+    component: () => import('@/views/message/subPage/eventMessage'),
+    meta: {
+      title: 'eventMessage'
+    }
   }
 ]
 

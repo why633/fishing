@@ -1,12 +1,14 @@
 <template>
   <div class="signIn">
     <top-title>签到领币</top-title>
-    <Calendar
-      v-on:choseDay="clickDay"
-      v-on:changeMonth="changeDate"
-      :futureDayHide="'0'"
-      :markDate="signInDate"
-    ></Calendar>
+    <div class="content">
+      <Calendar
+        v-on:choseDay="clickDay"
+        v-on:changeMonth="changeDate"
+        :futureDayHide="'0'"
+        :markDate="signInDate"
+      ></Calendar>
+    </div>
   </div>
 </template>
 
@@ -36,5 +38,8 @@ export default {
 .signIn {
   min-height: 100%;
   background: #fff;
+}
+.content{
+  padding: .533333rem .426667rem;
 }
 </style>

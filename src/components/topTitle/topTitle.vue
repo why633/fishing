@@ -1,9 +1,14 @@
 <template>
-  <div class="topTitle">
-    <div class="title title-color">
-      <span class="iconfont icon-back" @click="backClickHandle"></span>
-      <span class="title-text"><slot>{{ title }}</slot></span>
+  <div>
+    <div class="topTitle">
+      <div class="title title-color">
+        <span class="iconfont icon-back" @click="backClickHandle"></span>
+        <span class="title-text">
+          <slot>{{ title }}</slot>
+        </span>
+      </div>
     </div>
+    <div class="blank"></div>
   </div>
 </template>
 
@@ -38,6 +43,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.topTitle {
+  position: fixed;
+  width: 100%;
+}
+.blank{
+  height: 1.17333rem;
+}
 .title {
   height: 1.17333rem;
   line-height: 1.17333rem;
@@ -45,15 +57,15 @@ export default {
   padding-left: 0.4rem;
   background: #0c3255;
   position: relative;
-  .icon-back{
-    font-size: .48rem;
+  .icon-back {
+    font-size: 0.48rem;
     position: absolute;
     top: 51.5%;
     transform: translateY(-50%);
   }
-  .title-text{
-    padding-left: .8rem;
-    font-size: .453333rem;
+  .title-text {
+    padding-left: 0.8rem;
+    font-size: 0.453333rem;
   }
 }
 </style>

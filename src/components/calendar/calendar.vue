@@ -60,7 +60,7 @@ li {
 }
 
 .wh_content_item,
-wh_content_item_tag {
+.wh_content_item_tag {
   font-size: 15px;
   width: 13.4%;
   text-align: center;

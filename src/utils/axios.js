@@ -14,9 +14,9 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor () {
-    var DEV_HOST = '//mwapi.emao.com'
+    var DEV_HOST = 'http://47.94.139.201:9000/fishing'
     this.api = DEV_HOST
-    this.apiVersion = '2.1.0'
+    // this.apiVersion = '2.1.0'
   }
 
   // 添加请求头
@@ -26,12 +26,12 @@ class HandleParamAndResult {
       'Content-Type': 'application/json',
       // 'authorization': "",
       // 'osType': 'H5',
-      'Accept': `application/json; version=${this.apiVersion}`
+      // 'Accept': `application/json; version=${this.apiVersion}`
     }
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    headers.Authorization = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBZG1pbk5vcm1hbEFjY291bnQiLCJzdWIiOiI0MDAwMDAiLCJpYXQiOjE1NzE2MjczNjUsImV4cCI6MTU3MTcxMzc2NSwiZGF0YSI6eyJ1c2VySWQiOiI0MDAwMDAiLCJ1c2VyTmFtZSI6Ilx1N2NmYlx1N2VkZlx1N2JhMVx1NzQwNlx1NTQ1OCIsInVzZXJQYXNzd29yZCI6IjUzNTM4MWVjOWQ1YWI3YTM5MGRiMGEzMDg2MDYwMGYyIiwidXNlclBob25lIjoiMTM5MTIzNDU2NzgiLCJ1c2VyRW1haWwiOiJ6aGFuZ3l1bjEzNDZAZW1hby5jb20iLCJ1c2VyRGVwYXJJZCI6IjEwMCIsInVzZXJHcm91cElkIjoiMCIsInVzZXJSb2xlSWQiOiIzMDAwMCIsInVzZXJPcGVyYXRpb24iOiIzIiwic3RhdHVzIjoiMSIsImNyZWF0ZWRBdCI6IjIwMTgtMTEtMjkgMTk6MjM6MjMiLCJ1cGRhdGVkQXQiOiIyMDE5LTAyLTE0IDE2OjQzOjI2IiwiZGVsZXRlZEF0IjpudWxsLCJvcGVyYXRvck5hbWUiOiJhZG1pbiIsInBlcm1pc3Npb24iOltdLCJsb2dpbkRhdGUiOjE1NzE2MjczNjV9fQ.bX-vXHSj7ZDEuHLEEukFqBEmChWbk0h8fpiQsSI4Lto'
+    // headers.Authorization = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBZG1pbk5vcm1hbEFjY291bnQiLCJzdWIiOiI0MDAwMDAiLCJpYXQiOjE1NzE2MjczNjUsImV4cCI6MTU3MTcxMzc2NSwiZGF0YSI6eyJ1c2VySWQiOiI0MDAwMDAiLCJ1c2VyTmFtZSI6Ilx1N2NmYlx1N2VkZlx1N2JhMVx1NzQwNlx1NTQ1OCIsInVzZXJQYXNzd29yZCI6IjUzNTM4MWVjOWQ1YWI3YTM5MGRiMGEzMDg2MDYwMGYyIiwidXNlclBob25lIjoiMTM5MTIzNDU2NzgiLCJ1c2VyRW1haWwiOiJ6aGFuZ3l1bjEzNDZAZW1hby5jb20iLCJ1c2VyRGVwYXJJZCI6IjEwMCIsInVzZXJHcm91cElkIjoiMCIsInVzZXJSb2xlSWQiOiIzMDAwMCIsInVzZXJPcGVyYXRpb24iOiIzIiwic3RhdHVzIjoiMSIsImNyZWF0ZWRBdCI6IjIwMTgtMTEtMjkgMTk6MjM6MjMiLCJ1cGRhdGVkQXQiOiIyMDE5LTAyLTE0IDE2OjQzOjI2IiwiZGVsZXRlZEF0IjpudWxsLCJvcGVyYXRvck5hbWUiOiJhZG1pbiIsInBlcm1pc3Npb24iOltdLCJsb2dpbkRhdGUiOjE1NzE2MjczNjV9fQ.bX-vXHSj7ZDEuHLEEukFqBEmChWbk0h8fpiQsSI4Lto'
     // if (handleToken.getToken()) {
     //   headers.Authorization = `Bearer ${handleToken.getToken()}`
     // }

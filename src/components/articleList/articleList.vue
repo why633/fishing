@@ -1,30 +1,31 @@
 <template>
   <div class="article-list">
     <div class="item" v-for="item in articleListData" :key="item.id" @click="goArticle(item.id)">
-      <div class="single-pic-wrap" v-if="item.picUrl.length == 1">
+      <div class="single-pic-wrap" v-if="item.images.length == 1">
         <div class="single-title text-overflowTow">
           <div>{{ item.title }}</div>
-          <div class="date-time">19/10月10日 10:30</div>
+          <div class="date-time">{{ item.createTime | formateDate }}</div>
         </div>
         <div class="single-pic-item">
-          <img :src="item.picUrl[0]">
+          <img :src="item.images[0]">
         </div>
       </div>
-      <div v-if="item.picUrl.length > 1">
+      <div v-if="item.images.length > 1">
         <div class="title text-overflowTow">{{ item.title }}</div>
         <div class="pic-wrap">
-          <div class="pic-item" v-for="(picItem, index) in item.picUrl.slice(0,3)" :key="index">
+          <div class="pic-item" v-for="(picItem, index) in item.images.slice(0,3)" :key="index">
             <img :src="picItem">
           </div>
-          <div class="pic-item" v-if="item.picUrl.length == 2"></div>
+          <div class="pic-item" v-if="item.images.length == 2"></div>
         </div>
-        <div class="date-time">19/10月10日 10:30</div>
+        <div class="date-time">{{ item.createTime | formateDate }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { formateDate } from '@/utils/formateDate'
 export default {
   props: {
     // 文章列表数据
@@ -33,6 +34,15 @@ export default {
       default: function () {
         return []
       }
+    }
+  },
+  filters: {
+    formateDate: function (value) {
+      const parmas = {
+        dateObj: value,
+        fmt: 'yyyy-MM-dd hh:mm:ss'
+      }
+      return formateDate(parmas)
     }
   },
   methods: {

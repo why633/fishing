@@ -1,6 +1,6 @@
 <template>
-  <div class="messageList">
-    <top-title>{{ titleText }}</top-title>
+  <div class="followMessage">
+    <top-title>关注通知</top-title>
     <div class="content">
       <div class="item" v-for="(item, index) in listData" :key="index">
         <div class="avator">
@@ -23,7 +23,6 @@
 export default {
   data () {
     return {
-      titleText: '关注通知',
       listData: [
         {
           name: '用户-why',
@@ -49,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.messageList {
+.followMessage {
   min-height: 100%;
   background: #fff;
 }

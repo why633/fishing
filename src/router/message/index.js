@@ -8,11 +8,11 @@ const message = [
     }
   },
   {
-    path: '/message/messageList',
-    name: 'messageList',
-    component: () => import('@/views/message/subPage/messageList'),
+    path: '/message/followMessage',
+    name: 'followMessage',
+    component: () => import('@/views/message/subPage/followMessage'),
     meta: {
-      title: 'messageList'
+      title: 'followMessage'
     }
   }
 ]

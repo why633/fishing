@@ -10,7 +10,7 @@
           :key="item.id"
           @click="goClassDetails(item.id)"
         >
-          <img :src="item.imgUrl">
+          <img :src="item.imgUrl" />
           <span>{{ item.name }}</span>
         </div>
       </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { getClassroomArticleList } from '@/api/index'
 export default {
   name: 'fishingClassroom',
   data () {
@@ -79,36 +80,12 @@ export default {
       ],
       // 文章数据列表
       articleListData: [
-        {
-          id: '1',
-          title: '钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP',
-          picUrl: [require('@/assets/fishingClassroom.jpg'), require('@/assets/fishingClassroom2.jpg'), require('@/assets/fishingClassroom3.jpg')]
-        },
-        {
-          id: '2',
-          title: '钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP',
-          picUrl: [require('@/assets/fishingClassroom2.jpg'), require('@/assets/fishingClassroom3.jpg')]
-        },
-        {
-          id: '3',
-          title: '钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP',
-          picUrl: [require('@/assets/fishingClassroom3.jpg')]
-        },
-        {
-          id: '4',
-          title: '钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP',
-          picUrl: [require('@/assets/fishingClassroom.jpg'), require('@/assets/fishingClassroom.jpg'), require('@/assets/fishingClassroom2.jpg'), require('@/assets/fishingClassroom3.jpg')]
-        },
-        {
-          id: '5',
-          title: '钓鱼排行榜正式成为CAA-舟钓委员会赛事官方合作APP',
-          picUrl: [require('@/assets/fishingClassroom.jpg'), require('@/assets/fishingClassroom2.jpg'), require('@/assets/fishingClassroom3.jpg')]
-        }
       ]
     }
   },
   created () {
     console.log('fresh')
+    this.getArticleList({ order: 'hot' })
   },
   methods: {
     // 最新最热tab切换
@@ -133,13 +110,21 @@ export default {
     },
     colseWebview () {
       console.log('colseWebview')
+    },
+    // 获取文章列表
+    getArticleList (params) {
+      getClassroomArticleList(params).then(res => {
+        console.log(res.data.data.list)
+        const jsonData = res.data.data.list
+        this.articleListData = jsonData
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.fishingClassroom{
+.fishingClassroom {
   min-height: 100vh;
   background: #fff;
 }

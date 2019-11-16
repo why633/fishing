@@ -2,6 +2,7 @@
  * 计算钓技课堂标题
  */
 export function classTitle (id) {
+  console.log(id)
   const idMap = {
     '1': '黑坑',
     '2': '野钓',

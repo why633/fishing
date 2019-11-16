@@ -10,7 +10,7 @@ export default {
   name: 'classDetails',
   data () {
     return {
-      titleId: '1',
+      titleId: '',
       // 文章数据列表
       articleListData: [
         {

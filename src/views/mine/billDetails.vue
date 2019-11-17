@@ -1,7 +1,7 @@
 <template>
   <div class="billDetails">
     <top-title>账单明细</top-title>
-    <div class="date-picker">选择日期</div>
+    <div class="date-picker" @click="pickDate">选择日期</div>
     <div class="bill-list">
       <div class="item">
         <div class="left-info">
@@ -16,7 +16,13 @@
         </div>
       </div>
     </div>
-    <date-picker></date-picker>
+    <picker
+      :data="pickData"
+      :showToolbar="true"
+      @cancel="cancel"
+      @confirm="confirm"
+      :visible.sync="pickerVisible"
+    />
   </div>
 </template>
 
@@ -24,10 +30,103 @@
 export default {
   data () {
     return {
-      pickerValue: ''
+      pickerValue: '',
+      pickerVisible: false,
+      pickData: [
+        [
+          {
+            label: '2019',
+            value: '2019'
+          },
+          {
+            label: '2018',
+            value: '2018'
+          },
+          {
+            label: '2017',
+            value: '2017'
+          },
+          {
+            label: '2016',
+            value: '2016'
+          },
+          {
+            label: '2015',
+            value: '2015'
+          },
+          {
+            label: '2014',
+            value: '2014'
+          }
+        ],
+        [
+          {
+            label: '01',
+            value: '01'
+          },
+          {
+            label: '02',
+            value: '02'
+          },
+          {
+            label: '03',
+            value: '04'
+          },
+          {
+            label: '05',
+            value: '05'
+          },
+          {
+            label: '06',
+            value: '06'
+          },
+          {
+            label: '07',
+            value: '07'
+          },
+          {
+            label: '08',
+            value: '08'
+          },
+          {
+            label: '09',
+            value: '09'
+          },
+          {
+            label: '10',
+            value: '10'
+          },
+          {
+            label: '11',
+            value: '11'
+          },
+          {
+            label: '12',
+            value: '12'
+          }
+        ]
+      ],
+      result: ''
     }
   },
+  created () {
+    this.getPickerYearList()
+  },
   methods: {
+    pickDate () {
+      this.pickerVisible = true
+    },
+    cancel () {
+      this.result = 'click cancel result: null'
+    },
+    confirm (res) {
+      this.result = JSON.stringify(res)
+      console.log(res)
+    },
+    getPickerYearList () {
+      const nowYear = new Date().getFullYear()
+      console.log(nowYear)
+    }
   }
 }
 </script>
@@ -39,7 +138,11 @@ export default {
 }
 .date-picker {
   height: 1.17333rem;
+  line-height: 1.17333rem;
+  color: gray;
   background: #efefef;
+  font-size: 0.426667rem;
+  padding-left: 0.426667rem;
 }
 .bill-list {
   padding: 0 0.266667rem 0 0.4rem;

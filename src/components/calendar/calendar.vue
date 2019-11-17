@@ -1,137 +1,3 @@
-<style scoped>
-@media screen and (min-width: 460px) {
-  .wh_item_date:hover {
-    background: #71c7a5;
-    cursor: pointer;
-  }
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.wh_container {
-  max-width: 410px;
-  margin: auto;
-}
-
-li {
-  list-style-type: none;
-}
-.wh_top_changge {
-  display: flex;
-}
-
-.wh_top_changge li {
-  cursor: pointer;
-  display: flex;
-  color: #fff;
-  font-size: 18px;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  height: 47px;
-}
-
-.wh_top_changge .wh_content_li {
-  cursor: auto;
-  flex: 2.5;
-}
-.wh_content_all {
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
-    "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
-  background-color: #0fc37c;
-  width: 100%;
-  overflow: hidden;
-  padding-bottom: 8px;
-}
-
-.wh_content {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 3% 0 3%;
-  width: 100%;
-}
-
-.wh_content:first-child .wh_content_item_tag,
-.wh_content:first-child .wh_content_item {
-  color: #ddd;
-  font-size: 16px;
-}
-
-.wh_content_item,
-.wh_content_item_tag {
-  font-size: 15px;
-  width: 13.4%;
-  text-align: center;
-  color: #fff;
-  position: relative;
-}
-.wh_content_item {
-  height: 40px;
-}
-
-.wh_top_tag {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.wh_item_date {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.wh_jiantou1 {
-  width: 12px;
-  height: 12px;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  transform: rotate(-45deg);
-}
-
-.wh_jiantou1:active,
-.wh_jiantou2:active {
-  border-color: #ddd;
-}
-
-.wh_jiantou2 {
-  width: 12px;
-  height: 12px;
-  border-top: 2px solid #ffffff;
-  border-right: 2px solid #ffffff;
-  transform: rotate(45deg);
-}
-.wh_content_item > .wh_isMark {
-  margin: auto;
-  border-radius: 100px;
-  background: red;
-  z-index: 2;
-}
-.wh_content_item .wh_other_dayhide {
-  color: #bfbfbf;
-}
-.wh_content_item .wh_want_dayhide {
-  color: #bfbfbf;
-}
-.wh_content_item .wh_isToday {
-  background: pink;
-  border-radius: 100px;
-}
-.wh_content_item .wh_chose_day {
-  background: green;
-  border-radius: 100px;
-}
-</style>
 <template>
   <section class="wh_container">
     <div class="wh_content_all">
@@ -144,7 +10,7 @@ li {
           <div class="wh_jiantou2"></div>
         </li>
       </div>
-      <div class="wh_content">
+      <div class="wh_content bg_g">
         <div class="wh_content_item" v-for="tag in textTop" :key="tag.id">
           <div class="wh_top_tag">{{tag}}</div>
         </div>
@@ -153,13 +19,18 @@ li {
         <div
           class="wh_content_item"
           v-for="(item,index) in list"
-          @click="clickDay(item,index)"
           :key="index"
         >
+        <!-- <div
+          class="wh_content_item"
+          v-for="(item,index) in list"
+          @click="clickDay(item,index)"
+          :key="index"
+        > -->
           <div
             class="wh_item_date"
             v-bind:class="[{ wh_isMark: item.isMark},{wh_other_dayhide:item.otherMonth!=='nowMonth'},{wh_want_dayhide:item.dayHide},{wh_isToday:item.isToday},{wh_chose_day:item.chooseDay},setClass(item)]"
-          >{{item.id}}</div>
+          ><span>{{item.id}}</span></div>
         </div>
       </div>
     </div>
@@ -345,3 +216,151 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.bg_g{
+  background: #f4f4f4;
+}
+.wh_container {
+  width: 100%;
+  margin: auto;
+}
+
+li {
+  list-style-type: none;
+}
+.wh_top_changge {
+  display: flex;
+  background: #f4f4f4;
+}
+
+.wh_top_changge li {
+  cursor: pointer;
+  display: flex;
+  color: #333;
+  font-size: .4rem;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 1.2rem;
+}
+
+.wh_top_changge .wh_content_li {
+  cursor: auto;
+  flex: 2.5;
+}
+.wh_content_all {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: .106667rem;
+}
+
+.wh_content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 3% 0 3%;
+  width: 100%;
+}
+
+.wh_content:first-child .wh_content_item_tag,
+.wh_content:first-child .wh_content_item {
+  color: #ddd;
+  font-size: .213333rem;
+}
+
+.wh_content_item,
+.wh_content_item_tag {
+  font-size: .4rem;
+  width: 14.28%;
+  text-align: center;
+  color: #333;
+  position: relative;
+}
+.wh_content_item {
+  height: 1.2rem;
+  padding: .066667rem;
+}
+
+.wh_top_tag {
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wh_item_date {
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin: .1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wh_jiantou1 {
+  width: .16rem;
+  height: .16rem;
+  border-top: .026667rem solid #333;
+  border-left: .026667rem solid #333;
+  transform: rotate(-45deg);
+}
+
+.wh_jiantou1:active,
+.wh_jiantou2:active {
+  border-color: #ddd;
+}
+
+.wh_jiantou2 {
+  width: .16rem;
+  height: .16rem;
+  border-top: .026667rem solid #333;
+  border-right: .026667rem solid #333;
+  transform: rotate(45deg);
+}
+.wh_content_item > .wh_isMark {
+  margin: .2rem auto;
+  border-radius: 1.333333rem;
+  /* background: red; */
+  z-index: 2;
+  font-size: .293333rem;
+  position: relative;
+  line-height: .4rem;
+}
+.wh_content_item > .wh_isMark::after{
+  content: "";
+  display: block;
+  width: .6rem;
+  height: .6rem;
+  background: url('./images/selected.png');
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: .053333rem;
+}
+.wh_content_item > .wh_isMark span {
+  position: absolute;
+  top: .053333rem;
+}
+.wh_content_item .wh_other_dayhide {
+  color: #bfbfbf;
+  visibility: hidden;
+  /* 隐藏非本月日 */
+}
+.wh_content_item .wh_want_dayhide {
+  color: #bfbfbf;
+}
+.wh_content_item .wh_isToday {
+  background: #f4f4f4;
+  border-radius: 1.333333rem;
+}
+.wh_content_item .wh_chose_day {
+  background: green;
+  border-radius: 1.333333rem;
+}
+</style>

@@ -38,6 +38,14 @@ const mine = [
     meta: {
       title: 'signIn'
     }
+  },
+  {
+    path: '/mine/hotLine',
+    name: 'hotLine',
+    component: () => import('@/views/mine/hotLine'),
+    meta: {
+      title: 'hotLine'
+    }
   }
 ]
 

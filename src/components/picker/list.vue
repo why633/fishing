@@ -88,8 +88,9 @@ export default {
       } else if (this.startTop <= this.top + this.itemHeight) {
         this.setTop(this.column.length - 1)
       } else {
-        this.ulStyle.transitionDuration = `0ms`
-        this.ulStyle.transitionProperty = `none`
+        this.ulStyle.transitionDuration = `200ms`
+        this.ulStyle.transitionProperty = `all`
+        this.ulStyle.transitionTimingFunction = 'linear'
         this.toMove(e)
       }
     },
@@ -214,7 +215,7 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 0 5px;
-    color: #000;
+    color: #0c3255;
   }
 }
 </style>

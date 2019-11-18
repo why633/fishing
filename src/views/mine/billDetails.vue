@@ -1,7 +1,7 @@
 <template>
   <div class="billDetails">
     <top-title>账单明细</top-title>
-    <div class="date-picker" @click="pickDate">选择日期</div>
+    <div :class="['date-picker',dateText == '请选择时间'?'default':'']" @click="pickDate">{{ dateText }}</div>
     <div class="bill-list">
       <div class="item">
         <div class="left-info">
@@ -32,6 +32,7 @@ export default {
     return {
       pickerValue: '',
       pickerVisible: false,
+      dateText: '请选择时间',
       pickData: [
         [
           {
@@ -122,6 +123,7 @@ export default {
     confirm (res) {
       this.result = JSON.stringify(res)
       console.log(res)
+      this.dateText = res[0].value + '年' + res[1].value + '月'
     },
     getPickerYearList () {
       const nowYear = new Date().getFullYear()
@@ -149,11 +151,14 @@ export default {
 .date-picker {
   height: 1.17333rem;
   line-height: 1.17333rem;
-  color: gray;
   background: #efefef;
   font-size: 0.426667rem;
   padding-left: 0.426667rem;
 }
+.default {
+  color: gray;
+}
+
 .bill-list {
   padding: 0 0.266667rem 0 0.4rem;
   .item {

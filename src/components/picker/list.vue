@@ -204,6 +204,7 @@ export default {
     margin: 0;
     padding: 0;
     transition-timing-function: cubic-bezier(0.23, 1, 0.68, 1);
+    // transition-timing-function: linear;
     line-height: 44px;
   }
   li {

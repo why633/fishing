@@ -120,7 +120,7 @@ export default {
   computed: {
     boxHeight () {
       let itemHeight = parseInt(this.itemHeight)
-      itemHeight = itemHeight ? itemHeight : DEFTAULT_ITEM_HEIGHT
+      itemHeight = itemHeight === 0 ? itemHeight : DEFTAULT_ITEM_HEIGHT
       return itemHeight * 5
     }
   },

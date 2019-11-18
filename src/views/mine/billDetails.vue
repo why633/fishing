@@ -125,7 +125,17 @@ export default {
     },
     getPickerYearList () {
       const nowYear = new Date().getFullYear()
-      console.log(nowYear)
+      const yearList = []
+      for (let i = 0; i < 20; i++) {
+        yearList.push(
+          {
+            value: nowYear - i,
+            label: nowYear - i
+          }
+        )
+      }
+      console.log(yearList)
+      this.pickData[0] = yearList
     }
   }
 }

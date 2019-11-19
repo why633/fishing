@@ -13,9 +13,6 @@ import '@/plugin/flexible.js'
 import '@/styles/normalize.css'
 import '@/styles/index.css'
 
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
 // Vue.use(vuescroll)
 // 自定义插件
 Vue.use(Plugin)

@@ -37,7 +37,11 @@ export default {
     },
     toDetail (type) {
       console.log(type)
-      this.$router.push(`/message/messageList?type=${type}`)
+      if (type === 'active') {
+        this.$router.push(`/message/eventMessage`)
+      } else {
+        this.$router.push(`/message/followMessage`)
+      }
     }
   }
 }

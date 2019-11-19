@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { getMessage } from '@/api/index'
 export default {
   data () {
     return {
@@ -38,10 +39,15 @@ export default {
     }
   },
   created () {
-    if (this.$route.query.type === 'follow') {
-      this.titleText = '关注通知'
-    } else {
-      this.titleText = '赛事/活动通知'
+    this.getMessageList()
+  },
+  methods: {
+    // 获取消息列表
+    getMessageList () {
+      getMessage({type: 1}).then(res => {
+        const resData = res.data
+        console.log(resData)
+      })
     }
   }
 }

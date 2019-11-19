@@ -14,8 +14,8 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor () {
-    // var DEV_HOST = 'http://47.94.139.201:9000/fishing'
-    var DEV_HOST = 'http://192.168.0.136:9000/fishing'
+    var DEV_HOST = 'http://47.94.139.201:9000/fishing'
+    // var DEV_HOST = 'http://192.168.0.136:9000/fishing'
     this.api = DEV_HOST
     // this.apiVersion = '2.1.0'
   }
@@ -32,7 +32,7 @@ class HandleParamAndResult {
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    // headers.Authorization = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBZG1pbk5vcm1hbEFjY291bnQiLCJzdWIiOiI0MDAwMDAiLCJpYXQiOjE1NzE2MjczNjUsImV4cCI6MTU3MTcxMzc2NSwiZGF0YSI6eyJ1c2VySWQiOiI0MDAwMDAiLCJ1c2VyTmFtZSI6Ilx1N2NmYlx1N2VkZlx1N2JhMVx1NzQwNlx1NTQ1OCIsInVzZXJQYXNzd29yZCI6IjUzNTM4MWVjOWQ1YWI3YTM5MGRiMGEzMDg2MDYwMGYyIiwidXNlclBob25lIjoiMTM5MTIzNDU2NzgiLCJ1c2VyRW1haWwiOiJ6aGFuZ3l1bjEzNDZAZW1hby5jb20iLCJ1c2VyRGVwYXJJZCI6IjEwMCIsInVzZXJHcm91cElkIjoiMCIsInVzZXJSb2xlSWQiOiIzMDAwMCIsInVzZXJPcGVyYXRpb24iOiIzIiwic3RhdHVzIjoiMSIsImNyZWF0ZWRBdCI6IjIwMTgtMTEtMjkgMTk6MjM6MjMiLCJ1cGRhdGVkQXQiOiIyMDE5LTAyLTE0IDE2OjQzOjI2IiwiZGVsZXRlZEF0IjpudWxsLCJvcGVyYXRvck5hbWUiOiJhZG1pbiIsInBlcm1pc3Npb24iOltdLCJsb2dpbkRhdGUiOjE1NzE2MjczNjV9fQ.bX-vXHSj7ZDEuHLEEukFqBEmChWbk0h8fpiQsSI4Lto'
+    headers.token = 'fx6EghQiK0U3OngnyU05pUl8oZFza3Aa'
     // if (handleToken.getToken()) {
     //   headers.Authorization = `Bearer ${handleToken.getToken()}`
     // }

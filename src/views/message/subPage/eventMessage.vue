@@ -5,7 +5,7 @@
       <div class="content">
         <div class="item" v-for="(item, index) in listData" :key="index">
           <div class="avatar-wrap">
-            <img :src="item.avatar" />
+            <img :src="item.avatar">
           </div>
           <div class="info">
             <div class="sender">{{ item.sender }}</div>
@@ -156,6 +156,8 @@ export default {
       getMessage({ type: 1 }).then(res => {
         const resData = res.data
         console.log(resData)
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

@@ -5,10 +5,10 @@
  * @LastEditTime: 2019-10-18 11:22:38
  * @LastEditors: Please set LastEditors
  */
+import Vue from 'vue'
 import axios from 'axios'
 import HandleToken from '@/utils/handleToken'
 const handleToken = new HandleToken()
-
 /**
  * 处理请求头数据和处理结果
  */
@@ -32,7 +32,7 @@ class HandleParamAndResult {
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    headers.token = 'fx6EghQiK0U3OngnyU05pUl8oZFza3Aa'
+    headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
     // if (handleToken.getToken()) {
     //   headers.Authorization = `Bearer ${handleToken.getToken()}`
     // }
@@ -48,7 +48,14 @@ class HandleParamAndResult {
     return new Promise((resolve, reject) => {
       axios(this.api + url, options).then(res => {
         // do something after success
-        resolve(res)
+        console.log(res.data.code)
+        if(res.data.code==200){
+          resolve(res)
+        } else {
+          Vue.prototype.$toast.show({
+            text: res.data.message
+          })
+        }
       }).catch(error => {
         console.log(error)
         // 判断token失效 处理

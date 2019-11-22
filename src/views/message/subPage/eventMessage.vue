@@ -5,11 +5,11 @@
       <div class="content">
         <div class="item" v-for="(item, index) in listData" :key="index">
           <div class="avatar-wrap">
-            <img :src="item.avatar">
+            <!-- <img :src="item.avatar"> -->
           </div>
           <div class="info">
-            <div class="sender">{{ item.sender }}</div>
-            <div class="date-time">{{ item.dateTime }}</div>
+            <div class="sender">{{ item.fromId }}</div>
+            <div class="date-time">{{ item.createTime | formateDateTime }}</div>
             <div class="message">
               <div>{{ item.message }}</div>
               <span>查看赛事详情</span>
@@ -30,62 +30,8 @@ export default {
       listData: [
         {
           avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          sender: '系统管理员',
-          dateTime: '2019-10-11 20:30',
+          fromId: '系统管理员',
+          createTime: '2019-10-11 20:30',
           message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
         }
       ],
@@ -156,6 +102,7 @@ export default {
       getMessage({ type: 1 }).then(res => {
         const resData = res.data
         console.log(resData)
+        this.listData = resData.data.list
       }).catch(err => {
         console.log(err)
       })
@@ -176,7 +123,8 @@ export default {
     .avatar-wrap {
       width: 1.066667rem;
       height: 1.066667rem;
-      background: pink;
+      background: url('./images/sender1.png');
+      background-size: 100% 100%;
       border-radius: 50%;
       overflow: hidden;
       margin-right: 0.213333rem;

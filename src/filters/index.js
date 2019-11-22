@@ -1,3 +1,5 @@
+import { formateDate } from '@/utils/formateDate'
+
 /**
  * 计算钓技课堂标题
  */
@@ -11,4 +13,16 @@ export function classTitle (id) {
     '6': '杂谈'
   }
   return (idMap[id] ? idMap[id] : '')
+}
+
+/**
+ * 格式化时间
+ */
+
+export function formateDateTime (date) {
+  const parmas = {
+    dateObj: date,
+    fmt: 'yyyy-MM-dd hh:mm:ss'
+  }
+  return formateDate(parmas)
 }

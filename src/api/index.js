@@ -14,6 +14,14 @@ export function getMessage (params) {
  * 获取钓技课堂列表
  * @param {order:hot/time} params
  */
-export function getClassroomArticleList (params) {
+export function articleList (params) {
   return $get('/info/shortInfo/getNewHot', params)
+}
+
+/**
+ * 获取文章详情
+ * @param {infoId} params
+ */
+export function articleDetail (params) {
+  return $get('/info/detailInfo/getById', params)
 }

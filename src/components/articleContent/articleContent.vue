@@ -1,14 +1,14 @@
 <template>
   <div class="articleContent">
-    <div class="sub-title">{{ articleInfo.subTitle }}</div>
+    <div class="sub-title">{{ articleInfo.title }}</div>
     <div class="date-wrap clear-fix">
-      <div class="date-time left">2019-10-22 20:20</div>
+      <div class="date-time left">{{ articleInfo.createTime | formateDateTime }}</div>
       <div class="scan right">
         <span class="icon iconfont icon-eye"></span>
-        <span class="num">1234</span>
+        <span class="num">{{articleInfo.times}}</span>
       </div>
     </div>
-    <div class="text-content">为什么说钓鱼人不容易得老年痴呆，不知道你信不信为什么说钓鱼人不容易得老年痴呆，不知道你信不信为什么说钓鱼人不容易得老年痴呆，不知道你信不信</div>
+    <div class="text-content" v-html="articleInfo.content"></div>
   </div>
 </template>
 
@@ -20,7 +20,10 @@ export default {
       type: Object,
       default: function () {
         return {
-          subTitle: '为什么说钓鱼人不容易得老年痴呆，不知道你信不信'
+          title: '',
+          createTime: '',
+          times: '',
+          content: ''
         }
       }
     }
@@ -36,24 +39,32 @@ export default {
     font-weight: 700;
     line-height: 1.2em;
   }
-  .date-wrap{
-    margin-top: .4rem;
-    font-size: .26667rem;
-    .date-time{
+  .date-wrap {
+    margin-top: 0.4rem;
+    font-size: 0.26667rem;
+    .date-time {
     }
-    .scan{
-      .icon{
-        width: .4rem;
-        height: .26667rem;
-        background: pink;
+    .scan {
+      .icon {
+        width: 0.4rem;
+        height: 0.26667rem;
+        // background: pink;
         float: left;
-        margin-right: .13333rem;
+        margin-right: 0.13333rem;
+        font-size: .16rem;
       }
     }
   }
-  .text-content{
-    margin-top: .4rem;
+  .text-content {
+    margin-top: 0.4rem;
     line-height: 1.2em;
+    & >>> p{
+      line-height: 1.2em;
+    }
+    & >>> img {
+      width: 100%;
+      margin: .133333rem 0;
+    }
   }
 }
 </style>

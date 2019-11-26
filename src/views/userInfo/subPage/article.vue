@@ -5,7 +5,7 @@
       <div class="user">
         <div class="item">
           <div class="avatar">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
         </div>
         <div class="item">
@@ -23,7 +23,7 @@
       <div class="list">
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -33,7 +33,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -43,7 +43,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -53,7 +53,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -63,7 +63,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -73,7 +73,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -83,7 +83,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl" />
+            <img :src="imgUrl">
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -115,18 +115,19 @@
 </template>
 
 <script>
+import keyboardHandle from '@/utils/keyboardHandle'
 export default {
   data () {
     return {
       imgUrl: require('@/assets/avator1.jpeg'),
       publishText: '', // 评论内容
-      isInput: false // 输入状态
+      isInput: false, // 输入状态
+      introduction: ''
     }
   },
   created () {
-    // this.$toast.show({
-    //   text: 'TEST'
-    // })
+    // 处理键盘弹起收起
+    keyboardHandle()
   },
   methods: {
     // input获取焦点事件
@@ -275,6 +276,17 @@ export default {
     top: 48%;
     right: 0.4rem;
     transform: translateY(-50%);
+  }
+}
+.field-wrap {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  .field {
+    width: 100%;
+    textarea {
+      width: 100%;
+    }
   }
 }
 </style>

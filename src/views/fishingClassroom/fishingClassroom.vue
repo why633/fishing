@@ -99,6 +99,7 @@ export default {
           num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
           size: 10 // 每页数据的数量
         },
+        htmlNodata: '<p class="upwarp-nodata">-- 无更多数据 --</p>',
         noMoreSize: 10, // 如果列表已无数据,可设置列表的总数量要大于等于5条才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
         // toTop: {
         //   // src: './static/mescroll/mescroll-totop.png' // 回到顶部按钮的图片路径,支持网络图
@@ -140,7 +141,9 @@ export default {
       setTimeout(function () {
         _this.getArticleList().then(res => {
           console.log(res)
-          mescroll.endSuccess(res)
+          // mescroll.endSuccess(res)
+          mescroll.endBySize(res, this.totalCount)
+          mescroll.endUpScroll(true)
         })
       }, 1000)
       // setTimeout(function () {

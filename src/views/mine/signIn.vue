@@ -15,18 +15,33 @@
 </template>
 
 <script>
+import { checkSign, signToday } from '@/api/index'
 export default {
   data () {
     return {
-      signInDate: ['2019/11/13', '2019/11/14', '2019/11/15', '2019/11/16', '2019/11/17', '2019/11/19']
+      currentMonth: '', // 日历所在月份
+      signInDate: [] // 已签到日期
     }
+  },
+  created () {
+    const currentDate = new Date()
+    this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
+    this.getCheckSign(this.currentMonth)
   },
   methods: {
     clickDay (data) {
-      console.log(data) // 选中某天
+      // console.log(data) // 选中某天
     },
     changeDate (data) {
       console.log(data) // 左右点击切换月份
+    },
+    // 获取已签到数据
+    getCheckSign () {
+      checkSign({ date: this.currentMonth }).then(res => {
+        console.log(res)
+        const resData = res.data
+        this.signInDate = resData.data
+      })
     }
   }
 }
@@ -56,13 +71,13 @@ export default {
     }
   }
   .rule {
-    margin-top: .826667rem;
-    .title{
-      font-size: .426667rem;
-      font-weight:500;
+    margin-top: 0.826667rem;
+    .title {
+      font-size: 0.426667rem;
+      font-weight: 500;
     }
-    .text{
-      margin-top: .48rem
+    .text {
+      margin-top: 0.48rem;
     }
   }
 }

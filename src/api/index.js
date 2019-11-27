@@ -25,3 +25,17 @@ export function articleList (params) {
 export function articleDetail (params) {
   return $get('/info/detailInfo/getById', params)
 }
+
+/**
+ * 获取签到数据
+ * @param {date:yyyy-MM} params
+ */
+export function checkSign (params) {
+  return $get('/user/sign/checkSign', params)
+}
+/**
+ * 当天签到
+ */
+export function signToday () {
+  return $get('/user/sign/signToday')
+}

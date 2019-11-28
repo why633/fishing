@@ -28,16 +28,17 @@ export default {
       default: false
     },
     time: { // 显示时间
-      default: 1500
+      default: 2000
     },
     transition: { // 是否开启动画
       default: true
     }
   },
   mounted () { // 时间控制
-    setTimeout(() => {
-      this.show = false
-    }, this.time)
+    // setTimeout(() => {
+    //   console.log('123')
+    //   this.show = false
+    // }, this.time)
   },
   computed: {
     translate () { // 根据props，生成相对应的动画

@@ -4,7 +4,10 @@
     <div class="content">
       <div class="calendar-wrap">
         <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="signInDate"></Calendar>
-        <div class="signIn-btn">签到</div>
+        <div
+          :class="[{'btn-active': isBtnActive, 'btn-disabled': btnDisabled}, 'signIn-btn']"
+          @click="signToday"
+        >签到</div>
       </div>
       <div class="rule">
         <h3 class="title">规则说明</h3>
@@ -20,27 +23,61 @@ export default {
   data () {
     return {
       currentMonth: '', // 日历所在月份
-      signInDate: [] // 已签到日期
+      currentDay: '', // 当前
+      signInDate: [], // 已签到日期
+      isBtnActive: false,
+      btnDisabled: false
     }
   },
   created () {
+    this.$nextTick(() => {
+      this.btnClickInit('.signIn-btn')
+    })
     const currentDate = new Date()
     this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
+    this.currentDay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
     this.getCheckSign(this.currentMonth)
+    console.log(this.currentDay)
   },
   methods: {
     clickDay (data) {
       // console.log(data) // 选中某天
     },
     changeDate (data) {
-      console.log(data) // 左右点击切换月份
+      const arr = data.split('/')
+      this.currentMonth = arr[0] + '-' + arr[1]
+      console.log(this.currentMonth)
+      this.getCheckSign()
     },
     // 获取已签到数据
     getCheckSign () {
       checkSign({ date: this.currentMonth }).then(res => {
         console.log(res)
         const resData = res.data
+        /* resData.data.map(item => {
+          if (item === this.currentDay) {
+            this.btnDisabled = true
+          }
+        }) */
         this.signInDate = resData.data
+      })
+    },
+    // 今日签到
+    signToday () {
+      if (!this.btnDisabled) {
+        signToday().then(res => {
+          console.log(res)
+        })
+      }
+    },
+    // 按钮点击效果
+    btnClickInit (el) {
+      const _this = this
+      document.querySelector(el).addEventListener('touchstart', function () {
+        _this.isBtnActive = true
+      })
+      document.querySelector(el).addEventListener('touchend', function () {
+        _this.isBtnActive = false
       })
     }
   }
@@ -80,5 +117,11 @@ export default {
       margin-top: 0.48rem;
     }
   }
+}
+.btn-active {
+  background: rgba(255, 153, 0, 0.877) !important;
+}
+.btn-disabled {
+  background: rgba(235, 223, 205, 0.959) !important;
 }
 </style>

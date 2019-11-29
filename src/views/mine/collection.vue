@@ -8,11 +8,13 @@
         </div>
         <div class="info">
           <div class="title-wrap">
-            <span class="title">{{ item.name }}</span>
-            <span class="tag bg1">已认证</span>
-            <span class="tag bg2">自然水域</span>
-            <span class="tag bg3">赛事</span>
-            <span class="tag bg4">活动</span>
+            <span class="title text-overflow">{{ item.name }}</span>
+            <div class="tag-wrap">
+              <span class="tag bg1">已认证</span>
+              <span class="tag bg2">自然水域</span>
+              <span class="tag bg3">赛事</span>
+              <span class="tag bg4">活动</span>
+            </div>
           </div>
           <star-rating :rating="item.star"></star-rating>
           <div class="address">{{ item.address }}</div>
@@ -28,7 +30,7 @@ export default {
     return {
       dataList: [
         {
-          name: '梭草鱼垂钓园',
+          name: '梭草鱼垂钓园梭草鱼垂钓园',
           address: '北京市怀柔区杨宋镇梭草村梭草鱼世界',
           star: 4.5,
           posters: 'http://apps.rhino-rack.com.cn/1560077544303.jpg',
@@ -78,33 +80,42 @@ export default {
       flex: 1;
       .title-wrap {
         margin-bottom: 0.32rem;
-        background: pink;
-        height: .53333rem;
-        line-height: .53333rem;
+        height: 0.53333rem;
+        line-height: 0.53333rem;
+        display: flex;
         .title {
+          width: 2.61333rem;
+          display: inline-block;
           font-size: 0.42667rem;
           font-weight: 500;
         }
-        .tag {
-          font-size: 0.26667rem;
-          color: #fff;
-          padding: 0.08rem 0.10667rem;
-        }
-        .bg1 {
-          background: #fda925;
-        }
-        .bg2 {
-          background: #00cd99;
-        }
-        .bg3 {
-          background: #0075F6;
-        }
-        .bg4 {
-          background: #FF6600;
+        .tag-wrap {
+          width: 4.26667rem;
+          .tag {
+            display: inline-block;
+            font-size: 0.26667rem;
+            color: #fff;
+            padding: 0 0.10667rem;
+            float: left;
+            margin-left: 0.10667rem;
+            height: .48rem;
+          }
+          .bg1 {
+            background: #fda925;
+          }
+          .bg2 {
+            background: #00cd99;
+          }
+          .bg3 {
+            background: #0075f6;
+          }
+          .bg4 {
+            background: #ff6600;
+          }
         }
       }
       .address {
-        margin-top: 0.69333rem;
+        margin-top: .61333rem;
         color: #969799;
         font-size: 0.32rem;
       }

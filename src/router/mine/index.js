@@ -46,6 +46,14 @@ const mine = [
     meta: {
       title: 'hotLine'
     }
+  },
+  {
+    path: '/mine/collection',
+    name: 'collection',
+    component: () => import('@/views/mine/collection'),
+    meta: {
+      title: 'collection'
+    }
   }
 ]
 

@@ -11,12 +11,12 @@
             :key="item.id"
             @click="goClassDetails(item.id)"
           >
-            <img :src="item.imgUrl" />
+            <img :src="item.imgUrl">
             <span>{{ item.name }}</span>
           </div>
         </div>
       </div>
-      <div class="article-wrap">
+      <div class="article-wrap" id="dataList">
         <div class="tab">
           <div class="tab-item" v-for="item in articleTapData" :key="item.id">
             <span :class="{'active': item.active}" @click="tabHandleClick(item.id)">{{ item.name }}</span>
@@ -91,7 +91,7 @@ export default {
         mustToTop: true
       },
       mescrollUp: {
-        auto: false,
+        auto: true,
         offset: 10,
         isBounce: false,
         callback: this.upCallback, // 上拉回调,此处可简写; 相当于 callback: function (page, mescroll) { getListData(page); }
@@ -125,7 +125,7 @@ export default {
   },
   created () {
     console.log('fresh')
-    this.getArticleList()
+    // this.getArticleList()
   },
   methods: {
     // mescroll组件初始化的回调,可获取到mescroll对象
@@ -135,22 +135,17 @@ export default {
     // 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
     upCallback (page, mescroll) {
       console.log('up')
-      this.pageNo += 1
       const _this = this
       // 数据渲染成功后,隐藏下拉刷新的状态
       setTimeout(function () {
-        _this.getArticleList().then(res => {
-          console.log(res)
-          // mescroll.endSuccess(res)
-          mescroll.endBySize(res, this.totalCount)
-          mescroll.endUpScroll(true)
+        _this.getArticleList(page.num).then(res => {
+          _this.$nextTick(() => {
+            mescroll.endSuccess(res)
+            // mescroll.endBySize(res, _this.totalCount)
+            // mescroll.endUpScroll(true)
+          })
         })
-      }, 1000)
-      // setTimeout(function () {
-      //   // this.$nextTick(() => {
-      //   mescroll.endSuccess(100)
-      //   // })
-      // }, 3000)
+      }, 200)
     },
     // 最新最热tab切换
     tabHandleClick (id) {
@@ -167,8 +162,15 @@ export default {
         }
       })
       this.pageNo = 1
-      this.totalCount = 0
-      this.getArticleList()
+      this.articleListData = []
+      this.mescroll.resetUpScroll()
+      // this.getArticleList().then(res => {
+      //   console.log(res, this.totalCount)
+      //   console.log(this.mescroll.endBySize)
+      //   this.mescroll.resetUpScroll(0)
+      //   this.mescroll.endBySize(res, this.totalCount)
+      //   this.mescroll.endUpScroll(true)
+      // })
     },
     // 跳转大众课程模块
     goClassDetails (id) {
@@ -182,16 +184,17 @@ export default {
       console.log('colseWebview')
     },
     // 获取文章列表
-    getArticleList () {
+    getArticleList (pageNo) {
       return new Promise((resolve, reject) => {
         const params = {
           order: this.order,
-          pageNo: this.pageNo
+          pageNo: pageNo
         }
         articleList(params).then(res => {
           const resData = res.data.data
-          this.articleListData = this.pageNo === 1 ? resData.list : this.articleListData.concat(resData.list)
+          this.articleListData = pageNo === 1 ? resData.list : this.articleListData.concat(resData.list)
           this.totalCount = resData.page.totalCount
+          console.log(resData)
           resolve(resData.list.length)
         }).catch(err => {
           console.log(err)

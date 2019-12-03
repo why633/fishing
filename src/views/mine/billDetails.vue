@@ -3,16 +3,16 @@
     <top-title>账单明细</top-title>
     <div :class="['date-picker',dateText == '请选择时间'?'default':'']" @click="pickDate">{{ dateText }}</div>
     <div class="bill-list">
-      <div class="item">
+      <div class="item" v-for="(item,index) in billData" :key="index">
         <div class="left-info">
           <div class="title">
-            充值
-            <span class="sub-title">（钱包充值）</span>
+            {{item.description}}
+            <span class="sub-title">（{{item.status}}）</span>
           </div>
-          <div class="date">19 11月01日 11:05</div>
+          <div class="date">{{item.createTime|formateDateTime}}</div>
         </div>
         <div class="right-info">
-          <span>0.01</span>
+          <span>{{item.amount}}</span>
         </div>
       </div>
     </div>
@@ -23,10 +23,12 @@
       @confirm="confirm"
       :visible.sync="pickerVisible"
     />
+    <div class="no-data" v-if="billData.length==0">暂无数据...</div>
   </div>
 </template>
 
 <script>
+import { billDetails } from '@/api'
 export default {
   data () {
     return {
@@ -35,30 +37,6 @@ export default {
       dateText: '请选择时间',
       pickData: [
         [
-          {
-            label: '2019',
-            value: '2019'
-          },
-          {
-            label: '2018',
-            value: '2018'
-          },
-          {
-            label: '2017',
-            value: '2017'
-          },
-          {
-            label: '2016',
-            value: '2016'
-          },
-          {
-            label: '2015',
-            value: '2015'
-          },
-          {
-            label: '2014',
-            value: '2014'
-          }
         ],
         [
           {
@@ -107,11 +85,16 @@ export default {
           }
         ]
       ],
-      result: ''
+      result: '',
+      pageNo: 1,
+      pageSize: 10,
+      totalCount: 0,
+      billData: []
     }
   },
   created () {
     this.getPickerYearList()
+    this.getBillDetails()
   },
   methods: {
     pickDate () {
@@ -121,9 +104,9 @@ export default {
       this.result = 'click cancel result: null'
     },
     confirm (res) {
-      this.result = JSON.stringify(res)
-      console.log(res)
+      this.result = res[0].value + '-' + res[1].value
       this.dateText = res[0].value + '年' + res[1].value + '月'
+      this.getBillDetails()
     },
     getPickerYearList () {
       const nowYear = new Date().getFullYear()
@@ -136,8 +119,19 @@ export default {
           }
         )
       }
-      console.log(yearList)
       this.pickData[0] = yearList
+    },
+    // 获取账单列表
+    getBillDetails () {
+      const params = {
+        createTime: this.result,
+        pageNo: this.pageNo,
+        pageSize: this.pageSize
+      }
+      billDetails(params).then(res => {
+        const resData = res.data.data
+        this.billData = resData.list
+      })
     }
   }
 }
@@ -187,5 +181,12 @@ export default {
       word-wrap: break-word;
     }
   }
+}
+.no-data {
+  color: gray;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 45%;
 }
 </style>

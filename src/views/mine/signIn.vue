@@ -67,6 +67,7 @@ export default {
       if (!this.btnDisabled) {
         signToday().then(res => {
           console.log(res)
+          this.getCheckSign()
         })
       }
     },

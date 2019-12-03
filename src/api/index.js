@@ -33,9 +33,17 @@ export function articleDetail (params) {
 export function checkSign (params) {
   return $get('/user/sign/checkSign', params)
 }
+
 /**
  * 当天签到
  */
 export function signToday () {
   return $get('/user/sign/signToday')
+}
+
+/**
+ * 当天签到
+ */
+export function billDetails (params) {
+  return $get('/order/balance/transaction/flow', params)
 }

@@ -141,8 +141,6 @@ export default {
         _this.getArticleList(page.num).then(res => {
           _this.$nextTick(() => {
             mescroll.endSuccess(res)
-            // mescroll.endBySize(res, _this.totalCount)
-            // mescroll.endUpScroll(true)
           })
         })
       }, 200)
@@ -164,13 +162,6 @@ export default {
       this.pageNo = 1
       this.articleListData = []
       this.mescroll.resetUpScroll()
-      // this.getArticleList().then(res => {
-      //   console.log(res, this.totalCount)
-      //   console.log(this.mescroll.endBySize)
-      //   this.mescroll.resetUpScroll(0)
-      //   this.mescroll.endBySize(res, this.totalCount)
-      //   this.mescroll.endUpScroll(true)
-      // })
     },
     // 跳转大众课程模块
     goClassDetails (id) {

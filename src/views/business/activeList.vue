@@ -22,6 +22,8 @@ export default {
     }
     if (appSource() === 'andriod') {
       alert(window.android.getToken())
+      // 传id和 type给app
+      // window.android.look('21', 2)
       this.setToken(window.android.getToken())
     }
   },

@@ -1,29 +1,33 @@
 <template>
   <div class="article">
     <div class="info-wrap">
-      <div class="title">昨天野钓的收获</div>
+      <div class="title">{{ detailsInfo.title }}</div>
       <div class="user">
         <div class="item">
           <div class="avatar">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
         </div>
         <div class="item">
-          <div class="name">木子</div>
-          <div class="date-time">19-10-24 08:13</div>
+          <div class="name">{{ detailsInfo.userNickName }}</div>
+          <div class="date-time">{{ (detailsInfo.createTime)|formateDateTime }}</div>
         </div>
         <div class="item">
-          <div class="btn">已关注</div>
+          <!-- <div class="btn">{{ detailsInfo.isLike==1?'已关注':'关注' }}</div> -->
         </div>
       </div>
-      <div class="sign">开心每一天</div>
+      <div class="sign">{{ detailsInfo.content }}
+        <div class="img-box">
+          <img :src="detailsInfo.coverImage">
+        </div>
+      </div>
     </div>
-    <div class="review-wrap">
+    <!-- <div class="review-wrap">
       <div class="title">---- 用户评论 ----</div>
       <div class="list">
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -33,7 +37,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -43,7 +47,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -53,7 +57,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -63,7 +67,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -73,7 +77,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -83,7 +87,7 @@
         </div>
         <div class="item clear-fix">
           <div class="avatar left">
-            <img :src="imgUrl">
+            <img :src="imgUrl" />
           </div>
           <div class="info left">
             <div class="name">why</div>
@@ -92,8 +96,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="input-content">
+    </div> -->
+    <!-- <div class="input-content">
       <input
         ref="input"
         :class="[{'input-focus': isInput},'input']"
@@ -110,24 +114,27 @@
       <div v-else class="publish-btn" @click="publish">
         <span>发布</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import keyboardHandle from '@/utils/keyboardHandle'
+import { fishCatchDetails } from '@/api'
 export default {
   data () {
     return {
       imgUrl: require('@/assets/avator1.jpeg'),
       publishText: '', // 评论内容
       isInput: false, // 输入状态
-      introduction: ''
+      introduction: '',
+      detailsInfo: {}
     }
   },
   created () {
     // 处理键盘弹起收起
     keyboardHandle()
+    this.getFishCatchDetails()
   },
   methods: {
     // input获取焦点事件
@@ -147,6 +154,13 @@ export default {
     publish () {
       console.log(this.publishText)
       this.publishText = ''
+    },
+    // 获取渔获详情
+    getFishCatchDetails () {
+      fishCatchDetails({ fishCatchId: 1 }).then(res => {
+        console.log(res)
+        this.detailsInfo = res.data.data
+      })
     }
   }
 }
@@ -200,6 +214,11 @@ export default {
   }
   .sign {
     margin-top: 0.4rem;
+    .img-box{
+      img{
+        margin-top: .266667rem;
+      }
+    }
   }
 }
 .review-wrap {

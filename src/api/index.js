@@ -42,8 +42,15 @@ export function signToday () {
 }
 
 /**
- * 当天签到
+ * 获取账单明细
  */
 export function billDetails (params) {
   return $get('/order/balance/transaction/flow', params)
+}
+
+/**
+ * 获取渔获详情
+ */
+export function fishCatchDetails (params) {
+  return $get('/info/detail/fishCatch', params)
 }

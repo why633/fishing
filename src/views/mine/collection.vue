@@ -90,7 +90,7 @@ export default {
           font-weight: 500;
         }
         .tag-wrap {
-          width: 4.26667rem;
+          width: 4.5rem;
           .tag {
             display: inline-block;
             font-size: 0.26667rem;

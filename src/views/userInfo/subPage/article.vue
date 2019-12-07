@@ -1,5 +1,6 @@
 <template>
   <div class="article">
+    <top-title :isBackPre="false" @backClick="colseWebview">文章详情</top-title>
     <div class="info-wrap">
       <div class="title">{{ detailsInfo.title }}</div>
       <div class="user">
@@ -121,6 +122,7 @@
 <script>
 import keyboardHandle from '@/utils/keyboardHandle'
 import { fishCatchDetails } from '@/api'
+import { appSource } from '@/utils/appSource'
 export default {
   data () {
     return {
@@ -132,11 +134,22 @@ export default {
     }
   },
   created () {
+    this.fishCatchId = this.$route.query.fishCatchId
     // 处理键盘弹起收起
     keyboardHandle()
     this.getFishCatchDetails()
   },
   methods: {
+    colseWebview () {
+      console.log('closeWebview')
+      if (appSource() === 'ios') {
+        App.popBack('popBack') // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        console.log('andriod')
+        window.android.closePage()
+      }
+    },
     // input获取焦点事件
     inputFocus () {
       console.log('focus')
@@ -157,7 +170,7 @@ export default {
     },
     // 获取渔获详情
     getFishCatchDetails () {
-      fishCatchDetails({ fishCatchId: 1 }).then(res => {
+      fishCatchDetails({ fishCatchId: this.fishCatchId }).then(res => {
         console.log(res)
         this.detailsInfo = res.data.data
       })
@@ -217,6 +230,7 @@ export default {
     .img-box{
       img{
         margin-top: .266667rem;
+        width: 100%;
       }
     }
   }

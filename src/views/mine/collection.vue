@@ -84,7 +84,7 @@ export default {
         line-height: 0.53333rem;
         display: flex;
         .title {
-          width: 2.61333rem;
+          width: 2.3rem;
           display: inline-block;
           font-size: 0.42667rem;
           font-weight: 500;

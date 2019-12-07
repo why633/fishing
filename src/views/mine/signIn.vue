@@ -19,6 +19,9 @@
 
 <script>
 import { checkSign, signToday } from '@/api/index'
+import HandleToken from '@/utils/handleToken'
+import { appSource } from '@/utils/appSource'
+const handleToken = new HandleToken()
 export default {
   data () {
     return {
@@ -27,6 +30,18 @@ export default {
       signInDate: [], // 已签到日期
       isBtnActive: false,
       btnDisabled: false
+    }
+  },
+  mounted () {
+    if (appSource() === 'ios') {
+      window['getToken'] = (result) => {
+        alert(`${new Date()}:${result}`)
+        this.setToken(result)
+      }
+    }
+    if (appSource() === 'andriod') {
+      alert(window.android.getToken())
+      this.setToken(window.android.getToken())
     }
   },
   created () {
@@ -80,6 +95,9 @@ export default {
       document.querySelector(el).addEventListener('touchend', function () {
         _this.isBtnActive = false
       })
+    },
+    setToken (token) {
+      handleToken.setToken(token)
     }
   }
 }

@@ -28,84 +28,84 @@ export default {
   data () {
     return {
       listData: [
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        },
-        {
-          avatar: require('@/assets/sender1.png'),
-          fromId: '系统管理员',
-          createTime: '2019-10-11 20:30',
-          message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
-        }
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // },
+        // {
+        //   avatar: require('@/assets/sender1.png'),
+        //   fromId: '系统管理员',
+        //   createTime: '2019-10-11 20:30',
+        //   message: '您报名的赛事“卡亚克舟钓世界锦标赛”，已经开始钓位摇号。'
+        // }
       ],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
@@ -143,7 +143,7 @@ export default {
     }
   },
   created () {
-    // this.getMessageList()
+    this.getMessageList()
   },
   methods: {
     // mescroll组件初始化的回调,可获取到mescroll对象
@@ -173,7 +173,6 @@ export default {
     getMessageList () {
       getMessage({ type: 1 }).then(res => {
         const resData = res.data
-        console.log(resData)
         this.listData = resData.data.list
       }).catch(err => {
         console.log(err)

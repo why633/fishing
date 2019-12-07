@@ -1,6 +1,6 @@
 <template>
   <div class="billDetails">
-    <top-title>账单明细</top-title>
+    <top-title :isBackPre="false" @backClick="colseWebview">账单明细</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div
         :class="['date-picker',dateText == '请选择时间'?'default':'']"
@@ -33,6 +33,9 @@
 
 <script>
 import { billDetails } from '@/api'
+import HandleToken from '@/utils/handleToken'
+import { appSource } from '@/utils/appSource'
+const handleToken = new HandleToken()
 export default {
   data () {
     return {
@@ -134,6 +137,19 @@ export default {
     this.getPickerYearList()
   },
   methods: {
+    colseWebview () {
+      console.log('closeWebview')
+      if (appSource() === 'ios') {
+        App.popBack('popBack') // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        console.log('andriod')
+        window.android.closePage()
+      }
+    },
+    setToken (token) {
+      handleToken.setToken(token)
+    },
     // mescroll组件初始化的回调,可获取到mescroll对象
     mescrollInit (mescroll) {
       this.mescroll = mescroll

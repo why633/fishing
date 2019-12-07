@@ -1,10 +1,10 @@
 const article = [
   {
     path: '/article/articleDetails',
-    name: 'articleDetails',
+    name: 'indexArticle',
     component: () => import('@/views/article/articleDetails'),
     meta: {
-      title: 'articleDetails'
+      title: 'indexArticle'
     }
   }
 ]

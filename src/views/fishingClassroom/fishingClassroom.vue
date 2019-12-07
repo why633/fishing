@@ -30,6 +30,7 @@
 
 <script>
 import { articleList } from '@/api/index'
+import { appSource } from '@/utils/appSource'
 export default {
   name: 'fishingClassroom',
   data () {
@@ -173,6 +174,13 @@ export default {
     },
     colseWebview () {
       console.log('colseWebview')
+      if (appSource() === 'ios') {
+        App.popBack('popBack') // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        console.log('andriod')
+        window.android.closePage()
+      }
     },
     // 获取文章列表
     getArticleList (pageNo) {

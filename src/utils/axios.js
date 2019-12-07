@@ -32,10 +32,13 @@ class HandleParamAndResult {
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
-    // if (handleToken.getToken()) {
-    //   headers.Authorization = `Bearer ${handleToken.getToken()}`
-    // }
+    // headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
+    headers.token = ''
+    if (handleToken.getToken()) {
+      alert(`${new Date()}:${handleToken.getToken()}`)
+      window.android.look(handleToken.getToken())
+      headers.token = `${handleToken.getToken()}`
+    }
     return headers
   }
   // 处理请求
@@ -43,7 +46,7 @@ class HandleParamAndResult {
     // console.log(this._addHeaders())
     // const _this = this
     options.headers = this._addHeaders()
-    // alert(JSON.stringify(options.headers))
+    alert(JSON.stringify(options.headers))
     // do something before request
     return new Promise((resolve, reject) => {
       axios(this.api + url, options).then(res => {

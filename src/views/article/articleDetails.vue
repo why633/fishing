@@ -1,11 +1,12 @@
 <template>
   <div class="articleDetails">
-    <top-title>文章详情</top-title>
+    <top-title :isBackPre="false" @backClick="colseWebview">文章详情</top-title>
     <article-content :articleInfo="articleInfo"></article-content>
   </div>
 </template>
 <script>
 import { articleDetail } from '@/api/index'
+import { appSource } from '@/utils/appSource'
 export default {
   name: 'articleDetails',
   data () {
@@ -32,6 +33,16 @@ export default {
         const resData = res.data.data
         this.articleInfo = resData
       })
+    },
+    colseWebview () {
+      console.log('closeWebview')
+      if (appSource() === 'ios') {
+        App.popBack('popBack') // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        console.log('andriod')
+        window.android.closePage()
+      }
     }
   }
 }

@@ -1,6 +1,15 @@
 <template>
   <div class="activeList">
     <top-title :isBackPre="false" @backClick="colseWebview">我的赛事/活动</top-title>
+    <div class="content">
+      <div class="item">
+        <div class="img-wrap"></div>
+        <div class="info">
+          <div class="name"></div>
+          
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

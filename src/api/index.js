@@ -54,3 +54,10 @@ export function billDetails (params) {
 export function fishCatchDetails (params) {
   return $get('/info/detail/fishCatch', params)
 }
+
+/**
+ * 获取赛事活动
+ */
+export function getEvent (params) {
+  return $get('/event/searchEvent/getByCity', params)
+}

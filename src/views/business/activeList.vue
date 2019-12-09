@@ -5,14 +5,14 @@
       <div class="content">
         <div class="item" v-for="(item, index) in activeList" :key="index">
           <div class="img-wrap">
-            <img :src="item.coverImage" />
+            <img :src="item.coverImage">
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
           </div>
           <div class="info">
             <div class="name">{{item.name}}</div>
             <div class="b-text">
-              <div class="start-date">开始时间：{{item.startTime|formateDateTime}}</div>
-              <div class="sate">钓位：15/1</div>
+              <div class="start-date">开始时间：{{item.startTime|formateDate}}</div>
+              <div class="sate">钓位：{{item.enrollCount}}/{{item.peopleNumber}}</div>
             </div>
           </div>
         </div>
@@ -24,11 +24,13 @@
 <script>
 import HandleToken from '@/utils/handleToken'
 import { appSource } from '@/utils/appSource'
-import { getEvent } from '@/api'
+import { getEvent, getDrawGame } from '@/api'
+import { formateDate } from '@/utils/formateDate'
 const handleToken = new HandleToken()
 export default {
   data () {
     return {
+      type: '1', // 1更多 2抽号
       activeList: [],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
@@ -66,19 +68,29 @@ export default {
       }
     }
   },
-  mounted () {
-    if (appSource() === 'ios') {
-      window['getToken'] = (result) => {
-        alert(`${new Date()}:${result}`)
-        this.setToken(result)
+  filters: {
+    formateDate: function (value) {
+      const parmas = {
+        dateObj: value,
+        fmt: 'MM/dd'
       }
+      return formateDate(parmas)
     }
-    if (appSource() === 'andriod') {
-      alert(window.android.getToken())
-      // 传id和 type给app
-      // window.android.look('21', 2)
-      this.setToken(window.android.getToken())
-    }
+  },
+  mounted () {
+    this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    // if (appSource() === 'ios') {
+    //   window['getToken'] = (result) => {
+    //     alert(`${new Date()}:${result}`)
+    //     this.setToken(result)
+    //   }
+    // }
+    // if (appSource() === 'andriod') {
+    //   alert(window.android.getToken())
+    //   // 传id和 type给app
+    //   // window.android.look('21', 2)
+    //   this.setToken(window.android.getToken())
+    // }
   },
   created () {
   },
@@ -97,6 +109,8 @@ export default {
           _this.$nextTick(() => {
             mescroll.endSuccess(res)
           })
+        }).catch(err => {
+          console.log(err)
         })
       }, 200)
     },
@@ -117,25 +131,36 @@ export default {
     getEventList (pageNo) {
       return new Promise((resolve, reject) => {
         const params = {
-          areaId: 110100,
           pageNo: pageNo
         }
-        getEvent(params).then(res => {
-          console.log(res)
-          const resData = res.data.data
-          this.activeList = pageNo === 1 ? resData.list : this.activeList.concat(resData.list)
-          resolve(resData.list.length)
-        }).catch(err => {
-          console.log(err)
-          reject(err)
-        })
+        if (this.type === '2') {
+          getDrawGame(params).then(res => {
+            console.log(res)
+            const resData = res.data.data
+            this.activeList = pageNo === 1 ? resData : this.activeList.concat(resData)
+            resolve(resData.length)
+          }).catch(err => {
+            console.log(err)
+            reject(err)
+          })
+        } else {
+          getEvent(params).then(res => {
+            console.log(res)
+            const resData = res.data.data
+            this.activeList = pageNo === 1 ? resData.list : this.activeList.concat(resData.list)
+            resolve(resData.list.length)
+          }).catch(err => {
+            console.log(err)
+            reject(err)
+          })
+        }
       })
     }
   }
 }
 </script>
 <style lang="scss">
-.activeList{
+.activeList {
   min-height: 100%;
   background: #fff;
 }
@@ -143,15 +168,17 @@ export default {
   padding: 0.4rem;
   .item {
     margin-bottom: 0.4rem;
-    border-radius: 0.106667rem;
+    border-radius: 0.106667rem 0.106667rem 0 0;
     overflow: hidden;
     box-shadow: 0 0.053333rem 0.213333rem 0 rgba(0, 0, 0, 0.12);
     .img-wrap {
       position: relative;
       width: 100%;
-      height: 4rem;
+      height: 3rem;
       background: pink;
-      img{
+      border-radius: 0.106667rem;
+      overflow: hidden;
+      img {
         width: 100%;
         height: 100%;
       }

@@ -59,5 +59,19 @@ export function fishCatchDetails (params) {
  * 获取赛事活动
  */
 export function getEvent (params) {
-  return $get('/event/searchEvent/getByCity', params)
+  return $get('/spot/getEvent/byUserId', params)
+}
+
+/**
+ * 获取可抽号赛事
+ */
+export function getDrawGame (params) {
+  return $get('/event/searchEvent/whereLot', params)
+}
+
+/**
+ * 获取摇号用户
+ */
+export function getDrawUser (params) {
+  return $get('/event/getUser/whereLot', params)
 }

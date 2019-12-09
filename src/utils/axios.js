@@ -35,8 +35,7 @@ class HandleParamAndResult {
     // headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
     headers.token = ''
     if (handleToken.getToken()) {
-      alert(`${new Date()}:${handleToken.getToken()}`)
-      window.android.look(handleToken.getToken())
+      // alert(`${new Date()}:${handleToken.getToken()}`)
       headers.token = `${handleToken.getToken()}`
     }
     return headers
@@ -46,7 +45,7 @@ class HandleParamAndResult {
     // console.log(this._addHeaders())
     // const _this = this
     options.headers = this._addHeaders()
-    alert(JSON.stringify(options.headers))
+    // alert(JSON.stringify(options.headers))
     // do something before request
     return new Promise((resolve, reject) => {
       axios(this.api + url, options).then(res => {

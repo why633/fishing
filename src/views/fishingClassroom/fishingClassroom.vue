@@ -11,7 +11,7 @@
             :key="item.id"
             @click="goClassDetails(item.id)"
           >
-            <img :src="item.imgUrl">
+            <img :src="item.imgUrl" />
             <span>{{ item.name }}</span>
           </div>
         </div>
@@ -142,6 +142,9 @@ export default {
           _this.$nextTick(() => {
             mescroll.endSuccess(res)
           })
+        }).catch(err => {
+          console.log(err)
+          mescroll.endErr()
         })
       }, 200)
     },

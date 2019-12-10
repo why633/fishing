@@ -117,6 +117,7 @@ export default {
           })
         }).catch(err => {
           console.log(err)
+          mescroll.endErr()
         })
       }, 200)
     },

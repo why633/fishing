@@ -82,3 +82,10 @@ export function getDrawUser (params) {
 export function lotNumber (params) {
   return $get('/event/lotNumber/manual', params)
 }
+
+/**
+ * 收藏的赛事活动列表
+ */
+export function eventCollect (params) {
+  return $get('/event/collect/listCollect', params)
+}

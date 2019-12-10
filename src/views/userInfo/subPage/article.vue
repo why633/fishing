@@ -122,11 +122,10 @@
 <script>
 import keyboardHandle from '@/utils/keyboardHandle'
 import { fishCatchDetails } from '@/api'
-import { appSource } from '@/utils/appSource'
 export default {
   data () {
     return {
-      imgUrl: require('@/assets/avator1.jpeg'),
+      imgUrl: require('@/assets/defaultHeadImg.png'),
       publishText: '', // 评论内容
       isInput: false, // 输入状态
       introduction: '',
@@ -141,14 +140,15 @@ export default {
   },
   methods: {
     colseWebview () {
-      console.log('closeWebview')
-      if (appSource() === 'ios') {
-        App.popBack('popBack') // eslint-disable-line
-      }
-      if (appSource() === 'andriod') {
-        console.log('andriod')
-        window.android.closePage()
-      }
+      this.$colseWebview()
+      // console.log('closeWebview')
+      // if (appSource() === 'ios') {
+      //   App.popBack('popBack') // eslint-disable-line
+      // }
+      // if (appSource() === 'andriod') {
+      //   console.log('andriod')
+      //   window.android.closePage()
+      // }
     },
     // input获取焦点事件
     inputFocus () {
@@ -200,7 +200,6 @@ export default {
       &:first-child {
         width: 0.933333rem;
         height: 0.933333rem;
-        background: pink;
         border-radius: 50%;
         overflow: hidden;
         img {

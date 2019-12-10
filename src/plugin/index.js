@@ -2,6 +2,7 @@
 import * as filters from '@/filters'
 // import * as mixins from '@/mixins'
 import * as components from '@/components'
+import * as globalMethod from '@/globalMethod'
 
 const Plugin = {}
 Plugin.install = Vue => {
@@ -50,6 +51,9 @@ Plugin.install = Vue => {
     } else {
       Vue.component(key, components[key])
     }
+  })
+  Object.keys(globalMethod).forEach(key => {
+    Vue.prototype[`$${key}`] = globalMethod[key]
   })
 }
 

@@ -26,10 +26,16 @@
         <input type="number" class="phone-input" v-model="phone" placeholder="请输入手机号">
       </span>
     </Dialog>
-    <Dialog :showDialog="showQrDialog" :msg="'微信扫描二维码进行抽号'" :btnNum="'1'" :confirmBtnText="'关闭'" @dialog-confirm="closeQr">
+    <Dialog
+      :showDialog="showQrDialog"
+      :msg="'微信扫描二维码进行抽号'"
+      :btnNum="'1'"
+      :confirmBtnText="'关闭'"
+      @dialog-confirm="closeQr"
+    >
       <span slot="content">
         <div class="img-box">
-          <!-- <img src="" alt="" srcset=""> -->
+          <img :src="qrUrl" alt="" srcset="">
         </div>
       </span>
     </Dialog>
@@ -37,7 +43,7 @@
 </template>
 
 <script>
-import { getDrawUser } from '@/api'
+import { getDrawUser, lotNumber } from '@/api'
 import HandleToken from '@/utils/handleToken'
 import keyboardHandle from '@/utils/keyboardHandle'
 const handleToken = new HandleToken()
@@ -48,13 +54,16 @@ export default {
       errorImg: require('@/assets/defaultHeadImg.png'),
       showDialog: false,
       phone: '',
-      showQrDialog: false
+      showQrDialog: false,
+      eventId: '',
+      qrUrl: require('@/assets/qr.jpg')
     }
   },
   mounted () {
     this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
   },
   created () {
+    this.eventId = this.$route.query.id
     this.getWaitUser()
   },
   methods: {
@@ -64,7 +73,7 @@ export default {
     // 获取待摇号用户
     getWaitUser () {
       const params = {
-        eventId: 28
+        eventId: this.eventId
       }
       getDrawUser(params).then(res => {
         console.log(res)
@@ -79,7 +88,20 @@ export default {
     },
     dialogConfirm () {
       console.log(this.phone)
-      this.showDialog = false
+      if (this.phone === '') {
+        this.$toast.show({
+          text: '请输入手机号'
+        })
+        return
+      }
+      const params = {
+        eventId: this.eventId,
+        phone: this.phone
+      }
+      lotNumber(params).then(res => {
+        console.log(res)
+      })
+      // this.showDialog = false
       keyboardHandle()
     },
     closeQr () {
@@ -155,8 +177,8 @@ export default {
   width: 2.66667rem;
   height: 2.66667rem;
   background: pink;
-  margin-top: .4rem;
-  img{
+  margin-top: 0.4rem;
+  img {
     width: 100%;
     height: 100%;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="signIn">
-    <top-title>签到领币</top-title>
+    <top-title :isBackPre="false" @backClick="colseWebview">签到领币</top-title>
     <div class="content">
       <div class="calendar-wrap">
         <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="signInDate"></Calendar>
@@ -19,9 +19,9 @@
 
 <script>
 import { checkSign, signToday } from '@/api/index'
-import HandleToken from '@/utils/handleToken'
-import { appSource } from '@/utils/appSource'
-const handleToken = new HandleToken()
+// import HandleToken from '@/utils/handleToken'
+// import { appSource } from '@/utils/appSource'
+// const handleToken = new HandleToken()
 export default {
   data () {
     return {
@@ -33,16 +33,7 @@ export default {
     }
   },
   mounted () {
-    if (appSource() === 'ios') {
-      window['getToken'] = (result) => {
-        alert(`${new Date()}:${result}`)
-        this.setToken(result)
-      }
-    }
-    if (appSource() === 'andriod') {
-      alert(window.android.getToken())
-      this.setToken(window.android.getToken())
-    }
+    this.$getAppToken()
   },
   created () {
     this.$nextTick(() => {
@@ -52,7 +43,6 @@ export default {
     this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
     this.currentDay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
     this.getCheckSign(this.currentMonth)
-    console.log(this.currentDay)
   },
   methods: {
     clickDay (data) {
@@ -96,8 +86,8 @@ export default {
         _this.isBtnActive = false
       })
     },
-    setToken (token) {
-      handleToken.setToken(token)
+    colseWebview () {
+      this.$closeWebview()
     }
   }
 }

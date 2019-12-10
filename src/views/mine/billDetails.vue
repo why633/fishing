@@ -33,9 +33,6 @@
 
 <script>
 import { billDetails } from '@/api'
-import HandleToken from '@/utils/handleToken'
-import { appSource } from '@/utils/appSource'
-const handleToken = new HandleToken()
 export default {
   data () {
     return {
@@ -134,21 +131,12 @@ export default {
     }
   },
   created () {
+    this.$getAppToken()
     this.getPickerYearList()
   },
   methods: {
     colseWebview () {
-      console.log('closeWebview')
-      if (appSource() === 'ios') {
-        App.popBack('popBack') // eslint-disable-line
-      }
-      if (appSource() === 'andriod') {
-        console.log('andriod')
-        window.android.closePage()
-      }
-    },
-    setToken (token) {
-      handleToken.setToken(token)
+      this.$closeWebview()
     },
     // mescroll组件初始化的回调,可获取到mescroll对象
     mescrollInit (mescroll) {
@@ -164,6 +152,9 @@ export default {
           _this.$nextTick(() => {
             mescroll.endSuccess(res)
           })
+        }).catch(err => {
+          console.log(err)
+          mescroll.endErr()
         })
       }, 200)
     },

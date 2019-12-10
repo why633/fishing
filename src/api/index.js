@@ -75,3 +75,10 @@ export function getDrawGame (params) {
 export function getDrawUser (params) {
   return $get('/event/getUser/whereLot', params)
 }
+
+/**
+ * 手动摇号
+ */
+export function lotNumber (params) {
+  return $get('/event/lotNumber/manual', params)
+}

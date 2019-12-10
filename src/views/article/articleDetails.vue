@@ -6,7 +6,6 @@
 </template>
 <script>
 import { articleDetail } from '@/api/index'
-import { appSource } from '@/utils/appSource'
 export default {
   name: 'articleDetails',
   data () {
@@ -35,14 +34,7 @@ export default {
       })
     },
     colseWebview () {
-      console.log('closeWebview')
-      if (appSource() === 'ios') {
-        App.popBack('popBack') // eslint-disable-line
-      }
-      if (appSource() === 'andriod') {
-        console.log('andriod')
-        window.android.closePage()
-      }
+      this.$closeWebview()
     }
   }
 }

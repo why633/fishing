@@ -30,7 +30,6 @@
 
 <script>
 import { articleList } from '@/api/index'
-import { appSource } from '@/utils/appSource'
 export default {
   name: 'fishingClassroom',
   data () {
@@ -110,7 +109,7 @@ export default {
           warpId: 'dataList', // 父布局的id;
           // icon: './static/mescroll/mescroll-empty.png', // 图标,支持网络图
           tip: '暂无相关数据~', // 提示
-          btntext: '去逛逛 >' // 按钮,默认""
+          btntext: '' // 按钮,默认""
           // btnClick () { // 点击按钮的回调,默认null
           //   alert('点击了按钮,具体逻辑自行实现')
           // }
@@ -174,13 +173,14 @@ export default {
     },
     colseWebview () {
       console.log('colseWebview')
-      if (appSource() === 'ios') {
-        App.popBack('popBack') // eslint-disable-line
-      }
-      if (appSource() === 'andriod') {
-        console.log('andriod')
-        window.android.closePage()
-      }
+      // if (appSource() === 'ios') {
+      //   App.popBack('popBack') // eslint-disable-line
+      // }
+      // if (appSource() === 'andriod') {
+      //   console.log('andriod')
+      //   window.android.closePage()
+      // }
+      this.$closeWebview()
     },
     // 获取文章列表
     getArticleList (pageNo) {

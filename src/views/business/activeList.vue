@@ -1,9 +1,15 @@
 <template>
   <div class="activeList">
-    <top-title :isBackPre="false" @backClick="colseWebview">我的赛事/活动</top-title>
+    <top-title :isBackPre="false" @backClick="colseWebview">赛事/活动</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
-      <div class="content">
-        <div class="item" v-for="(item, index) in activeList" :key="index">
+      <div class="content" id="dataList">
+        <div
+          class="item"
+          v-for="(item, index) in activeList"
+          :key="index"
+          @click="goDetails(item.id,item.type)"
+        >
+          <div class="draw-btn" v-if="type==2">抽号</div>
           <div class="img-wrap">
             <img :src="item.coverImage">
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
@@ -22,15 +28,13 @@
 </template>
 
 <script>
-import HandleToken from '@/utils/handleToken'
 import { appSource } from '@/utils/appSource'
 import { getEvent, getDrawGame } from '@/api'
 import { formateDate } from '@/utils/formateDate'
-const handleToken = new HandleToken()
 export default {
   data () {
     return {
-      type: '1', // 1更多 2抽号
+      type: '2', // 1更多 2抽号
       activeList: [],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
@@ -78,7 +82,8 @@ export default {
     }
   },
   mounted () {
-    this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    this.$getAppToken()
     // if (appSource() === 'ios') {
     //   window['getToken'] = (result) => {
     //     alert(`${new Date()}:${result}`)
@@ -116,16 +121,14 @@ export default {
     },
     colseWebview () {
       console.log('closeWebview')
-      if (appSource() === 'ios') {
-        App.popBack('popBack') // eslint-disable-line
-      }
-      if (appSource() === 'andriod') {
-        console.log('andriod')
-        window.android.closePage()
-      }
-    },
-    setToken (token) {
-      handleToken.setToken(token)
+      this.$closeWebview()
+      // if (appSource() === 'ios') {
+      //   App.popBack('popBack') // eslint-disable-line
+      // }
+      // if (appSource() === 'andriod') {
+      //   console.log('andriod')
+      //   window.android.closePage()
+      // }
     },
     // 获取赛事活动列表
     getEventList (pageNo) {
@@ -155,11 +158,26 @@ export default {
           })
         }
       })
+    },
+    goDetails (id, eventType) {
+      if (this.type === '1') { // 进入详情
+      } else { // 进入抽号
+        this.$router.push(`/business/draw?id=${id}`)
+      }
+    },
+    goAppDetails (id, eventType) {
+      if (appSource() === 'ios') {
+        App.look(id, eventType) // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        // 传id和 type给app
+        window.android.look(id, eventType)
+      }
     }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .activeList {
   min-height: 100%;
   background: #fff;
@@ -167,10 +185,22 @@ export default {
 .content {
   padding: 0.4rem;
   .item {
+    position: relative;
     margin-bottom: 0.4rem;
     border-radius: 0.106667rem 0.106667rem 0 0;
     overflow: hidden;
     box-shadow: 0 0.053333rem 0.213333rem 0 rgba(0, 0, 0, 0.12);
+    .draw-btn {
+      position: absolute;
+      top: 1.2rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 1;
+      padding: 0.3rem 0.53333rem;
+      background: #017ed2;
+      color: #fff;
+      border-radius: 0.13333rem;
+    }
     .img-wrap {
       position: relative;
       width: 100%;

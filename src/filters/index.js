@@ -24,5 +24,9 @@ export function formateDateTime (date) {
     dateObj: date,
     fmt: 'yyyy-MM-dd hh:mm:ss'
   }
-  return formateDate(parmas)
+  if (date) {
+    return formateDate(parmas)
+  } else {
+    return '--'
+  }
 }

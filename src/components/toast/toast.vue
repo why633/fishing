@@ -76,7 +76,7 @@ export default {
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
   color: #fff;
-  font-size: .42667rem;
+  font-size: .37333rem;
   z-index: 5000;
   color: #fff;
 }

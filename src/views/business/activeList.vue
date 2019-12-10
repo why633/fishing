@@ -83,6 +83,7 @@ export default {
   },
   mounted () {
     // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    this.type = this.$route.query.type
     this.$getAppToken()
     // if (appSource() === 'ios') {
     //   window['getToken'] = (result) => {

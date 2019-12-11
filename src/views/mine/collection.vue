@@ -3,27 +3,55 @@
     <top-title :isBackPre="false" @backClick="colseWebview">我的收藏</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="tab">
-        <div class="tab-item" v-for="item in tapData" :key="item.id">
+        <div class="tab-item" v-for="item in tabData" :key="item.id">
           <span :class="{'active': item.active}" @click="tabHandleClick(item.id)">{{ item.name }}</span>
         </div>
       </div>
       <div class="content" id="dataList">
-        <div class="item" v-for="(item, index) in dataList" :key="index">
-          <div class="pic-wrap">
-            <img :src="item.coverImage" />
-          </div>
-          <div class="info">
-            <div class="title-wrap">
-              <span class="title text-overflow">{{ item.name }}</span>
-              <div class="tag-wrap">
-                <span class="tag bg1">已认证</span>
-                <span class="tag bg2">自然水域</span>
-                <span class="tag bg3">赛事</span>
-                <span class="tag bg4">活动</span>
-              </div>
+        <div v-if="tabFlag==1">
+          <div class="event-item" v-for="(item, index) in dataList" :key="index">
+            <div class="img-wrap">
+              <img :src="item.coverImage">
             </div>
-            <star-rating :rating="item.star"></star-rating>
-            <div class="address">{{ item.address }}</div>
+            <div class="info-wrap">
+              <div class="name text-overflowTow">{{item.name}}</div>
+              <div class="tag-wrap">
+                <span class="tag">{{ item.type == '2' ? '赛事' : '活动' }}</span>
+                <span
+                  class="tag"
+                  :class="item.spotType == '1' ? 'type heikeng' : (item.spotType == '2' ? 'type luya': ( item.spotType == '4' ? 'type haidiao' : (item.spotType == '3' ? 'type ziran' : 'type')))"
+                >{{item.spotType == '1' ? '黑坑' : (item.spotType == '2' ? '路亚': ( item.spotType == '4' ? '海钓' : (item.spotType == '3' ? '自然水域':'')))}}</span>
+                <span
+                  class="tag"
+                  :class="item.isPast ? 'end' : 'going'"
+                >{{ item.isPast ? '已过期' : '报名中' }}</span>
+              </div>
+              <div class="text">上限：{{ item.peopleNumber }}人</div>
+              <div class="text">费用：{{ item.money + '元/人' }}</div>
+              <div class="text">时间：{{ item.startTime|formateDateTime }}</div>
+            </div>
+          </div>
+        </div>
+        <div v-if="tabFlag==2">
+          <div class="spot-item" v-for="(item, index) in dataList" :key="index">
+            <div class="pic-wrap">
+              <img :src="item.icon">
+            </div>
+            <div class="info">
+              <div class="title-wrap">
+                <span class="title text-overflow">{{ item.name }}</span>
+                <div class="tag-wrap">
+                  <span class="tag bg1" v-if="item.attestation==2">已认证</span>
+                  <span
+                    class="tag bg2"
+                  >{{item.spotType == '1' ? '黑坑' : (item.spotType == '2' ? '路亚': ( item.spotType == '4' ? '海钓' : (item.spotType == '3' ? '自然水域':'')))}}</span>
+                  <span class="tag bg3" v-if="item.game==2">赛事</span>
+                  <span class="tag bg4" v-if="item.activity==2">活动</span>
+                </div>
+              </div>
+              <star-rating :rating="item.star"></star-rating>
+              <div class="address">{{ item.address }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -32,12 +60,13 @@
 </template>
 
 <script>
-import { eventCollect } from '@/api'
+import { eventCollect, spotCollect } from '@/api'
 export default {
   data () {
     return {
+      tabFlag: '1',
       // tab按钮数据
-      tapData: [
+      tabData: [
         {
           id: '1',
           name: '赛事/活动',
@@ -54,29 +83,7 @@ export default {
           active: false
         }
       ],
-      dataList: [
-        {
-          name: '梭草鱼垂钓园梭草鱼垂钓园',
-          address: '北京市怀柔区杨宋镇梭草村梭草鱼世界',
-          star: 4.5,
-          posters: 'http://apps.rhino-rack.com.cn/1560077544303.jpg',
-          tempFlag: 1
-        },
-        {
-          name: '梭草鱼垂钓园',
-          address: '北京市怀柔区杨宋镇梭草村梭草鱼世界',
-          star: 3.5,
-          posters: 'http://apps.rhino-rack.com.cn/1560077544303.jpg',
-          tempFlag: 1
-        },
-        {
-          name: '梭草鱼垂钓园',
-          address: '北京市怀柔区杨宋镇梭草村梭草鱼世界',
-          star: 2,
-          posters: 'http://apps.rhino-rack.com.cn/1560077544303.jpg',
-          tempFlag: 1
-        }
-      ],
+      dataList: [],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
         auto: false,
@@ -119,8 +126,8 @@ export default {
   methods: {
     // tab切换
     tabHandleClick (id) {
-      this.tapData.map((item, index) => {
-        this.order = id
+      this.tabData.map((item, index) => {
+        this.tabFlag = id
         if (id === item.id) {
           item.active = true
         } else {
@@ -128,21 +135,37 @@ export default {
         }
       })
       // this.pageNo = 1
-      // this.articleListData = []
-      // this.mescroll.resetUpScroll()
+      this.dataList = []
+      this.mescroll.resetUpScroll()
     },
     // 获取收藏的赛事活动列表
-    getEventCollect (pageNo) {
+    getCollectList (pageNo) {
       return new Promise((resolve, reject) => {
-        eventCollect({ pageNo: pageNo }).then(res => {
-          console.log(res)
-          const resData = res.data.data
-          this.dataList = pageNo === 1 ? resData.list : this.dataList.concat(resData.list)
-          resolve(resData.list.length)
-        }).catch(err => {
-          console.log(err)
-          reject(err)
-        })
+        if (this.tabFlag === '1') {
+          eventCollect({ pageNo: pageNo }).then(res => {
+            console.log(res)
+            const resData = res.data.data
+            this.dataList = pageNo === 1 ? resData.list : this.dataList.concat(resData.list)
+            resolve(resData.list.length)
+          }).catch(err => {
+            console.log(err)
+            reject(err)
+          })
+        }
+        if (this.tabFlag === '2') {
+          spotCollect({ pageNo: pageNo }).then(res => {
+            console.log(res)
+            const resData = res.data.data
+            this.dataList = pageNo === 1 ? resData.list : this.dataList.concat(resData.list)
+            resolve(resData.list.length)
+          }).catch(err => {
+            console.log(err)
+            reject(err)
+          })
+        }
+        if (this.tabFlag === '3') {
+          resolve(0)
+        }
       })
     },
     // mescroll组件初始化的回调,可获取到mescroll对象
@@ -155,15 +178,15 @@ export default {
       const _this = this
       // 数据渲染成功后,隐藏下拉刷新的状态
       setTimeout(function () {
-        _this.getEventCollect(page.num).then(res => {
+        _this.getCollectList(page.num).then(res => {
           _this.$nextTick(() => {
             mescroll.endSuccess(res)
           })
+        }).catch(err => {
+          console.log(err)
+          mescroll.endErr()
         })
-      }, 200).catch(err => {
-        console.log(err)
-        mescroll.endErr()
-      })
+      }, 200)
     },
     colseWebview () {
       this.$closeWebview()
@@ -196,8 +219,82 @@ export default {
   }
 }
 .content {
-  padding-left: 0.42667rem;
-  .item {
+  // padding-left: 0.42667rem;
+  .event-item {
+    display: flex;
+    padding: 0.4rem 0.26667rem;
+    border-bottom: 1px solid rgba(161, 170, 179, 0.2);
+    .img-wrap {
+      width: 3.44rem;
+      height: 3.44rem;
+      border-radius: 0.16rem;
+      margin-right: 0.26667rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .info-wrap {
+      flex: 1;
+      .name {
+        width: 5.6rem;
+        font-size: 0.4rem;
+        font-weight: 600;
+        line-height: 1.2em;
+      }
+      .tag-wrap {
+        margin: 0.26667rem 0;
+        width: 4.5rem;
+        display: flex;
+        justify-content: flex-start;
+        .tag {
+          padding: 0 0.08rem;
+          // flex: 1;
+          display: inline-block;
+          font-size: 0.26667rem;
+          color: #fff;
+          height: 0.48rem;
+          line-height: 0.48rem;
+          margin-right: 0.13333rem;
+          background: #f16f41;
+          border-radius: 0.05333rem;
+        }
+        .verify {
+          background: #ff9900;
+        }
+        .type {
+          background: #ddd;
+        }
+        .heikeng {
+          background: #6a7a8b;
+        }
+        .luya {
+          background: #ff6600;
+        }
+        .haidiao {
+          background: #0075f6;
+        }
+        .ziran {
+          background: #00cd99;
+        }
+        .game {
+          background: #017ed2;
+        }
+        .going {
+          background: #0ec254;
+        }
+        .end {
+          background: #989aa2;
+        }
+      }
+      .text {
+        color: #787878;
+        margin-top: .16rem;
+      }
+    }
+  }
+  .spot-item {
+    margin-left: 0.42667rem;
     display: flex;
     padding: 0.42667rem 0.42667rem 0.42667rem 0;
     border-bottom: 1px solid rgba(161, 170, 179, 0.2);
@@ -226,7 +323,7 @@ export default {
         .tag-wrap {
           width: 4.5rem;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           .tag {
             padding: 0 0.08rem;
             // flex: 1;
@@ -235,6 +332,7 @@ export default {
             color: #fff;
             height: 0.48rem;
             line-height: 0.48rem;
+            margin-right: 0.13333rem;
           }
           .bg1 {
             background: #fda925;

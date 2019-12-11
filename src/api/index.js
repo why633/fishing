@@ -84,8 +84,15 @@ export function lotNumber (params) {
 }
 
 /**
- * 收藏的赛事活动列表
+ * 收藏的赛事/活动列表
  */
 export function eventCollect (params) {
   return $get('/event/collect/listCollect', params)
+}
+
+/**
+ * 收藏的钓场列表
+ */
+export function spotCollect (params) {
+  return $get('/spot/collect/listByUser', params)
 }

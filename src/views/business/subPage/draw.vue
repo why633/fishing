@@ -60,7 +60,8 @@ export default {
     }
   },
   mounted () {
-    this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
+    this.$getAppToken()
   },
   created () {
     this.eventId = this.$route.query.id
@@ -100,6 +101,9 @@ export default {
       }
       lotNumber(params).then(res => {
         console.log(res)
+        this.$toast.show({
+          text: '摇号成功'
+        })
       })
       // this.showDialog = false
       keyboardHandle()

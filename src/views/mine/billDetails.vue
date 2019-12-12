@@ -1,6 +1,6 @@
 <template>
   <div class="billDetails">
-    <top-title :isBackPre="false" @backClick="colseWebview">账单明细</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">账单明细</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div
         :class="['date-picker',dateText == '请选择时间'?'default':'']"
@@ -135,7 +135,7 @@ export default {
     this.getPickerYearList()
   },
   methods: {
-    colseWebview () {
+    closeWebview () {
       this.$closeWebview()
     },
     // mescroll组件初始化的回调,可获取到mescroll对象

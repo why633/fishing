@@ -1,6 +1,6 @@
 <template>
   <div class="articleDetails">
-    <top-title :isBackPre="false" @backClick="colseWebview">文章详情</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
     <article-content :articleInfo="articleInfo"></article-content>
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
         this.articleInfo = resData
       })
     },
-    colseWebview () {
+    closeWebview () {
       this.$closeWebview()
     }
   }

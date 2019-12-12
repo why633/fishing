@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <top-title :isBackPre="false" @backClick="colseWebview">文章详情</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
     <div class="info-wrap">
       <div class="title">{{ detailsInfo.title }}</div>
       <div class="user">
@@ -139,8 +139,8 @@ export default {
     this.getFishCatchDetails()
   },
   methods: {
-    colseWebview () {
-      this.$colseWebview()
+    closeWebview () {
+      this.$closeWebview()
       // console.log('closeWebview')
       // if (appSource() === 'ios') {
       //   App.popBack('popBack') // eslint-disable-line

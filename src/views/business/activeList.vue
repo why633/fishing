@@ -1,6 +1,6 @@
 <template>
   <div class="activeList">
-    <top-title :isBackPre="false" @backClick="colseWebview">赛事/活动</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">赛事/活动</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="content" id="dataList">
         <div
@@ -121,7 +121,7 @@ export default {
         })
       }, 200)
     },
-    colseWebview () {
+    closeWebview () {
       console.log('closeWebview')
       this.$closeWebview()
       // if (appSource() === 'ios') {

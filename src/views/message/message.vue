@@ -1,6 +1,6 @@
 <template>
   <div class="message">
-    <top-title :isBackPre="false" @backClick="colseWebview">消息</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">消息</top-title>
     <div class="content">
       <div class="class-item clear-fix" v-for="(item, index) in classData" :key="index">
         <span class="icon">
@@ -50,7 +50,7 @@ export default {
   created () {
   },
   methods: {
-    colseWebview () {
+    closeWebview () {
       this.$closeWebview()
       // console.log('closeWebview')
       // if (appSource() === 'ios') {

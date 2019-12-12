@@ -1,6 +1,6 @@
 <template>
   <div class="fishingClassroom">
-    <top-title :isBackPre="false" @backClick="colseWebview">钓技课堂</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">钓技课堂</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="public-class">
         <div class="title font-b">大众课程</div>
@@ -174,8 +174,7 @@ export default {
     goArticle (id) {
       this.$router.push(`/fishingClassroom/articleDetails?articleId=${id}`)
     },
-    colseWebview () {
-      console.log('colseWebview')
+    closeWebview () {
       // if (appSource() === 'ios') {
       //   App.popBack('popBack') // eslint-disable-line
       // }

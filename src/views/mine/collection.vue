@@ -1,6 +1,6 @@
 <template>
   <div class="collection">
-    <top-title :isBackPre="false" @backClick="colseWebview">我的收藏</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">我的收藏</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="tab">
         <div class="tab-item" v-for="item in tabData" :key="item.id">
@@ -188,7 +188,7 @@ export default {
         })
       }, 200)
     },
-    colseWebview () {
+    closeWebview () {
       this.$closeWebview()
     }
   }

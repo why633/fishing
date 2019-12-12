@@ -1,6 +1,6 @@
 <template>
   <div class="signIn">
-    <top-title :isBackPre="false" @backClick="colseWebview">签到领币</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">签到领币</top-title>
     <div class="content">
       <div class="calendar-wrap">
         <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="signInDate"></Calendar>
@@ -86,7 +86,7 @@ export default {
         _this.isBtnActive = false
       })
     },
-    colseWebview () {
+    closeWebview () {
       this.$closeWebview()
     }
   }

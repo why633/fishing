@@ -9,7 +9,6 @@
           :key="index"
           @click="goDetails(item.id,item.type)"
         >
-          <div class="draw-btn" v-if="type==2">抽号</div>
           <div class="img-wrap">
             <img :src="item.coverImage" />
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>

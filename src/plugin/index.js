@@ -40,7 +40,8 @@ Plugin.install = Vue => {
             Object.assign($vm, options) // 合并参数与实例
           }
           $vm.show = true // 显示toast
-          setTimeout(() => {
+          clearTimeout(timer)
+          var timer = setTimeout(() => {
             $vm.show = false
           }, $vm.time)
         },

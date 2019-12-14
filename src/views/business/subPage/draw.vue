@@ -63,7 +63,7 @@ export default {
   },
   mounted () {
     // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
-    // this.$getAppToken()
+    this.$getAppToken()
     this.getQrImg()
   },
   created () {

@@ -37,7 +37,7 @@ class HandleParamAndResult {
     headers.token = ''
     // alert(handleToken.getToken())
     if (handleToken.getToken()) {
-      // alert(`${new Date()}:${handleToken.getToken()}`)
+      alert(`${new Date()}:${handleToken.getToken()}`)
       headers.token = `${handleToken.getToken()}`
     }
     return headers

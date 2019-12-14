@@ -33,16 +33,17 @@ export default {
     }
   },
   mounted () {
-    this.$getAppToken()
+    this.$getAppToken().then(res => {
+      const currentDate = new Date()
+      this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
+      this.currentDay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
+      this.getCheckSign(this.currentMonth)
+    })
   },
   created () {
     this.$nextTick(() => {
       this.btnClickInit('.signIn-btn')
     })
-    const currentDate = new Date()
-    this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
-    this.currentDay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
-    this.getCheckSign(this.currentMonth)
   },
   methods: {
     clickDay (data) {

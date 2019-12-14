@@ -32,13 +32,13 @@ class HandleParamAndResult {
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    // headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
-    // headers.token = 'eppZ9CXP00y7q7dVScjHoQ'
-    headers.token = ''
+    headers.token = 'go-P3GwETU0c69n4WrKH0Q'
+    // headers.token = ''
     // alert(handleToken.getToken())
     if (handleToken.getToken()) {
-      alert(`${new Date()}:${handleToken.getToken()}`)
-      headers.token = `${handleToken.getToken()}`
+      // console.log(`${new Date()}:${handleToken.getToken()}`)
+      // alert(`${new Date()}:${handleToken.getToken()}`)
+      // headers.token = `${handleToken.getToken()}`
     }
     return headers
   }

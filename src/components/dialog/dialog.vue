@@ -6,7 +6,7 @@
         <div class="dialog-content-top" v-text="msg"></div>
         <slot name="content"></slot>
         <div class="dialog-btn">
-          <div v-if="btnNum==2" class="btn" @click="cancel">{{cancelBtnText}}</div>
+          <div v-show="btnNum==2" class="btn" @click="cancel">{{cancelBtnText}}</div>
           <div class="btn" @click="confirm">{{confirmBtnText}}</div>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0.4rem;
+  padding-top: 0.4rem;
 }
 .dialog-content {
   text-align: center;
@@ -96,7 +96,18 @@ export default {
 }
 .dialog-btn {
   margin-top: 0.53333rem;
+  border-top: 1px solid #f4f4f4;
   display: flex;
   justify-content: space-around;
+  display: flex;
+  .btn {
+    height: 1.066667rem;
+    line-height: 1.066667rem;
+    flex: 1;
+    // background: pink;
+    &:first-child {
+      border-right: 1px solid #f4f4f4;
+    }
+  }
 }
 </style>

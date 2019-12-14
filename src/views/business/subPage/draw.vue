@@ -119,7 +119,7 @@ export default {
           text: '摇号成功'
         })
       })
-      // this.showDialog = false
+      this.showDialog = false
       keyboardHandle()
     },
     closeQr () {

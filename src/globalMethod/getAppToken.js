@@ -4,14 +4,17 @@ import HandleToken from '@/utils/handleToken'
 const handleToken = new HandleToken()
 
 export default function getAppToken () {
-  if (appSource() === 'ios') {
-    window['getToken'] = (result) => {
-      alert(result)
-      handleToken.setToken(result)
+  return new Promise((resolve, reject) => {
+    if (appSource() === 'ios') {
+      window['getToken'] = (result) => {
+        handleToken.setToken(result)
+        resolve(appSource())
+      }
     }
-  }
-  if (appSource() === 'andriod') {
-    // alert(window.android.getToken())
-    handleToken.setToken(window.android.getToken())
-  }
+    if (appSource() === 'andriod') {
+      // alert(window.android.getToken())
+      handleToken.setToken(window.android.getToken())
+      resolve(appSource())
+    }
+  })
 }

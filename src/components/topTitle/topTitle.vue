@@ -47,7 +47,7 @@ export default {
   position: fixed;
   width: 100%;
 }
-.blank{
+.blank {
   height: 1.17333rem;
 }
 .title {
@@ -55,7 +55,8 @@ export default {
   line-height: 1.17333rem;
   color: #fff;
   padding-left: 0.4rem;
-  background: #0c3255;
+  // background: #0c3255;
+  background: rgba(11, 37, 67, 1);
   position: relative;
   .icon-back {
     font-size: 0.48rem;

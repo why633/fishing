@@ -12,6 +12,7 @@
           <div class="img-wrap">
             <img :src="item.coverImage" />
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
+            <div class="del" v-if="item.type==1&&type=='1'" @click.stop="cancleEvent(item.id)">取消</div>
           </div>
           <div class="info">
             <div class="name">{{item.name}}</div>
@@ -23,17 +24,29 @@
         </div>
       </div>
     </mescroll-vue>
+    <Dialog
+      :showDialog="showDialog"
+      :msg="''"
+      @close-dialog="closeDialog"
+      @dialog-confirm="dialogConfirm"
+    >
+      <span slot="content">
+        <span class="confirm-text">确认取消活动吗？</span>
+      </span>
+    </Dialog>
   </div>
 </template>
 
 <script>
 import { appSource } from '@/utils/appSource'
-import { getEvent, getDrawGame } from '@/api'
+import { getEvent, getDrawGame, delEvent } from '@/api'
 import { formateDate } from '@/utils/formateDate'
+import keyboardHandle from '@/utils/keyboardHandle'
 export default {
   data () {
     return {
-      type: '2', // 1更多 2抽号
+      type: '', // 1更多 2抽号
+      eventId: '',
       activeList: [],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
@@ -68,7 +81,8 @@ export default {
         lazyLoad: {
           use: true // 是否开启懒加载,默认false
         }
-      }
+      },
+      showDialog: false
     }
   },
   filters: {
@@ -84,18 +98,6 @@ export default {
     // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
     this.type = this.$route.query.type
     this.$getAppToken()
-    // if (appSource() === 'ios') {
-    //   window['getToken'] = (result) => {
-    //     alert(`${new Date()}:${result}`)
-    //     this.setToken(result)
-    //   }
-    // }
-    // if (appSource() === 'andriod') {
-    //   alert(window.android.getToken())
-    //   // 传id和 type给app
-    //   // window.android.look('21', 2)
-    //   this.setToken(window.android.getToken())
-    // }
   },
   created () {
   },
@@ -176,6 +178,26 @@ export default {
         // 传id和 type给app
         window.android.look(id, eventType)
       }
+    },
+    closeDialog () {
+      this.showDialog = false
+      keyboardHandle()
+    },
+    dialogConfirm () {
+      delEvent({ eventId: this.eventId }).then(res => {
+        console.log(res)
+        this.$toast.show({
+          text: '取消成功'
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+      this.showDialog = false
+      keyboardHandle()
+    },
+    cancleEvent (id) {
+      this.eventId = id
+      this.showDialog = true
     }
   }
 }
@@ -228,6 +250,14 @@ export default {
       .game {
         background: #017ed2;
       }
+      .del {
+        position: absolute;
+        top: 0.213333rem;
+        right: 0;
+        color: #fff;
+        padding: 0.08rem 0.1rem;
+        background: red;
+      }
     }
     .info {
       padding: 0.266667rem;
@@ -246,5 +276,8 @@ export default {
       }
     }
   }
+}
+.confirm-text {
+  font-size: 0.4rem;
 }
 </style>

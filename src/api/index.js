@@ -103,3 +103,10 @@ export function spotCollect (params) {
 export function getQr (params) {
   return $get('/event/searchLotNumber/getByCode', params)
 }
+
+/**
+ * 删除活动
+ */
+export function delEvent (params) {
+  return $get('/event/delEvent/byId', params)
+}

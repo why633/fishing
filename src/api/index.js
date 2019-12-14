@@ -96,3 +96,10 @@ export function eventCollect (params) {
 export function spotCollect (params) {
   return $get('/spot/collect/listByUser', params)
 }
+
+/**
+ * 获取小程序摇号页面二维码
+ */
+export function getQr (params) {
+  return $get('/event/searchLotNumber/getByCode', params)
+}

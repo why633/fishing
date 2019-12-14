@@ -69,7 +69,7 @@ export default {
       height: 1.06667rem;
       border-radius: 50%;
       overflow: hidden;
-      background: pink;
+      // background: pink;
       img {
         width: 100%;
         height: 100%;

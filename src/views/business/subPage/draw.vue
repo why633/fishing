@@ -1,17 +1,19 @@
 <template>
   <div class="draw">
     <top-title>抽号</top-title>
-    <div class="content">
-      <div class="waitNum">待抽号人数：{{drawData.count}}人</div>
-      <div class="list-wrap">
-        <div class="item" v-for="(item,index) in drawData.userList" :key="index">
-          <div class="img-wrap">
-            <img :src="item.headImg?item.headImg:errorImg">
+    <mescroll-vue ref="mescroll" :down="{use: false}">
+      <div class="content">
+        <div class="waitNum">待抽号人数：{{drawData.count}}人</div>
+        <div class="list-wrap">
+          <div class="item" v-for="(item,index) in drawData.userList" :key="index">
+            <div class="img-wrap">
+              <img :src="item.headImg?item.headImg:errorImg" />
+            </div>
+            <div class="name">{{ item.nickName }}</div>
           </div>
-          <div class="name">{{ item.nickName }}</div>
         </div>
       </div>
-    </div>
+    </mescroll-vue>
     <div class="btn-box">
       <div class="btn" @click="showDialog=true">手机号添加</div>
       <div class="btn" @click="showQrDialog=true">二维码添加</div>
@@ -23,7 +25,7 @@
       @dialog-confirm="dialogConfirm"
     >
       <span slot="content">
-        <input type="number" class="phone-input" v-model="phone" placeholder="请输入手机号">
+        <input type="number" class="phone-input" v-model="phone" placeholder="请输入手机号" />
       </span>
     </Dialog>
     <Dialog
@@ -35,7 +37,7 @@
     >
       <span slot="content">
         <div class="img-box">
-          <img :src="qrUrl" alt="" srcset="">
+          <img :src="qrUrl" alt srcset />
         </div>
       </span>
     </Dialog>
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import { getDrawUser, lotNumber } from '@/api'
+import { getDrawUser, lotNumber, getQr } from '@/api'
 import HandleToken from '@/utils/handleToken'
 import keyboardHandle from '@/utils/keyboardHandle'
 const handleToken = new HandleToken()
@@ -61,11 +63,13 @@ export default {
   },
   mounted () {
     // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
-    this.$getAppToken()
+    // this.$getAppToken()
+    this.getQrImg()
   },
   created () {
     this.eventId = this.$route.query.id
     this.getWaitUser()
+    document.body.style.overflow = ''
   },
   methods: {
     setToken (token) {
@@ -80,6 +84,16 @@ export default {
         console.log(res)
         const resData = res.data.data
         this.drawData = resData
+      })
+    },
+    // 获取小程序二维码
+    getQrImg () {
+      const params = {
+        applicationCode: 1
+      }
+      getQr(params).then(res => {
+        console.log(res.data.data.value)
+        this.qrUrl = res.data.data.value ? res.data.data.value : this.qrUrl
       })
     },
     closeDialog () {
@@ -180,7 +194,6 @@ export default {
   display: inline-block;
   width: 2.66667rem;
   height: 2.66667rem;
-  background: pink;
   margin-top: 0.4rem;
   img {
     width: 100%;

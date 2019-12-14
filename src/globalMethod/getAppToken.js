@@ -6,7 +6,7 @@ const handleToken = new HandleToken()
 export default function getAppToken () {
   if (appSource() === 'ios') {
     window['getToken'] = (result) => {
-      // alert(`${new Date()}:${result}`)
+      alert(result)
       handleToken.setToken(result)
     }
   }

@@ -1,7 +1,9 @@
 <template>
   <div class="articleDetails">
     <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
-    <article-content :articleInfo="articleInfo"></article-content>
+    <mescroll-vue ref="mescroll" :down="{use: false}">
+      <article-content :articleInfo="articleInfo"></article-content>
+    </mescroll-vue>
   </div>
 </template>
 <script>

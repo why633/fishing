@@ -1,28 +1,31 @@
 <template>
   <div class="article">
     <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
-    <div class="info-wrap">
-      <div class="title">{{ detailsInfo.title }}</div>
-      <div class="user">
-        <div class="item">
-          <div class="avatar">
-            <img :src="imgUrl" />
+    <mescroll-vue ref="mescroll" :down="{use: false}">
+      <div class="info-wrap">
+        <div class="title">{{ detailsInfo.title }}</div>
+        <div class="user">
+          <div class="item">
+            <div class="avatar">
+              <img :src="imgUrl" />
+            </div>
+          </div>
+          <div class="item">
+            <div class="name">{{ detailsInfo.userNickName }}</div>
+            <div class="date-time">{{ (detailsInfo.createTime)|formateDateTime }}</div>
+          </div>
+          <div class="item">
+            <!-- <div class="btn">{{ detailsInfo.isLike==1?'已关注':'关注' }}</div> -->
           </div>
         </div>
-        <div class="item">
-          <div class="name">{{ detailsInfo.userNickName }}</div>
-          <div class="date-time">{{ (detailsInfo.createTime)|formateDateTime }}</div>
-        </div>
-        <div class="item">
-          <!-- <div class="btn">{{ detailsInfo.isLike==1?'已关注':'关注' }}</div> -->
-        </div>
-      </div>
-      <div class="sign">{{ detailsInfo.content }}
-        <div class="img-box">
-          <img :src="detailsInfo.coverImage">
+        <div class="sign">
+          {{ detailsInfo.content }}
+          <div class="img-box">
+            <img :src="detailsInfo.coverImage" />
+          </div>
         </div>
       </div>
-    </div>
+    </mescroll-vue>
     <!-- <div class="review-wrap">
       <div class="title">---- 用户评论 ----</div>
       <div class="list">
@@ -97,7 +100,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>-->
     <!-- <div class="input-content">
       <input
         ref="input"
@@ -115,7 +118,7 @@
       <div v-else class="publish-btn" @click="publish">
         <span>发布</span>
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -226,9 +229,9 @@ export default {
   }
   .sign {
     margin-top: 0.4rem;
-    .img-box{
-      img{
-        margin-top: .266667rem;
+    .img-box {
+      img {
+        margin-top: 0.266667rem;
         width: 100%;
       }
     }
@@ -248,7 +251,7 @@ export default {
       height: 0.933333rem;
       border-radius: 50%;
       overflow: hidden;
-      background: pink;
+      // background: pink;
       margin-right: 0.133333rem;
       img {
         width: 100%;

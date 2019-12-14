@@ -33,7 +33,9 @@ class HandleParamAndResult {
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
     // headers.token = 'q7K3kYrYhOLNxD5IRtutvQ'
+    // headers.token = 'eppZ9CXP00y7q7dVScjHoQ'
     headers.token = ''
+    // alert(handleToken.getToken())
     if (handleToken.getToken()) {
       // alert(`${new Date()}:${handleToken.getToken()}`)
       headers.token = `${handleToken.getToken()}`

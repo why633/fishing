@@ -11,7 +11,7 @@
         >
           <div class="draw-btn" v-if="type==2">抽号</div>
           <div class="img-wrap">
-            <img :src="item.coverImage">
+            <img :src="item.coverImage" />
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
           </div>
           <div class="info">
@@ -52,7 +52,7 @@ export default {
           size: 10 // 每页数据的数量
         },
         htmlNodata: '<p class="upwarp-nodata">-- 无更多数据 --</p>',
-        noMoreSize: 10, // 如果列表已无数据,可设置列表的总数量要大于等于5条才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+        noMoreSize: 5, // 如果列表已无数据,可设置列表的总数量要大于等于5条才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
         // toTop: {
         //   // src: './static/mescroll/mescroll-totop.png' // 回到顶部按钮的图片路径,支持网络图
         // },
@@ -163,7 +163,9 @@ export default {
     },
     goDetails (id, eventType) {
       if (this.type === '1') { // 进入详情
-      } else { // 进入抽号
+        this.goAppDetails()
+      }
+      if (this.type === '2') { // 进入抽号
         this.$router.push(`/business/draw?id=${id}`)
       }
     },
@@ -207,7 +209,7 @@ export default {
       position: relative;
       width: 100%;
       height: 3rem;
-      background: pink;
+      // background: pink;
       border-radius: 0.106667rem;
       overflow: hidden;
       img {

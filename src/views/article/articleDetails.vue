@@ -26,7 +26,6 @@ export default {
   methods: {
     // 获取文章详情
     getArticleDetail () {
-      alert(this.infoId)
       const params = {
         infoId: this.infoId
       }

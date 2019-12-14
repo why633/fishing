@@ -1,15 +1,18 @@
 <template>
   <div class="draw">
-    <top-title>抽号</top-title>
+    <top-title>{{drawData.hasLot==1?'抽号结果':'抽号'}}</top-title>
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <div class="content">
-        <div class="waitNum">待抽号人数：{{drawData.count}}人</div>
+        <div class="waitNum">{{drawData.hasLot==1?'参与':'待'}}抽号人数：{{drawData.count}}人</div>
         <div class="list-wrap">
           <div class="item" v-for="(item,index) in drawData.userList" :key="index">
             <div class="img-wrap">
               <img :src="item.headImg?item.headImg:errorImg" />
             </div>
-            <div class="name">{{ item.nickName }}</div>
+            <div class="info-wrap">
+              <div class="name">{{ item.nickName }}</div>
+              <div class="seatNumber">{{ item.seatNumber }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -52,6 +55,7 @@ const handleToken = new HandleToken()
 export default {
   data () {
     return {
+      titleText: '',
       drawData: {},
       errorImg: require('@/assets/defaultHeadImg.png'),
       showDialog: false,
@@ -84,6 +88,7 @@ export default {
         console.log(res)
         const resData = res.data.data
         this.drawData = resData
+        console.log(this.drawData)
       })
     },
     // 获取小程序二维码
@@ -148,9 +153,10 @@ export default {
     .item {
       display: flex;
       margin-bottom: 0.4rem;
+      align-items: center;
       .img-wrap {
-        width: 0.93333rem;
-        height: 0.93333rem;
+        width: 1.6rem;
+        height: 1.6rem;
         border-radius: 50%;
         overflow: hidden;
         margin-right: 0.26667rem;
@@ -159,8 +165,21 @@ export default {
           height: 100%;
         }
       }
-      .name {
-        line-height: 0.93333rem;
+      .info-wrap {
+        .name {
+          // line-height: 0.93333rem;
+          margin-bottom: .186667rem;
+        }
+        .seatNumber {
+          display: inline-block;
+          height: .666667rem;
+          line-height: .666667rem;
+          padding: 0 0.4rem;
+          border: 1px solid #000;
+          border-radius: .333333rem;
+          color: rgba(11, 37, 67, 1);
+          border: 1px solid rgba(11, 37, 67, 1);
+        }
       }
     }
   }

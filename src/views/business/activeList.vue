@@ -12,7 +12,7 @@
           <div class="img-wrap">
             <img :src="item.coverImage" />
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
-            <div class="del" v-if="item.type==1&&type=='1'" @click.stop="cancleEvent(item.id)">取消</div>
+            <div class="del" v-if="item.type==1&&type=='1'" @click.stop="cancleEvent(item.id, index)">取消</div>
           </div>
           <div class="info">
             <div class="name">{{item.name}}</div>
@@ -47,6 +47,7 @@ export default {
     return {
       type: '', // 1更多 2抽号
       eventId: '',
+      delIndex: 0,
       activeList: [],
       mescroll: null, // mescroll实例对象
       mescrollDown: {
@@ -186,6 +187,8 @@ export default {
     dialogConfirm () {
       delEvent({ eventId: this.eventId }).then(res => {
         console.log(res)
+        this.activeList = []
+        this.activeList.splice(this.delIndex, 1)
         this.$toast.show({
           text: '取消成功'
         })
@@ -195,8 +198,9 @@ export default {
       this.showDialog = false
       keyboardHandle()
     },
-    cancleEvent (id) {
+    cancleEvent (id, index) {
       this.eventId = id
+      this.delIndex = index
       this.showDialog = true
     }
   }

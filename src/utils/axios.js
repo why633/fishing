@@ -13,7 +13,7 @@ const handleToken = new HandleToken()
  * 处理请求头数据和处理结果
  */
 class HandleParamAndResult {
-  constructor () {
+  constructor() {
     var DEV_HOST = 'http://47.94.139.201:9000/fishing'
     // var DEV_HOST = 'http://192.168.0.136:9000/fishing'
     this.api = DEV_HOST
@@ -32,13 +32,13 @@ class HandleParamAndResult {
     // 动态添加token
     // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    headers.token = 'go-P3GwETU0c69n4WrKH0Q'
-    // headers.token = ''
+    // headers.token = 'go-P3GwETU0c69n4WrKH0Q'
+    headers.token = ''
     // alert(handleToken.getToken())
     if (handleToken.getToken()) {
       // console.log(`${new Date()}:${handleToken.getToken()}`)
       // alert(`${new Date()}:${handleToken.getToken()}`)
-      // headers.token = `${handleToken.getToken()}`
+      headers.token = `${handleToken.getToken()}`
     }
     return headers
   }
@@ -53,16 +53,19 @@ class HandleParamAndResult {
       axios(this.api + url, options).then(res => {
         // do something after success
         console.log(res.data.code)
-        if(res.data.code==200){
+        if (res.data.code == 200) {
           resolve(res)
         } else {
+          // 判断token失效 处理
+          if (res.data.code == 4001) {
+            this.$refreshToken()
+          }
           Vue.prototype.$toast.show({
             text: res.data.message
           })
         }
       }).catch(error => {
         console.log(error)
-        // 判断token失效 处理
         reject(error)
       })
     })
@@ -73,7 +76,7 @@ class HandleParamAndResult {
  * @param { Number | String } 平台传递的版本号
  */
 class RequestMethod {
-  constructor () {
+  constructor() {
     this.$get = this.$get.bind(this)
     this.$post = this.$post.bind(this)
     this.$put = this.$put.bind(this)

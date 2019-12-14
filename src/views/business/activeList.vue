@@ -229,13 +229,15 @@ export default {
     .img-wrap {
       position: relative;
       width: 100%;
-      height: 3rem;
+      height: 4rem;
       // background: pink;
       border-radius: 0.106667rem;
       overflow: hidden;
       img {
+        position: absolute;
         width: 100%;
-        height: 100%;
+        top: 50%;
+        transform: translateY(-50%);
       }
       .type {
         position: absolute;

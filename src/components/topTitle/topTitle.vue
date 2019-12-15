@@ -59,14 +59,14 @@ export default {
   background: rgba(11, 37, 67, 1);
   position: relative;
   .icon-back {
-    font-size: 0.48rem;
+    // font-size: .48rem;
     position: absolute;
     top: 51.5%;
     transform: translateY(-50%);
   }
   .title-text {
     padding-left: 0.8rem;
-    font-size: 0.453333rem;
+    font-size: .426667rem;
   }
 }
 </style>

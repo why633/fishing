@@ -193,7 +193,7 @@ export default {
         }
         billDetails(params).then(res => {
           const resData = res.data.data
-          this.billData = resData.list
+          this.billData = pageNo === 1 ? resData.list : this.billData.concat(resData.list)
           resolve(resData.list.length)
         }).catch(err => {
           reject(err)

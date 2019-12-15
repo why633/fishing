@@ -1,4 +1,4 @@
-// import * as directives from '@/directive'
+import * as directives from '@/directive'
 import * as filters from '@/filters'
 // import * as mixins from '@/mixins'
 import * as components from '@/components'
@@ -7,9 +7,9 @@ import * as globalMethod from '@/globalMethod'
 const Plugin = {}
 Plugin.install = Vue => {
   // 遍历注入所有的directive
-  // Object.keys(directives).forEach(key => {
-  //   Vue.directive(key, directives[key])
-  // })
+  Object.keys(directives).forEach(key => {
+    Vue.directive(key, directives[key])
+  })
 
   // 遍历注入所有的filter
   Object.keys(filters).forEach(key => {

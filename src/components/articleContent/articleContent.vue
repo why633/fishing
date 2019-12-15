@@ -51,19 +51,19 @@ export default {
         // background: pink;
         float: left;
         margin-right: 0.13333rem;
-        font-size: .16rem;
+        font-size: 0.16rem;
       }
     }
   }
   .text-content {
     margin-top: 0.4rem;
     line-height: 1.2em;
-    & >>> p{
+    & >>> p {
       line-height: 1.2em;
     }
     & >>> img {
       width: 100%;
-      margin: .133333rem 0;
+      margin: 0.133333rem 0;
     }
   }
 }

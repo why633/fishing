@@ -1,6 +1,6 @@
 const fishingClassroom = [
   {
-    path: '/fishingClassroom',
+    path: '/teach',
     name: 'fishingClassroom',
     component: () => import('@/views/fishingClassroom/fishingClassroom'),
     meta: {

@@ -62,8 +62,8 @@ export default {
       line-height: 1.2em;
     }
     & >>> img {
-      width: 100%;
-      margin: 0.133333rem 0;
+      width: 100% !important;
+      margin: .133333rem 0;
     }
   }
 }

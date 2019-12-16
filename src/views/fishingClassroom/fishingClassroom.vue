@@ -11,7 +11,7 @@
             :key="item.id"
             @click="goClassDetails(item.id)"
           >
-            <img :src="item.imgUrl" />
+            <img :src="item.imgUrl">
             <span>{{ item.name }}</span>
           </div>
         </div>
@@ -126,6 +126,15 @@ export default {
   created () {
     console.log('fresh')
     // this.getArticleList()
+  },
+  beforeRouteEnter (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteEnter不用写
+    next(vm => {
+      vm.$refs.mescroll.beforeRouteEnter() // 进入路由时,滚动到原来的列表位置,恢复回到顶部按钮和isBounce的配置
+    })
+  },
+  beforeRouteLeave (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteLeave不用写
+    this.$refs.mescroll.beforeRouteLeave() // 退出路由时,记录列表滚动的位置,隐藏回到顶部按钮和isBounce的配置
+    next()
   },
   methods: {
     // mescroll组件初始化的回调,可获取到mescroll对象

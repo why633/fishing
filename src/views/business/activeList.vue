@@ -187,7 +187,6 @@ export default {
     dialogConfirm () {
       delEvent({ eventId: this.eventId }).then(res => {
         console.log(res)
-        this.activeList = []
         this.activeList.splice(this.delIndex, 1)
         this.$toast.show({
           text: '取消成功'

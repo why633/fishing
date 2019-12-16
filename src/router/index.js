@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
 
 // 判断处理页面位置缓存
 router.beforeEach((to, from, next) => {
-  console.log(from.name, to.name)
+  // console.log(from.name, to.name)
   if (from.name === 'fishingClassroom' && to.name === 'classDetails') {
     to.meta.keepAlive = false
   }

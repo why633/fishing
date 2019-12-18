@@ -11,7 +11,7 @@
             </div>
             <div class="info-wrap">
               <div class="name">{{ item.nickName }}</div>
-              <div class="seatNumber">{{ item.seatNumber }}</div>
+              <div class="seatNumber" v-if="drawData.hasLot==1">{{ item.seatNumber }}</div>
             </div>
           </div>
         </div>

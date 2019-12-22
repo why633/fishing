@@ -7,7 +7,7 @@
         <div class="user">
           <div class="item">
             <div class="avatar">
-              <img :src="imgUrl" />
+              <img :src="detailsInfo.userHeadImg" v-imgplaceholder="imgUrl" />
             </div>
           </div>
           <div class="item">
@@ -29,74 +29,14 @@
       <div class="review-wrap">
         <div class="title">---- 用户评论 ----</div>
         <div class="list">
-          <div class="item clear-fix">
+          <div class="item clear-fix" v-for="(item, index) in detailsInfo.commentList" :key="index">
             <div class="avatar left">
-              <img :src="imgUrl" />
+              <img :src="item.userHeadImg" />
             </div>
             <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
-            </div>
-          </div>
-          <div class="item clear-fix">
-            <div class="avatar left">
-              <img :src="imgUrl" />
-            </div>
-            <div class="info left">
-              <div class="name">why</div>
-              <div class="text">哎呦不错呀</div>
-              <div class="date-time">19/10月25日 05:56</div>
+              <div class="name">{{item.userNickName}}</div>
+              <div class="text">{{item.comment}}</div>
+              <div class="date-time">{{item.createTime|formateDateTime}}</div>
             </div>
           </div>
         </div>
@@ -113,7 +53,7 @@
         placeholder="评论一下吧..."
       />
       <div v-if="!isInput">
-        <span class="iconfont icon-thumbup"></span>
+        <span :class="[{'is-like':detailsInfo.isLike},'iconfont', 'icon-thumbup']" @click="isLike"></span>
         <span class="iconfont icon-xinbaniconshangchuan-"></span>
       </div>
       <div v-else class="publish-btn" @click="publish">
@@ -125,7 +65,7 @@
 
 <script>
 import keyboardHandle from '@/utils/keyboardHandle'
-import { fishCatchDetails } from '@/api'
+import { fishCatchDetails, remarkFishCatch, likeFishCatch } from '@/api'
 export default {
   data () {
     return {
@@ -141,6 +81,7 @@ export default {
     // 处理键盘弹起收起
     keyboardHandle()
     this.getFishCatchDetails()
+    console.log(this.$variable)
   },
   methods: {
     closeWebview () {
@@ -170,6 +111,16 @@ export default {
     // 发布
     publish () {
       console.log(this.publishText)
+      const params = {
+        fishCatchId: this.fishCatchId,
+        comment: this.publishText
+      }
+      remarkFishCatch(JSON.stringify(params)).then(res => {
+        console.log(res)
+        fishCatchDetails({ fishCatchId: this.fishCatchId }).then(res => {
+          this.detailsInfo.commentList = res.data.data.commentList
+        })
+      })
       this.publishText = ''
     },
     // 获取渔获详情
@@ -177,6 +128,12 @@ export default {
       fishCatchDetails({ fishCatchId: this.fishCatchId }).then(res => {
         console.log(res)
         this.detailsInfo = res.data.data
+      })
+    },
+    isLike () {
+      likeFishCatch({ fishCatchId: this.fishCatchId }).then(res => {
+        console.log(res)
+        this.detailsInfo.isLike = !this.detailsInfo.isLike
       })
     }
   }
@@ -305,6 +262,9 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     right: 1.2rem;
+  }
+  .is-like {
+    color: #f16f41;
   }
   .icon-xinbaniconshangchuan- {
     font-size: 0.733333rem;

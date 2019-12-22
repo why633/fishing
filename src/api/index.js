@@ -1,6 +1,6 @@
 import RequestMethod from '@/utils/axios.js'
 
-const { $get } = new RequestMethod()
+const { $get, $post } = new RequestMethod()
 
 /**
  * 获取消息
@@ -53,6 +53,20 @@ export function billDetails (params) {
  */
 export function fishCatchDetails (params) {
   return $get('/info/detail/fishCatch', params)
+}
+
+/**
+ * 评论渔获详情
+ */
+export function remarkFishCatch (params) {
+  return $post('/info/comment/fishCatch', params)
+}
+
+/**
+ * 评论渔获详情
+ */
+export function likeFishCatch (params) {
+  return $get('/info/like/fishCatch', params)
 }
 
 /**

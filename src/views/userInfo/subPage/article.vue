@@ -25,83 +25,84 @@
           </div>
         </div>
       </div>
-    </mescroll-vue>
-    <!-- <div class="review-wrap">
-      <div class="title">---- 用户评论 ----</div>
-      <div class="list">
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
+
+      <div class="review-wrap">
+        <div class="title">---- 用户评论 ----</div>
+        <div class="list">
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
-          </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
-          </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
-          </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
-          </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
-          </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
-          </div>
-        </div>
-        <div class="item clear-fix">
-          <div class="avatar left">
-            <img :src="imgUrl" />
-          </div>
-          <div class="info left">
-            <div class="name">why</div>
-            <div class="text">哎呦不错呀</div>
-            <div class="date-time">19/10月25日 05:56</div>
+          <div class="item clear-fix">
+            <div class="avatar left">
+              <img :src="imgUrl" />
+            </div>
+            <div class="info left">
+              <div class="name">why</div>
+              <div class="text">哎呦不错呀</div>
+              <div class="date-time">19/10月25日 05:56</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>-->
-    <!-- <div class="input-content">
+    </mescroll-vue>
+    <div class="input-content">
       <input
         ref="input"
         :class="[{'input-focus': isInput},'input']"
@@ -118,7 +119,7 @@
       <div v-else class="publish-btn" @click="publish">
         <span>发布</span>
       </div>
-    </div>-->
+    </div>
   </div>
 </template>
 
@@ -239,7 +240,7 @@ export default {
 }
 .review-wrap {
   margin-top: 0.4rem;
-  padding: 0 0.4rem;
+  padding: 0 0.4rem 1.333333rem;
   .title {
     text-align: center;
   }

@@ -204,10 +204,11 @@ export default {
 }
 .phone-input {
   width: 70%;
-  border: 1px solid #ebebeb;
+  border: 1px solid #efefefcb;
   border-radius: 0.13333rem;
   outline: none;
   padding: 0.26667rem 0.13333rem;
+  -webkit-appearance: none;
 }
 .img-box {
   display: inline-block;

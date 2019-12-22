@@ -45,6 +45,8 @@ export default {
     .date-time {
     }
     .scan {
+      height: .4rem;
+      line-height: .4rem;
       .icon {
         width: 0.4rem;
         height: 0.26667rem;
@@ -57,9 +59,9 @@ export default {
   }
   .text-content {
     margin-top: 0.4rem;
-    line-height: 1.2em;
+    line-height: 1.5em !important;
     & >>> p {
-      line-height: 1.2em;
+      line-height: 1.5em;
     }
     & >>> img {
       width: 100% !important;

@@ -1,4 +1,4 @@
-export async function imgplaceholder (el, binding) { // 指令名称为：real-img
+export async function imgplaceholder (el, binding) {
   let imgURL = binding.value // 获取图片地址
   if (imgURL) {
     let exist = await imageIsExist(imgURL)

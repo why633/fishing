@@ -7,7 +7,7 @@
         <div class="user">
           <div class="item">
             <div class="avatar">
-              <img :src="detailsInfo.userHeadImg" v-imgplaceholder="imgUrl" />
+              <img :src="$globalData.defaultHeadImg" v-imgplaceholder="detailsInfo.userHeadImg">
             </div>
           </div>
           <div class="item">
@@ -21,7 +21,7 @@
         <div class="sign">
           {{ detailsInfo.content }}
           <div class="img-box">
-            <img :src="detailsInfo.coverImage" />
+            <img :src="detailsInfo.coverImage">
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <div class="list">
           <div class="item clear-fix" v-for="(item, index) in detailsInfo.commentList" :key="index">
             <div class="avatar left">
-              <img :src="item.userHeadImg" />
+              <img :src="$globalData.defaultHeadImg" v-imgplaceholder="item.userHeadImg">
             </div>
             <div class="info left">
               <div class="name">{{item.userNickName}}</div>
@@ -51,7 +51,7 @@
         @blur="inputBlur"
         type="text"
         placeholder="评论一下吧..."
-      />
+      >
       <div v-if="!isInput">
         <span :class="[{'is-like':detailsInfo.isLike},'iconfont', 'icon-thumbup']" @click="isLike"></span>
         <span class="iconfont icon-xinbaniconshangchuan-"></span>
@@ -69,7 +69,6 @@ import { fishCatchDetails, remarkFishCatch, likeFishCatch } from '@/api'
 export default {
   data () {
     return {
-      imgUrl: require('@/assets/defaultHeadImg.png'),
       publishText: '', // 评论内容
       isInput: false, // 输入状态
       introduction: '',
@@ -81,7 +80,7 @@ export default {
     // 处理键盘弹起收起
     keyboardHandle()
     this.getFishCatchDetails()
-    console.log(this.$variable)
+    console.log(this.$globalData)
   },
   methods: {
     closeWebview () {
@@ -106,11 +105,15 @@ export default {
       setTimeout(function () {
         _this.isInput = false
         console.log('blur')
-      }, 200)
+      }, 100)
     },
     // 发布
     publish () {
       console.log(this.publishText)
+      if (this.publishText === '') {
+        this.isInput = true
+        return false
+      }
       const params = {
         fishCatchId: this.fishCatchId,
         comment: this.publishText

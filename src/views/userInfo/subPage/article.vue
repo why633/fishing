@@ -42,7 +42,7 @@
         </div>
       </div>
     </mescroll-vue>
-    <div class="input-content" v-show="showInputFlag">
+    <div class="input-content">
       <input
         ref="input"
         :class="[{'input-focus': isInput},'input']"
@@ -72,8 +72,7 @@ export default {
       publishText: '', // 评论内容
       isInput: false, // 输入状态
       introduction: '',
-      detailsInfo: {},
-      showInputFlag: true
+      detailsInfo: {}
     }
   },
   created () {
@@ -105,14 +104,12 @@ export default {
       let _this = this
       setTimeout(function () {
         _this.isInput = false
-        // _this.showInputFlag = true
         console.log('blur')
       }, 50)
     },
     // 发布
     publish () {
       console.log(this.publishText)
-      // this.showInputFlag = false
       if (this.publishText === '') {
         return false
       }

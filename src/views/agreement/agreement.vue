@@ -1,5 +1,6 @@
 <template>
   <div class="agreement">
+    <top-title :isBackPre="false" @backClick="closeWebview">隐私协议</top-title>
     <div class="content">
       <h5>用户注册及使用APP隐私协议</h5>
       <p

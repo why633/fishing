@@ -12,6 +12,7 @@ import Plugin from './plugin'
 import '@/plugin/flexible.js'
 import '@/styles/normalize.css'
 import '@/styles/index.css'
+// import 'mint-ui/lib/style.css'
 
 // Vue.use(vuescroll)
 // 自定义插件

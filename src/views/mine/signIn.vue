@@ -35,7 +35,7 @@ export default {
   mounted () {
     this.$getAppToken().then(res => {
       const currentDate = new Date()
-      this.currentMonth = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1)
+      this.currentMonth = currentDate.getFullYear() + '-' + ((currentDate.getMonth() + 1) > 9 ? (currentDate.getMonth() + 1) : '0' + (currentDate.getMonth() + 1))
       this.currentDay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
       this.getCheckSign(this.currentMonth)
     })
@@ -51,14 +51,12 @@ export default {
     },
     changeDate (data) {
       const arr = data.split('/')
-      this.currentMonth = arr[0] + '-' + arr[1]
-      console.log(this.currentMonth)
+      this.currentMonth = arr[0] + '-' + (arr[1] > 9 ? arr[1] : '0' + arr[1])
       this.getCheckSign()
     },
     // 获取已签到数据
     getCheckSign () {
       checkSign({ date: this.currentMonth }).then(res => {
-        console.log(res)
         const resData = res.data
         /* resData.data.map(item => {
           if (item === this.currentDay) {
@@ -72,7 +70,6 @@ export default {
     signToday () {
       if (!this.btnDisabled) {
         signToday().then(res => {
-          console.log(res)
           this.getCheckSign()
         })
       }

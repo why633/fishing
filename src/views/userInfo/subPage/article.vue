@@ -77,6 +77,7 @@ export default {
   },
   created () {
     this.fishCatchId = this.$route.query.fishCatchId
+    this.$getAppToken()
     // 处理键盘弹起收起
     keyboardHandle()
     this.getFishCatchDetails()

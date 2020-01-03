@@ -57,12 +57,13 @@ class HandleParamAndResult {
           resolve(res)
         } else {
           // 判断token失效 处理
-          if (res.data.code == 4001) {
-            this.$refreshToken()
-          }
           Vue.prototype.$toast.show({
             text: res.data.message
           })
+          if (res.data.code == 4001) {
+            this.$refreshToken()
+          }
+          
         }
       }).catch(error => {
         console.log(error)

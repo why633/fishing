@@ -124,3 +124,17 @@ export function getQr (params) {
 export function delEvent (params) {
   return $get('/event/delEvent/byId', params)
 }
+
+/**
+ * 获取省份
+ */
+export function province () {
+  return $get('/user/select/province')
+}
+
+/**
+ * 获取城市
+ */
+export function city (params) {
+  return $get('/user/select/city', params)
+}

@@ -30,3 +30,11 @@ export function formateDateTime (date) {
     return '--'
   }
 }
+
+/**
+ * 手机号隐藏中间4位
+ */
+
+export function encodePhone (date) {
+  return date.replace(/^(\d{3})\d{4}(\d+)/, '$1****$2')
+}

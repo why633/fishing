@@ -5,7 +5,8 @@ import message from '../message'
 import article from '../article'
 import business from '../business'
 import agreement from '../agreement'
+import addressManage from '../addressManage'
 
-const routes = [].concat(mine, userInfo, fishingClassroom, message, article, business, agreement)
+const routes = [].concat(mine, userInfo, fishingClassroom, message, article, business, agreement, addressManage)
 
 export default routes

@@ -30,15 +30,11 @@ class HandleParamAndResult {
       // 'Accept': `application/json; version=${this.apiVersion}`
     }
     // 动态添加token
-    // alert(handleToken.getToken())
     // 这个是我从APP的url拿到的token
-    // headers.token = '2L1-Mmz9XyBUfXU8Gs-y4Q'
-    headers.token = ''
-    // alert(handleToken.getToken())
+    headers.token = '_aUvtXIqPmHowHvYxJpF-i5v-ErbKw9L'
+    // headers.token = ''
     if (handleToken.getToken()) {
-      // console.log(`${new Date()}:${handleToken.getToken()}`)
-      // alert(`${new Date()}:${handleToken.getToken()}`)
-      headers.token = `${handleToken.getToken()}`
+      // headers.token = `${handleToken.getToken()}`
     }
     return headers
   }

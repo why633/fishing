@@ -27,3 +27,12 @@ let imageIsExist = function (url) {
     img.src = url
   })
 }
+
+export function hover (el, binding) {
+  el.ontouchstart = () => {
+    el.style.opacity = '0.7'
+  }
+  el.ontouchend = () => {
+    el.style.opacity = '1'
+  }
+}

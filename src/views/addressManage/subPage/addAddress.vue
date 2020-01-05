@@ -359,7 +359,11 @@ export default {
         this.saveLoading = true
         addAddress(JSON.stringify(prarams)).then(res => {
           this.saveLoading = false
-          this.$router.push('/addressManage')
+          if (this.$route.query.from === 'addressList') {
+            this.$router.push('/addressManage?from=app')
+          } else {
+            this.$router.push('/addressManage')
+          }
         })
       }
     }

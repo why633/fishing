@@ -62,11 +62,11 @@ export default {
     },
     // 跳转新增地址
     goAddAddress () {
-      this.$router.push('/addressManage/addAddress')
+      this.$router.push('/addressManage/addAddress?from=addressList')
     },
     // 跳转编辑地址
     goEditAddress (id) {
-      this.$router.push('/addressManage/editAddress?id=' + id)
+      this.$router.push('/addressManage/editAddress?id=' + id + 'from=addressList')
     },
     // 获取地址列表
     getAddressData () {
@@ -85,7 +85,9 @@ export default {
         return item
       })
       this.addressData = [].concat(this.addressData)
-      console.log(this.addressData)
+      const choseData = this.addressData[index]
+      this.$sendAddress(choseData.id, `${choseData.province} ${choseData.city} ${choseData.area} ${choseData.address} ${choseData.name} ${choseData.phone}`)
+      this.$closeWebview()
     }
   }
 }

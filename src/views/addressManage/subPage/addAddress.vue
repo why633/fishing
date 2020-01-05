@@ -1,6 +1,6 @@
 <template>
   <div class="addAddress">
-    <top-title>添加新地址</top-title>
+    <top-title :isBackPre="isBack" @backClick="closeWebview">添加新地址</top-title>
     <div class="content">
       <div class="form">
         <mt-field class="form-item must" label="收货人：" placeholder="请填写收货人姓名" v-model="form.name"></mt-field>
@@ -129,6 +129,7 @@ Vue.component(Popup.name, Popup)
 export default {
   data () {
     return {
+      isBack: true,
       form: {
         name: '',
         phone: '',
@@ -172,6 +173,9 @@ export default {
   },
   mounted () {
     this.$getAppToken()
+    if (this.$route.query.from === 'app') {
+      this.isBack = false
+    }
   },
   created () {
     this.getProvince()
@@ -179,6 +183,9 @@ export default {
     keyboardHandle()
   },
   methods: {
+    closeWebview () {
+      this.$closeWebview()
+    },
     showChoseAddress () {
       console.log('12')
       this.choseAddressVisible = true

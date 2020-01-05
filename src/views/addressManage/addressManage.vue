@@ -32,7 +32,7 @@
         </div>
         <div class="noData" v-else>
           <div class="tips">您还没有添加地址~</div>
-          <div class="addAddress">添加新地址</div>
+          <div class="addAddress" @click="goAddAddress">添加新地址</div>
         </div>
       </div>
     </mescroll-vue>
@@ -44,12 +44,13 @@ import { getAddress } from '@/api'
 export default {
   data () {
     return {
-      from: 'app',
+      from: '',
       editIcon: require('@/assets/edit.png'),
       addressData: []
     }
   },
   mounted () {
+    this.from = this.$route.query.from
     this.$getAppToken()
   },
   created () {

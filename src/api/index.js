@@ -138,3 +138,37 @@ export function province () {
 export function city (params) {
   return $get('/user/select/city', params)
 }
+
+/**
+ * 获取地址列表
+ */
+export function getAddress () {
+  return $get('/goods/exchange/getAddress')
+}
+
+/**
+ * 新增地址
+ */
+export function addAddress (params) {
+  return $post('/goods/exchange/addAddress', params)
+}
+/**
+ * 新增地址
+ */
+export function updateAddress (params) {
+  return $post('/goods/exchange/updateAddress', params)
+}
+
+/**
+ * 编辑地址回显
+ */
+export function detailAddress (params) {
+  return $get('/goods/exchange/detailAddress', params)
+}
+
+/**
+ * 删除地址
+ */
+export function delAddress (params) {
+  return $get('/goods/exchange/delAddress', params)
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="addAddress">
-    <top-title>添加新地址</top-title>
+    <top-title>编辑收货地址</top-title>
     <div class="content">
       <div class="form">
         <mt-field class="form-item must" label="收货人：" placeholder="请填写收货人姓名" v-model="form.name"></mt-field>
@@ -31,7 +31,10 @@
         <mt-cell class="form-switch lage-lable" title="设为默认地址">
           <mt-switch v-model="form.acquiesce" @change="changeAcquiesce"></mt-switch>
         </mt-cell>
-        <div class="add-btn" v-hover @click="save">保存</div>
+        <div class="btn-box">
+          <div class="del-btn" v-hover @click="delAddress">删除</div>
+          <div class="add-btn" v-hover @click="save">保存</div>
+        </div>
       </div>
       <mt-popup class="address-popup" v-model="choseAddressVisible" position="bottom">
         <div class="address-content">
@@ -121,7 +124,7 @@
 import keyboardHandle from '@/utils/keyboardHandle'
 import { Field, Switch, Cell, Popup } from 'mint-ui'
 import Vue from 'vue'
-import { province, city, addAddress } from '@/api/index'
+import { province, city, updateAddress, detailAddress, delAddress } from '@/api/index'
 Vue.component(Field.name, Field)
 Vue.component(Switch.name, Switch)
 Vue.component(Cell.name, Cell)
@@ -167,13 +170,15 @@ export default {
       cityShow: false,
       areaData: [],
       areaShow: false,
-      saveLoading: false
+      saveLoading: false,
+      delLoading: false
     }
   },
   created () {
     this.getProvince()
     // 处理键盘弹起收起
     keyboardHandle()
+    this.getDetailAddress()
   },
   methods: {
     showChoseAddress () {
@@ -316,6 +321,35 @@ export default {
     changeAcquiesce (val) {
       console.log(this.form.acquiesce)
     },
+    // 获取地址回显信息
+    getDetailAddress () {
+      const params = {
+        addId: this.$route.query.id
+      }
+      detailAddress(params).then(res => {
+        console.log(res)
+        const resData = res.data.data
+        this.form.name = resData.name
+        this.form.phone = resData.phone
+        this.addressText = `${resData.province} ${resData.city} ${resData.area}`
+        this.form.address = resData.address
+        this.form.acquiesce = resData.acquiesce === 2 ? 'true' : 'false'
+        this.tabData.areaTab.id = resData.areaId
+      })
+    },
+    // 删除地址
+    delAddress () {
+      const params = {
+        addressId: this.$route.query.id
+      }
+      if (!this.delLoading) {
+        this.delLoading = true
+        delAddress(params).then(res => {
+          this.delLoading = false
+          this.$router.push('/addressManage')
+        })
+      }
+    },
     // 保存
     save () {
       if (this.form.name === '') {
@@ -343,11 +377,11 @@ export default {
         return
       }
       const prarams = {
-        ...this.form, acquiesce: this.form.acquiesce ? 2 : 1, areaId: this.tabData.areaTab.id
+        ...this.form, acquiesce: this.form.acquiesce ? 2 : 1, areaId: this.tabData.areaTab.id, id: this.$route.query.id
       }
       if (!this.saveLoading) {
         this.saveLoading = true
-        addAddress(JSON.stringify(prarams)).then(res => {
+        updateAddress(JSON.stringify(prarams)).then(res => {
           this.saveLoading = false
           this.$router.push('/addressManage')
         })
@@ -367,6 +401,11 @@ export default {
 }
 .form-item {
 }
+.btn-box {
+  margin: 4rem auto 0.8rem;
+  display: flex;
+  justify-content: space-around;
+}
 .add-btn {
   color: #fff;
   background: #0c3255;
@@ -375,7 +414,17 @@ export default {
   line-height: 0.8rem;
   text-align: center;
   border-radius: 0.106667rem;
-  margin: 4rem auto 0.8rem;
+  //   margin: 4rem auto 0.8rem;
+}
+.del-btn {
+  color: #333;
+  background: #ebebeb;
+  width: 2.666667rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  border-radius: 0.106667rem;
+  //   margin: 4rem auto 0.8rem;
 }
 .address-popup {
   border-radius: 0.266667rem 0.266667rem 0 0;

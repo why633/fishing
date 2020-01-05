@@ -9,10 +9,10 @@
               <div class="user-info">
                 <span class="name text-overflow">{{item.name}}</span>
                 <span class="phone">{{item.phone|encodePhone}}</span>
-                <span class="default-address" v-if="item.acquiesce">默认</span>
+                <span class="default-address" v-if="item.acquiesce==2">默认</span>
               </div>
-              <div class="address text-overflow">北京市朝阳区十里堡朝阳大悦城 7f</div>
-              <span class="edit">
+              <div class="address text-overflow">{{ item.address }}</div>
+              <span class="edit" @click="goEditAddress(item.id)">
                 <img :src="editIcon" alt />
               </span>
             </div>
@@ -29,79 +29,16 @@
 </template>
 
 <script>
+import { getAddress } from '@/api'
 export default {
   data () {
     return {
       editIcon: require('@/assets/edit.png'),
-      addressData: [
-        {
-          name: '王飞',
-          address: '北京朝阳',
-          phone: '17611162633',
-          acquiesce: 1
-        },
-        {
-          name: '李浩然',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '张',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '大圣',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '慕容云海',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '大圣',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '慕容云海',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '大圣',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '慕容云海',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '大圣',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        },
-        {
-          name: '慕容云海',
-          address: '北京海淀',
-          phone: '17611162633',
-          acquiesce: 0
-        }
-      ]
+      addressData: []
     }
+  },
+  created () {
+    this.getAddressData()
   },
   methods: {
     closeWebview () {
@@ -110,6 +47,16 @@ export default {
     // 跳转新增地址
     goAddAddress () {
       this.$router.push('/addressManage/addAddress')
+    },
+    // 跳转编辑地址
+    goEditAddress (id) {
+      this.$router.push('/addressManage/editAddress?id=' + id)
+    },
+    // 获取地址列表
+    getAddressData () {
+      getAddress().then(res => {
+        this.addressData = res.data.data
+      })
     }
   }
 }

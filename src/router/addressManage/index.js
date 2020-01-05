@@ -14,6 +14,14 @@ const addressManage = [
     meta: {
       title: 'addAddress'
     }
+  },
+  {
+    path: '/addressManage/editAddress',
+    name: 'editAddress',
+    component: () => import('@/views/addressManage/subPage/editAddress'),
+    meta: {
+      title: 'editAddress'
+    }
   }
 ]
 

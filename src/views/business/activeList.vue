@@ -12,7 +12,15 @@
           <div class="img-wrap">
             <img :src="item.coverImage" />
             <div :class="[item.type==1?'active':'game','type']">{{item.type==1?'活动':'赛事'}}</div>
-            <div class="del" v-if="item.type==1&&type=='1'" @click.stop="cancleEvent(item.id, index)">取消</div>
+            <div
+              :class="[item.spotType == '1' ? 'heikeng' : (item.spotType == '2' ? 'luya': ( item.spotType == '4' ? 'haidiao' : (item.spotType == '3' ? 'ziran' : ''))),'sport-type']"
+            >{{ item.spotType == '1' ? '黑坑' : (item.spotType == '2' ? '路亚': ( item.spotType == '4' ? '海钓' : (item.spotType == '3' ? '自然水域':'')))}}</div>
+            <div :class="[item.isPast==1?'going':'end','past']">{{ item.isPast ? '报名中' : '已过期' }}</div>
+            <div
+              class="del"
+              v-if="item.type==1&&type=='1'"
+              @click.stop="cancleEvent(item.id, index)"
+            >取消</div>
           </div>
           <div class="info">
             <div class="name">{{item.name}}</div>
@@ -96,7 +104,6 @@ export default {
     }
   },
   mounted () {
-    // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
     this.type = this.$route.query.type
     this.$getAppToken()
   },
@@ -247,10 +254,57 @@ export default {
         color: #ffffff;
         font-size: 0.186667rem;
         top: 0.213333rem;
-        padding: 0.08rem 0.1rem;
+        padding: 0.08rem 0;
+        left: 0.213333rem;
+        border-radius: 0.053333rem;
+        text-align: center;
+        width: 1.066667rem;
       }
       .active {
         background: #f16f41;
+      }
+      .game {
+        background: #017ed2;
+      }
+      .past {
+        position: absolute;
+        color: #ffffff;
+        font-size: 0.186667rem;
+        top: 0.213333rem;
+        padding: 0.08rem 0;
+        left: 1.6rem;
+        border-radius: 0.053333rem;
+        text-align: center;
+        width: 1.066667rem;
+      }
+      .going {
+        background: #0ec254;
+      }
+      .end {
+        background: #989aa2;
+      }
+      .sport-type {
+        position: absolute;
+        color: #ffffff;
+        font-size: 0.186667rem;
+        top: 0.213333rem;
+        padding: 0.08rem 0;
+        left: 3.013333rem;
+        border-radius: 0.053333rem;
+        text-align: center;
+        width: 1.066667rem;
+      }
+      .heikeng {
+        background: #6a7a8b;
+      }
+      .luya {
+        background: #ff6600;
+      }
+      .haidiao {
+        background: #0075f6;
+      }
+      .ziran {
+        background: #00cd99;
       }
       .game {
         background: #017ed2;

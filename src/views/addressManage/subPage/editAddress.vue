@@ -174,6 +174,9 @@ export default {
       delLoading: false
     }
   },
+  mounted () {
+    this.$getAppToken()
+  },
   created () {
     this.getProvince()
     // 处理键盘弹起收起

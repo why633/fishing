@@ -5,7 +5,18 @@
       <div class="content">
         <div class="address-list" v-if="addressData.length!=0">
           <div>
-            <div class="address-item" v-for="(item, index) in addressData" :key="index">
+            <div
+              class="address-item"
+              :class="{'hasRadio':from=='app'}"
+              v-for="(item, index) in addressData"
+              :key="index"
+            >
+              <span
+                v-if="from=='app'"
+                class="radio"
+                :class="{'radioed':item.isChose}"
+                @click="choseRadio(index)"
+              ></span>
               <div class="user-info">
                 <span class="name text-overflow">{{item.name}}</span>
                 <span class="phone">{{item.phone|encodePhone}}</span>
@@ -33,9 +44,13 @@ import { getAddress } from '@/api'
 export default {
   data () {
     return {
+      from: 'app',
       editIcon: require('@/assets/edit.png'),
       addressData: []
     }
+  },
+  mounted () {
+    this.$getAppToken()
   },
   created () {
     this.getAddressData()
@@ -57,6 +72,19 @@ export default {
       getAddress().then(res => {
         this.addressData = res.data.data
       })
+    },
+    choseRadio (index) {
+      console.log(index)
+      this.addressData.map((item, idx) => {
+        if (index === idx) {
+          item.isChose = true
+        } else {
+          item.isChose = false
+        }
+        return item
+      })
+      this.addressData = [].concat(this.addressData)
+      console.log(this.addressData)
     }
   }
 }
@@ -73,6 +101,23 @@ export default {
     position: relative;
     padding: 0.4rem 0;
     border-bottom: 1px solid #ebebeb;
+    .radio {
+      position: absolute;
+      display: inline-block;
+      width: 0.533333rem;
+      height: 0.533333rem;
+      // background: pink;
+      // border: .053333rem solid rgb(65, 65, 139);
+      border: 0.053333rem solid #ebebeb;
+      box-sizing: border-box;
+      border-radius: 50%;
+      left: -0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .radioed {
+      border: 0.133333rem solid rgb(65, 65, 139);
+    }
     &:last-child {
       border-bottom: none;
     }
@@ -106,6 +151,9 @@ export default {
         height: 100%;
       }
     }
+  }
+  .hasRadio {
+    margin-left: 0.8rem;
   }
 }
 .noData {

@@ -16,7 +16,7 @@
             <div class="date">{{item.createTime|formateDateTime}}</div>
           </div>
           <div class="right-info">
-            <span>{{item.amount}}</span>
+            <span :class="{'red':item.amount.indexOf('+')!=-1}">{{item.amount}}</span>
           </div>
         </div>
       </div>
@@ -246,6 +246,9 @@ export default {
       text-align: center;
       font-size: 0.48rem;
       word-wrap: break-word;
+      .red{
+        color: red;
+      }
     }
   }
 }

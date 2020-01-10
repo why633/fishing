@@ -31,11 +31,10 @@ class HandleParamAndResult {
     }
     // 动态添加token
     // 这个是我从APP的url拿到的token
-    // headers.token = '_aUvtXIqPmHowHvYxJpF-i5v-ErbKw9L'
-    // headers.token = 'OWM3j1YvcuCw_mZJhLHLat92hC4_Pcl8'
-    headers.token = ''
+    headers.token = '2pB5iCOJMY3o99p9tqM8OA'
+    // headers.token = ''
     if (handleToken.getToken()) {
-      headers.token = `${handleToken.getToken()}`
+      // headers.token = `${handleToken.getToken()}`
     }
     return headers
   }

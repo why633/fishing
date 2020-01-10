@@ -15,7 +15,7 @@
             <div
               :class="[item.spotType == '1' ? 'heikeng' : (item.spotType == '2' ? 'luya': ( item.spotType == '4' ? 'haidiao' : (item.spotType == '3' ? 'ziran' : ''))),'sport-type']"
             >{{ item.spotType == '1' ? '黑坑' : (item.spotType == '2' ? '路亚': ( item.spotType == '4' ? '海钓' : (item.spotType == '3' ? '自然水域':'')))}}</div>
-            <div :class="[item.isPast==1?'going':'end','past']">{{ item.isPast ? '报名中' : '已过期' }}</div>
+            <div :class="[item.isPast?'end':'going','past']">{{ item.isPast? '已过期' : '报名中' }}</div>
             <div
               class="del"
               v-if="item.type==1&&type=='1'"

@@ -91,6 +91,13 @@ export function getDrawUser (params) {
 }
 
 /**
+ * 获取报名用户
+ */
+export function enrollUser (params) {
+  return $get('/event/getUser/enroll', params)
+}
+
+/**
  * 手动摇号
  */
 export function lotNumber (params) {

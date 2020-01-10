@@ -14,6 +14,14 @@ const business = [
     meta: {
       title: 'draw'
     }
+  },
+  {
+    path: '/business/activeDetails',
+    name: 'activeDetails',
+    component: () => import('@/views/business/subPage/activeDetails'),
+    meta: {
+      title: 'activeDetails'
+    }
   }
 ]
 export default business

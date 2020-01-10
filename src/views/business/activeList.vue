@@ -172,7 +172,7 @@ export default {
     },
     goDetails (id, eventType) {
       if (this.type === '1') { // 进入详情
-        this.goAppDetails(id, eventType)
+        this.$router.push(`/business/activeDetails?id=${id}`)
       }
       if (this.type === '2') { // 进入抽号
         this.$router.push(`/business/draw?id=${id}`)

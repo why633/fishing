@@ -42,7 +42,6 @@ export default {
         eventId: this.eventId
       }
       enrollUser(params).then(res => {
-        console.log(res)
         this.userData = res.data.data
       })
     }

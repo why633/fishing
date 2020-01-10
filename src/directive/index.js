@@ -2,7 +2,6 @@ export async function imgplaceholder (el, binding) {
   let imgURL = binding.value // 获取图片地址
   if (imgURL) {
     let exist = await imageIsExist(imgURL)
-    console.log(exist)
     if (exist) {
       el.setAttribute('src', imgURL)
     }

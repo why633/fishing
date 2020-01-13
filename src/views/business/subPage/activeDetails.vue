@@ -1,6 +1,6 @@
 <template>
   <div class="activeDetails">
-    <top-title>报名情况</top-title>
+    <top-title :isBackPre="isBack" @backClick="closeWebview">报名情况</top-title>
     <!-- 头像，昵称，电话，报名时间，报名费用 -->
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <div class="content">
@@ -27,12 +27,16 @@ import { enrollUser } from '@/api'
 export default {
   data () {
     return {
+      isBack: true,
       errorImg: require('@/assets/defaultHeadImg.png'),
       userData: []
     }
   },
   created () {
     this.eventId = this.$route.query.id
+    if (this.$route.query.from === 'app') {
+      this.isBack = false
+    }
     this.getUserData()
   },
   methods: {
@@ -44,6 +48,9 @@ export default {
       enrollUser(params).then(res => {
         this.userData = res.data.data
       })
+    },
+    closeWebview () {
+      this.$closeWebview()
     }
   }
 }
@@ -57,10 +64,10 @@ export default {
 .content {
   padding-bottom: 1.66667rem;
   .list-wrap {
-    padding: .66667rem 0.4rem;
+    padding: 0.66667rem 0.4rem;
     .item {
       display: flex;
-      margin-bottom: .53333rem;
+      margin-bottom: 0.53333rem;
       align-items: center;
       .img-wrap {
         width: 1.6rem;

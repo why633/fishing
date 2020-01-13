@@ -179,3 +179,10 @@ export function detailAddress (params) {
 export function delAddress (params) {
   return $get('/goods/exchange/delAddress', params)
 }
+
+/**
+ * 积分历史
+ */
+export function currencyHistory (params) {
+  return $get('/event/currency/history', params)
+}

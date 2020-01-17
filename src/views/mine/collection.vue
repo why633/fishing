@@ -13,7 +13,7 @@
             <div class="img-wrap">
               <img :src="item.coverImage">
             </div>
-            <div class="info-wrap">
+            <div class="info-wrap" @click="goAppEventDetails(item.id,item.type)">
               <div class="name text-overflowTow">{{item.name}}</div>
               <div class="tag-wrap">
                 <span class="tag">{{ item.type == '2' ? '赛事' : '活动' }}</span>
@@ -33,7 +33,12 @@
           </div>
         </div>
         <div v-if="tabFlag==2">
-          <div class="spot-item" v-for="(item, index) in dataList" :key="index">
+          <div
+            class="spot-item"
+            v-for="(item, index) in dataList"
+            :key="index"
+            @click="goAppSpotDetails(item.id)"
+          >
             <div class="pic-wrap">
               <img :src="item.icon">
             </div>
@@ -54,13 +59,32 @@
             </div>
           </div>
         </div>
+        <div v-if="tabFlag==3">
+          <div
+            class="spot-item"
+            v-for="(item, index) in dataList"
+            :key="index"
+            @click="goAppGoodDetails(item.id)"
+          >
+            <div class="pic-wrap">
+              <img :src="item.coverImg">
+            </div>
+            <div class="info">
+              <div class="title-wrap">
+                <span class="title text-overflow">{{ item.name }}</span>
+              </div>
+              <div class="address">价格：{{ item.price }}元</div>
+            </div>
+          </div>
+        </div>
       </div>
     </mescroll-vue>
   </div>
 </template>
 
 <script>
-import { eventCollect, spotCollect } from '@/api'
+import { eventCollect, spotCollect, goodCollect } from '@/api'
+import { appSource } from '@/utils/appSource'
 export default {
   data () {
     return {
@@ -164,7 +188,15 @@ export default {
           })
         }
         if (this.tabFlag === '3') {
-          resolve(0)
+          goodCollect({ pageNo: pageNo }).then(res => {
+            console.log(res)
+            const resData = res.data.data
+            this.dataList = pageNo === 1 ? resData.list : this.dataList.concat(resData.list)
+            resolve(resData.list.length)
+          }).catch(err => {
+            console.log(err)
+            reject(err)
+          })
         }
       })
     },
@@ -190,6 +222,33 @@ export default {
     },
     closeWebview () {
       this.$closeWebview()
+    },
+    goAppEventDetails (id, eventType) {
+      if (appSource() === 'ios') {
+        App.look(id, eventType) // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        // 传id和 type给app
+        window.android.look(id, eventType)
+      }
+    },
+    goAppSpotDetails (id) {
+      if (appSource() === 'ios') {
+        App.jumpToSpotDetail(id) // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        // 传id给app
+        window.android.jumpToSpotDetail(id)
+      }
+    },
+    goAppGoodDetails (id) {
+      if (appSource() === 'ios') {
+        App.jumpToGoodsDetail(id) // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {
+        // 传id给app
+        window.android.jumpToGoodsDetail(id)
+      }
     }
   }
 }
@@ -289,7 +348,7 @@ export default {
       }
       .text {
         color: #787878;
-        margin-top: .16rem;
+        margin-top: 0.16rem;
       }
     }
   }

@@ -119,6 +119,13 @@ export function spotCollect (params) {
 }
 
 /**
+ * 收藏的钓场列表
+ */
+export function goodCollect (params) {
+  return $get('/user/userInfo/listCollect', params)
+}
+
+/**
  * 获取小程序摇号页面二维码
  */
 export function getQr (params) {

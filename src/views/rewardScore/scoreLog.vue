@@ -1,8 +1,8 @@
 <template>
   <div class="scoreLog">
-    <top-title>积分历史</top-title>
+    <top-title :isBackPre="false" @backClick="closeWebview">积分历史</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
-      <div class="content">
+      <div class="content" id="dataList">
         <div class="logList">
           <div class="item" v-for="(item, index) in logData" :key="index">
             <span class="title">{{item.remark}}</span>
@@ -64,6 +64,9 @@ export default {
     // this.getLogData()
   },
   methods: {
+    closeWebview () {
+      this.$closeWebview()
+    },
     // mescroll组件初始化的回调,可获取到mescroll对象
     mescrollInit (mescroll) {
       this.mescroll = mescroll
@@ -85,14 +88,14 @@ export default {
       }, 200)
     },
     // 获取积分历史数据
-    getLogData () {
+    getLogData (pageNo) {
       const params = {
-        pageNo: this.pageNo,
+        pageNo: pageNo,
         pageSize: this.pageSize
       }
       return new Promise((resolve, reject) => {
         currencyHistory(params).then(res => {
-          this.logData = res.data.data.list
+          this.logData = pageNo === 1 ? res.data.data.list : this.logData.concat(res.data.data.list)
           resolve(res.data.data.list.length)
         }).catch(err => {
           reject(err)

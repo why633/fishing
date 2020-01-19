@@ -59,7 +59,7 @@ export default {
   },
   mounted () {
     this.from = this.$route.query.from
-    this.$getAppToken().then(res=>{
+    this.$getAppToken().then(res => {
       this.getAddressData()
     })
   },

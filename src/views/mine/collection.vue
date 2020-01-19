@@ -234,7 +234,7 @@ export default {
     },
     goAppSpotDetails (id) {
       if (appSource() === 'ios') {
-        App.jumpToSpotDetail(id) // eslint-disable-line
+        App.pushToFishSpot(id) // eslint-disable-line
       }
       if (appSource() === 'andriod') {
         // 传id给app
@@ -243,7 +243,7 @@ export default {
     },
     goAppGoodDetails (id) {
       if (appSource() === 'ios') {
-        App.jumpToGoodsDetail(id) // eslint-disable-line
+        App.pushToGoodsDetail(id) // eslint-disable-line
       }
       if (appSource() === 'andriod') {
         // 传id给app

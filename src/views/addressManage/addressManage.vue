@@ -46,15 +46,25 @@ export default {
     return {
       from: '',
       editIcon: require('@/assets/edit.png'),
-      addressData: []
+      addressData: [
+        {
+          name: '',
+          phone: '',
+          acquiesce: '',
+          address: '',
+          id: ''
+        }
+      ]
     }
   },
   mounted () {
     this.from = this.$route.query.from
-    this.$getAppToken()
+    this.$getAppToken().then(res=>{
+      this.getAddressData()
+    })
   },
   created () {
-    this.getAddressData()
+    // this.getAddressData()
   },
   methods: {
     closeWebview () {
@@ -66,7 +76,7 @@ export default {
     },
     // 跳转编辑地址
     goEditAddress (id) {
-      this.$router.push('/addressManage/editAddress?id=' + id + 'from=addressList')
+      this.$router.push('/addressManage/editAddress?id=' + id + '&from=addressList')
     },
     // 获取地址列表
     getAddressData () {

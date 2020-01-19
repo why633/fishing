@@ -46,15 +46,7 @@ export default {
     return {
       from: '',
       editIcon: require('@/assets/edit.png'),
-      addressData: [
-        {
-          name: '',
-          phone: '',
-          acquiesce: '',
-          address: '',
-          id: ''
-        }
-      ]
+      addressData: []
     }
   },
   mounted () {

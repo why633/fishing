@@ -61,7 +61,9 @@ export default {
     }
   },
   created () {
-    this.getLogData()
+    this.$getAppToken().then(res => {
+      this.getLogData()
+    })
   },
   methods: {
     closeWebview () {

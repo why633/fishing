@@ -1,16 +1,18 @@
 <template>
-  <div class="dialog" v-if="showDialog">
-    <div class="dialog-mask"></div>
-    <div class="dialog-container">
-      <div class="dialog-content">
-        <div class="dialog-content-top" v-text="msg"></div>
-        <slot name="content"></slot>
-        <div class="dialog-btn">
-          <div v-show="btnNum==2" class="btn" @click="cancel">{{cancelBtnText}}</div>
-          <div class="btn" @click="confirm">{{confirmBtnText}}</div>
+  <div class="dialog">
+    <div class="dialog-mask" v-show="showDialog"></div>
+    <transition name="fadeIn">
+      <div class="dialog-container" v-show="showDialog">
+        <div class="dialog-content">
+          <div class="dialog-content-top" v-text="msg"></div>
+          <slot name="content"></slot>
+          <div class="dialog-btn">
+            <div v-show="btnNum==2" class="btn" @click="cancel">{{cancelBtnText}}</div>
+            <div class="btn" @click="confirm">{{confirmBtnText}}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -109,5 +111,40 @@ export default {
       border-right: 1px solid #f4f4f4;
     }
   }
+}
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 0.3s;
+}
+.fadeIn-enter,
+.fadeIn-leave-active {
+  opacity: 0;
+}
+.translate-top-enter-active,
+.translate-top-leave-active {
+  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+}
+.translate-top-enter,
+.translate-top-leave-active {
+  transform: translateY(-50%);
+  opacity: 0;
+}
+.translate-middle-enter-active,
+.translate-middle-leave-active {
+  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+}
+.translate-middle-enter,
+.translate-middle-leave-active {
+  transform: translateY(80%);
+  opacity: 0;
+}
+.translate-bottom-enter-active,
+.translate-bottom-leave-active {
+  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+}
+.translate-bottom-enter,
+.translate-bottom-leave-active {
+  transform: translateY(100%);
+  opacity: 0;
 }
 </style>

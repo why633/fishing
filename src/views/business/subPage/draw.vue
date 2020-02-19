@@ -11,6 +11,7 @@
             </div>
             <div class="info-wrap">
               <div class="name">{{ item.nickName }}</div>
+              <div class="phone">联系电话：{{ item.phone }}</div>
               <div class="seatNumber" v-if="drawData.hasLot==1">{{ item.seatNumber }}</div>
             </div>
           </div>
@@ -62,7 +63,7 @@ export default {
       phone: '',
       showQrDialog: false,
       eventId: '',
-      qrUrl: require('@/assets/qr.jpg')
+      qrUrl: ''
     }
   },
   mounted () {
@@ -94,11 +95,11 @@ export default {
     // 获取小程序二维码
     getQrImg () {
       const params = {
-        applicationCode: 1
+        eventId: 1
       }
       getQr(params).then(res => {
         console.log(res.data.data.value)
-        this.qrUrl = res.data.data.value ? res.data.data.value : this.qrUrl
+        this.qrUrl = res.data.data.value
       })
     },
     closeDialog () {
@@ -154,6 +155,7 @@ export default {
       display: flex;
       margin-bottom: 0.4rem;
       align-items: center;
+      // justify-content: space-between;
       .img-wrap {
         width: 1.6rem;
         height: 1.6rem;
@@ -169,6 +171,7 @@ export default {
         .name {
           // line-height: 0.93333rem;
           margin-bottom: .186667rem;
+          font-size: 0.4rem;
         }
         .seatNumber {
           display: inline-block;
@@ -179,6 +182,7 @@ export default {
           border-radius: .333333rem;
           color: rgba(11, 37, 67, 1);
           border: 1px solid rgba(11, 37, 67, 1);
+          margin-top: .186667rem;
         }
       }
     }

@@ -5,14 +5,14 @@
       <div class="label">
         <div class="name">鱼获总量：</div>
         <div class="input">
-          <input type="text">
+          <input type="text" v-model="fishCount">
         </div>
         <div class="unit">斤</div>
       </div>
       <div class="label">
         <div class="name">收鱼：</div>
         <div class="input">
-          <input type="text">
+          <input type="text" v-model="price">
         </div>
         <div class="unit">元/斤</div>
       </div>
@@ -32,7 +32,7 @@
       @dialog-confirm="dialogConfirm"
     >
       <span slot="content">
-        <span class="confirm-text">您将支付{{totalPrice}}元</span>
+        <span class="confirm-text">您将支付 <span class="price">{{totalPrice}}</span> 元</span>
       </span>
     </Dialog>
   </div>
@@ -44,6 +44,8 @@ export default {
     return {
       id: '',
       showDialog: false,
+      fishCount: '',
+      price: '',
       totalPrice: ''
     }
   },
@@ -68,6 +70,18 @@ export default {
       this.showDialog = false
     },
     pay () {
+      if (this.fishCount === '') {
+        this.$toast.show({
+          text: '请输入鱼获总量'
+        })
+        return
+      }
+      if (this.price === '') {
+        this.$toast.show({
+          text: '请输入收鱼单价'
+        })
+        return
+      }
       if (this.totalPrice === '') {
         this.$toast.show({
           text: '请输入金额'
@@ -112,6 +126,10 @@ export default {
 }
 .confirm-text{
   font-size: .4rem;
+  .price{
+    font-size: .426667rem;
+    font-weight: 700;
+  }
 }
 .pay-btn{
   width: 3.2rem;

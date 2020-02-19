@@ -2,7 +2,7 @@
   <div class="dialog">
     <div class="dialog-mask" v-show="showDialog"></div>
     <transition name="fadeIn">
-      <div class="dialog-container" v-show="showDialog">
+      <div class="dialog-container" v-show="showDialog" :style="{ width: width }">
         <div class="dialog-content">
           <div class="dialog-content-top" v-text="msg"></div>
           <slot name="content"></slot>
@@ -22,6 +22,10 @@ export default {
     showDialog: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: '60%'
     },
     msg: {
       type: String,
@@ -82,7 +86,7 @@ export default {
 }
 .dialog-container {
   background: #fff;
-  width: 8rem;
+  // width: 8rem;
   position: absolute;
   border-radius: 0.26667rem;
   top: 50%;

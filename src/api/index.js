@@ -129,7 +129,7 @@ export function goodCollect (params) {
  * 获取小程序摇号页面二维码
  */
 export function getQr (params) {
-  return $get('/event/searchLotNumber/getByCode', params)
+  return $get('/event/lotNumber/getqrcode', params)
 }
 
 /**

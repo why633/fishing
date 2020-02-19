@@ -31,7 +31,7 @@ class HandleParamAndResult {
     }
     // 动态添加token
     // 这个是我从APP的url拿到的token
-    // headers.token = 'iSSSaOg6H2FtjSIgaGvx3A'
+    // headers.token = 'rrNYR8C2_lSs3zM2xgY66g'
     headers.token = ''
     if (handleToken.getToken()) {
       headers.token = `${handleToken.getToken()}`

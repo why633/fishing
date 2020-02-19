@@ -17,10 +17,10 @@
                 <div class="text">报名时间：{{ item.enrollDate | formateDateTime }}</div>
               </div>
             </div>
-            <div class="btn-box">
+            <!-- <div class="btn-box">
               <div class="collect-fish btn-blue" @click="goCollectFish(item.id)">一键收鱼</div>
               <div class="back-deposit btn-blue">退押金</div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -35,51 +35,7 @@ export default {
     return {
       isBack: true,
       errorImg: require('@/assets/defaultHeadImg.png'),
-      userData: [
-        {
-          headImg: '',
-          nickName: 'WHYOCE',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15',
-          id: '123'
-        },
-        {
-          headImg: '',
-          nickName: 'WHYOCE',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15'
-        },
-        {
-          headImg: '',
-          nickName: 'WHYOCE',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15'
-        },
-        {
-          headImg: '',
-          nickName: 'WHYOCE',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15'
-        },
-        {
-          headImg: '',
-          nickName: 'WHYOCE',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15'
-        },
-        {
-          headImg: '',
-          nickName: '海洋',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-02-15'
-        }
-      ]
+      userData: []
     }
   },
   created () {
@@ -87,7 +43,7 @@ export default {
     if (this.$route.query.from === 'app') {
       this.isBack = false
     }
-    // this.getUserData()
+    this.getUserData()
   },
   methods: {
     // 获取报名用户

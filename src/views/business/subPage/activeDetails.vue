@@ -17,10 +17,10 @@
                 <div class="text">报名时间：{{ item.enrollDate | formateDateTime }}</div>
               </div>
             </div>
-            <!-- <div class="btn-box">
+            <div class="btn-box">
               <div class="collect-fish btn-blue" @click="goCollectFish(item.id)">一键收鱼</div>
               <div class="back-deposit btn-blue">退押金</div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>

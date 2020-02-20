@@ -193,3 +193,10 @@ export function delAddress (params) {
 export function currencyHistory (params) {
   return $get('/event/currency/history', params)
 }
+
+/**
+ * 一键收鱼
+ */
+export function harvesting (params) {
+  return $get('/order/application/fish/harvesting', params)
+}

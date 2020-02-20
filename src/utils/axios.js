@@ -62,6 +62,7 @@ class HandleParamAndResult {
               text: res.data.message
             })
           }
+          reject(res.data.message)
         }
       }).catch(error => {
         console.log(error)

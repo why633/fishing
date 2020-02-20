@@ -3,25 +3,37 @@
     <top-title>一键收鱼</top-title>
     <div class="content">
       <div class="label">
-        <div class="name">鱼获总量：</div>
+        <div class="name">
+          <span class="must-start">鱼获总量：</span>
+        </div>
         <div class="input">
-          <input type="text" v-model="fishCount">
+          <input type="number" v-model="fishCount">
         </div>
         <div class="unit">斤</div>
       </div>
       <div class="label">
-        <div class="name">收鱼：</div>
+        <div class="name">
+          <span class="must-start">收鱼：</span>
+        </div>
         <div class="input">
-          <input type="text" v-model="price">
+          <input type="number" v-model="price">
         </div>
         <div class="unit">元/斤</div>
       </div>
       <div class="label">
-        <div class="name">支付金额：</div>
+        <div class="name">标鱼：</div>
         <div class="input">
-          <input v-model="totalPrice" type="text">
+          <input type="number" v-model="targetFish">
         </div>
         <div class="unit">元</div>
+      </div>
+      <div class="label">
+        <div class="name">支付金额：</div>
+        <div class="totalPrice">
+          <span class="priceNum">{{ isNumber(fishCount * price + (targetFish - 0))?fishCount * price + (targetFish - 0): 0 }}</span>
+          <span class="y">元</span>
+        </div>
+        <!-- <div class="unit">元</div> -->
       </div>
       <div class="pay-btn" @click="pay">付款</div>
     </div>
@@ -32,31 +44,83 @@
       @dialog-confirm="dialogConfirm"
     >
       <span slot="content">
-        <span class="confirm-text">您将支付 <span class="price">{{totalPrice}}</span> 元</span>
+        <span class="confirm-text">您将支付 <span class="price">{{ fishCount * price + (targetFish - 0) }}</span> 元</span>
       </span>
     </Dialog>
   </div>
 </template>
 
 <script>
+import keyboardHandle from '@/utils/keyboardHandle'
+import isNum from '@/utils/regMethod'
+import { harvesting } from '@/api'
 export default {
   data () {
     return {
-      id: '',
+      id: '1',
       showDialog: false,
       fishCount: '',
       price: '',
-      totalPrice: ''
+      targetFish: ''
     }
   },
+  mounted () {
+    this.$getAppToken()
+  },
   created () {
-    this.id = this.$route.query.id
+    // this.id = this.$route.query.id
     console.log(this.id)
+    // 处理键盘弹起收起
+    keyboardHandle()
   },
   methods: {
+    isNumber (num) {
+      return isNum(num)
+    },
+    // 付款
+    pay () {
+      if (this.fishCount.trim() === '') {
+        this.$toast.show({
+          text: '请输入鱼获总量'
+        })
+        return
+      }
+      if (!isNum(this.fishCount.trim())) {
+        this.$toast.show({
+          text: '请输入正确鱼获总量'
+        })
+        return
+      }
+      if (this.price.trim() === '') {
+        this.$toast.show({
+          text: '请输入收鱼单价'
+        })
+        return
+      }
+      if (!isNum(this.price.trim())) {
+        this.$toast.show({
+          text: '请输入正确收鱼单价'
+        })
+        return
+      }
+      if (this.targetFish.trim() === '') {
+        this.$toast.show({
+          text: '请输入标鱼金额'
+        })
+        return
+      }
+      if (!isNum(this.targetFish.trim())) {
+        this.$toast.show({
+          text: '请输入正确标鱼金额'
+        })
+        return
+      }
+      this.showDialog = true
+    },
     closeDialog () {
       this.showDialog = false
     },
+    // 付款确认
     dialogConfirm () {
       // delEvent({ eventId: this.eventId }).then(res => {
       //   console.log(res)
@@ -67,28 +131,19 @@ export default {
       // }).catch(err => {
       //   console.log(err)
       // })
-      this.showDialog = false
-    },
-    pay () {
-      if (this.fishCount === '') {
-        this.$toast.show({
-          text: '请输入鱼获总量'
-        })
-        return
+      const params = {
+        applicationId: this.id,
+        buyBackCount: this.fishCount,
+        buyBackPrice: this.price,
+        buyBackMoney: this.fishCount * this.price + (this.targetFish - 0)
       }
-      if (this.price === '') {
-        this.$toast.show({
-          text: '请输入收鱼单价'
-        })
-        return
-      }
-      if (this.totalPrice === '') {
-        this.$toast.show({
-          text: '请输入金额'
-        })
-        return
-      }
-      this.showDialog = true
+      harvesting({dto: JSON.stringify(params)}).then(res => {
+        console.log(res)
+        this.showDialog = false
+      }).catch(err => {
+        console.log(err)
+        this.showDialog = false
+      })
     }
   }
 }
@@ -106,9 +161,19 @@ export default {
   display: flex;
   height: 1.066667rem;
   line-height: 1.066667rem;
-  margin-bottom: .266667rem;
+  margin-bottom: .533333rem;
+  font-size: .4rem;
+  .must-start{
+    position: relative;
+    &::before{
+      content: '*';
+      position: absolute;
+      color: red;
+      left: -0.213333rem;
+    }
+  }
   .name{
-    width: 2rem;
+    width: 2.133333rem;
     text-align: right;
   }
   .input{
@@ -140,5 +205,15 @@ export default {
   background: rgb(75, 175, 241);
   font-size: .426667rem;
   margin: 1.333333rem auto 0;
+}
+.totalPrice{
+  .priceNum{
+    font-size: .666667rem;
+    float: left;
+    margin-right: .133333rem;
+  }
+  .y{
+    float: left;
+  }
 }
 </style>

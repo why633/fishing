@@ -41,9 +41,8 @@ class HandleParamAndResult {
   // 处理请求
   dealAxios (url, options) {
     // console.log(this._addHeaders())
-    // const _this = this
+    const _this = this
     options.headers = this._addHeaders()
-    // alert(JSON.stringify(options.headers))
     // do something before request
     return new Promise((resolve, reject) => {
       axios(this.api + url, options).then(res => {
@@ -57,9 +56,8 @@ class HandleParamAndResult {
             text: res.data.message
           })
           if (res.data.code == 4001) {
-            this.$refreshToken()
+            _this.$refreshToken()
           }
-          
         }
       }).catch(error => {
         console.log(error)

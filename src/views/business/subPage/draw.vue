@@ -69,11 +69,11 @@ export default {
   mounted () {
     // this.setToken('q7K3kYrYhOLNxD5IRtutvQ')
     this.$getAppToken()
-    this.getQrImg()
   },
   created () {
     this.eventId = this.$route.query.id
     this.getWaitUser()
+    this.getQrImg()
     document.body.style.overflow = ''
   },
   methods: {
@@ -95,7 +95,7 @@ export default {
     // 获取小程序二维码
     getQrImg () {
       const params = {
-        eventId: 1
+        eventId: this.eventId
       }
       getQr(params).then(res => {
         console.log(res.data.data.value)

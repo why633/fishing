@@ -52,11 +52,15 @@ class HandleParamAndResult {
           resolve(res)
         } else {
           // 判断token失效 处理
-          Vue.prototype.$toast.show({
-            text: res.data.message
-          })
           if (res.data.code == 4001) {
-            _this.$refreshToken()
+            // _this.$refreshToken()
+            Vue.prototype.$toast.show({
+              text: 'token失效请重新登录'
+            })
+          } else {
+            Vue.prototype.$toast.show({
+              text: res.data.message
+            })
           }
         }
       }).catch(error => {

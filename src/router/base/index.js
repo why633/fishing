@@ -8,7 +8,8 @@ import agreement from '../agreement'
 import addressManage from '../addressManage'
 import ranking from '../ranking'
 import rewardScore from '../rewardScore'
+import agent from '../agent'
 
-const routes = [].concat(mine, userInfo, fishingClassroom, message, article, business, agreement, addressManage, ranking, rewardScore)
+const routes = [].concat(mine, userInfo, fishingClassroom, message, article, business, agreement, addressManage, ranking, rewardScore, agent)
 
 export default routes

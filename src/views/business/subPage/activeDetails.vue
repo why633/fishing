@@ -18,24 +18,37 @@
               </div>
             </div>
             <div class="btn-box">
-              <div class="collect-fish btn-blue" @click="goCollectFish(item.id)">一键收鱼</div>
-              <div class="back-deposit btn-blue">退押金</div>
+              <div class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">一键收鱼</div>
+              <div class="back-deposit btn-blue" @click="backDeposit(item.applicationId)">退押金</div>
             </div>
           </div>
         </div>
+        <Dialog
+          :showDialog="depositDialog"
+          :msg="''"
+          @close-dialog="closeDialog"
+          @dialog-confirm="dialogConfirm"
+        >
+          <div slot="content" class="slot-content">
+            <div class="confirm-text">押金将退还到对方个人账户</div>
+            <span>押金:20元</span>
+          </div>
+        </Dialog>
       </div>
     </mescroll-vue>
   </div>
 </template>
 
 <script>
-import { enrollUser } from '@/api'
+import { enrollUser, refundPrepay } from '@/api'
 export default {
   data () {
     return {
       isBack: true,
       errorImg: require('@/assets/defaultHeadImg.png'),
-      userData: []
+      userData: [],
+      depositDialog: false,
+      applicationId: ''
     }
   },
   created () {
@@ -61,6 +74,22 @@ export default {
     },
     closeWebview () {
       this.$closeWebview()
+    },
+    closeDialog () {
+      this.depositDialog = false
+    },
+    backDeposit (id) {
+      this.applicationId = id
+      this.depositDialog = true
+    },
+    // 退押金Confirm
+    dialogConfirm () {
+      refundPrepay({applicationId: this.applicationId}).then(res => {
+        this.depositDialog = false
+      }).catch(err => {
+        console.log(err)
+        this.depositDialog = false
+      })
     }
   }
 }
@@ -158,6 +187,14 @@ export default {
   img {
     width: 100%;
     height: 100%;
+  }
+}
+.slot-content{
+  padding: 0 .533333rem;
+  box-sizing: border-box;
+  font-size: .4rem;
+  .confirm-text{
+    margin-bottom: .4rem;
   }
 }
 </style>

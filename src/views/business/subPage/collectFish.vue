@@ -68,7 +68,7 @@ export default {
     this.$getAppToken()
   },
   created () {
-    // this.id = this.$route.query.id
+    this.id = this.$route.query.id
     console.log(this.id)
     // 处理键盘弹起收起
     keyboardHandle()
@@ -137,7 +137,7 @@ export default {
         buyBackPrice: this.price,
         buyBackMoney: this.fishCount * this.price + (this.targetFish - 0)
       }
-      harvesting({dto: JSON.stringify(params)}).then(res => {
+      harvesting(JSON.stringify(params)).then(res => {
         console.log(res)
         this.showDialog = false
       }).catch(err => {

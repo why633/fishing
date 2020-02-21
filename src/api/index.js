@@ -198,5 +198,12 @@ export function currencyHistory (params) {
  * 一键收鱼
  */
 export function harvesting (params) {
-  return $get('/order/application/fish/harvesting', params)
+  return $post('/order/application/fish/harvesting', params)
+}
+
+/**
+ * 退报名押金
+ */
+export function refundPrepay (params) {
+  return $get('/order/application/refund/prepay', params)
 }

@@ -18,8 +18,8 @@
               </div>
             </div>
             <div class="btn-box">
-              <div class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">一键收鱼</div>
-              <div class="back-deposit btn-blue" @click="backDeposit(item.applicationId)">退押金</div>
+              <div v-if="item.harvesting == 0" class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">一键收鱼</div>
+              <div v-if="item.prepay == 2" class="back-deposit btn-blue" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
         >
           <div slot="content" class="slot-content">
             <div class="confirm-text">押金将退还到对方个人账户</div>
-            <span>押金:20元</span>
+            <span>押金:{{ prepayMoney }}元</span>
           </div>
         </Dialog>
       </div>
@@ -48,7 +48,8 @@ export default {
       errorImg: require('@/assets/defaultHeadImg.png'),
       userData: [],
       depositDialog: false,
-      applicationId: ''
+      applicationId: '',
+      prepayMoney: 0
     }
   },
   created () {
@@ -78,8 +79,9 @@ export default {
     closeDialog () {
       this.depositDialog = false
     },
-    backDeposit (id) {
+    backDeposit (id, prepayMoney) {
       this.applicationId = id
+      this.prepayMoney = prepayMoney
       this.depositDialog = true
     },
     // 退押金Confirm

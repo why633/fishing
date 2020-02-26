@@ -88,6 +88,7 @@ export default {
     dialogConfirm () {
       refundPrepay({applicationId: this.applicationId}).then(res => {
         this.depositDialog = false
+        this.getUserData()
       }).catch(err => {
         console.log(err)
         this.depositDialog = false

@@ -13,7 +13,7 @@
       </div>
       <div class="label">
         <div class="name">
-          <span class="must-start">收鱼：</span>
+          <span class="must-start">收鱼单价：</span>
         </div>
         <div class="input">
           <input type="number" v-model="price">
@@ -30,7 +30,7 @@
       <div class="label">
         <div class="name">支付金额：</div>
         <div class="totalPrice">
-          <span class="priceNum">{{ isNumber(fishCount * price + (targetFish - 0))?thisFixedM(fishCount, thisFixedA(price, (targetFish - 0))): 0 }}</span>
+          <span class="priceNum">{{ isNumber(fishCount * price + (targetFish - 0))?(thisFixedA(thisFixedM(fishCount, price), (targetFish - 0))).toFixed(2): 0 }}</span>
           <span class="y">元</span>
         </div>
         <!-- <div class="unit">元</div> -->
@@ -44,7 +44,7 @@
       @dialog-confirm="dialogConfirm"
     >
       <span slot="content">
-        <span class="confirm-text">您将支付 <span class="price">{{ fishCount * price + (targetFish - 0) }}</span> 元</span>
+        <span class="confirm-text">您将支付 <span class="price">{{ (thisFixedA(thisFixedM(fishCount, price), (targetFish - 0))).toFixed(2) }}</span> 元</span>
       </span>
     </Dialog>
   </div>
@@ -52,7 +52,7 @@
 
 <script>
 import keyboardHandle from '@/utils/keyboardHandle'
-import isNum from '@/utils/regMethod'
+import { isNum, twoFloat } from '@/utils/regMethod'
 import { harvesting } from '@/api'
 import { fixedA, fixedM } from '@/utils/toFixed'
 export default {
@@ -94,6 +94,12 @@ export default {
         })
         return
       }
+      if (!twoFloat(this.fishCount.trim())) {
+        this.$toast.show({
+          text: '最多只能输入两位小数'
+        })
+        return
+      }
       if (this.price.trim() === '') {
         this.$toast.show({
           text: '请输入收鱼单价'
@@ -106,7 +112,12 @@ export default {
         })
         return
       }
-      console.log(this.targetFish.trim())
+      if (!twoFloat(this.price.trim())) {
+        this.$toast.show({
+          text: '最多只能输入两位小数'
+        })
+        return
+      }
       if (!isNum(this.targetFish.trim()) && (this.targetFish !== '')) {
         this.$toast.show({
           text: '请输入正确标鱼金额'

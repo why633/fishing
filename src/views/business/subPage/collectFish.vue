@@ -135,7 +135,13 @@ export default {
       harvesting(JSON.stringify(params)).then(res => {
         console.log(res)
         this.showDialog = false
-        this.$router.go(-1)
+        const _this = this
+        this.$toast.show({
+          text: '收鱼成功',
+          callBack: function () {
+            _this.$router.go(-1)
+          }
+        })
       }).catch(err => {
         console.log(err)
         this.showDialog = false

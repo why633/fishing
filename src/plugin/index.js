@@ -43,6 +43,10 @@ Plugin.install = Vue => {
           clearTimeout(timer)
           var timer = setTimeout(() => {
             $vm.show = false
+            if ($vm.callBack) {
+              $vm.callBack()
+              console.log('callBack')
+            }
           }, $vm.time)
         },
         hide () { // 控制toast隐藏的方法

@@ -30,7 +30,7 @@
       <div class="label">
         <div class="name">支付金额：</div>
         <div class="totalPrice">
-          <span class="priceNum">{{ isNumber(fishCount * price + (targetFish - 0))?fishCount * price + (targetFish - 0): 0 }}</span>
+          <span class="priceNum">{{ isNumber(fishCount * price + (targetFish - 0))?thisFixedM(fishCount, thisFixedA(price, (targetFish - 0))): 0 }}</span>
           <span class="y">元</span>
         </div>
         <!-- <div class="unit">元</div> -->
@@ -54,6 +54,7 @@
 import keyboardHandle from '@/utils/keyboardHandle'
 import isNum from '@/utils/regMethod'
 import { harvesting } from '@/api'
+import { fixedA, fixedM } from '@/utils/toFixed'
 export default {
   data () {
     return {
@@ -74,6 +75,8 @@ export default {
     keyboardHandle()
   },
   methods: {
+    thisFixedA: fixedA,
+    thisFixedM: fixedM,
     isNumber (num) {
       return isNum(num)
     },

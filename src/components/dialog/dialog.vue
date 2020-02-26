@@ -51,13 +51,16 @@ export default {
   watch: {
     showDialog (val) {
       console.log(val)
+      console.log('showDialog')
       this.showFlag = val
       if (val) {
         document.body.style.overflow = 'hidden'
-        document.addEventListener('touchmove', this.bodyScroll, false) // 禁止页面滑动
+        // document.body.addEventListener('touchmove', this.bodyScroll, false) // 禁止页面滑动
+        document.body.addEventListener('touchmove', this.bodyScroll, { passive: false })
       } else {
         document.body.style.overflow = '' // 出现滚动条
-        document.removeEventListener('touchmove', this.bodyScroll, false)
+        // document.body.removeEventListener('touchmove', this.bodyScroll, false)
+        document.body.removeEventListener('touchmove', this.bodyScroll, { passive: false })
       }
     }
   },
@@ -67,6 +70,9 @@ export default {
     },
     confirm () {
       this.$emit('dialog-confirm')
+    },
+    bodyScroll (e) {
+      e.preventDefault()
     }
   }
 }
@@ -87,7 +93,7 @@ export default {
 .dialog-container {
   background: #fff;
   // width: 8rem;
-  position: absolute;
+  position: fixed;
   border-radius: 0.26667rem;
   top: 50%;
   left: 50%;

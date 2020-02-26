@@ -23,7 +23,7 @@
       <div class="label">
         <div class="name">标鱼：</div>
         <div class="input">
-          <input type="number" v-model="targetFish">
+          <input v-model="targetFish">
         </div>
         <div class="unit">元</div>
       </div>
@@ -103,13 +103,8 @@ export default {
         })
         return
       }
-      if (this.targetFish.trim() === '') {
-        this.$toast.show({
-          text: '请输入标鱼金额'
-        })
-        return
-      }
-      if (!isNum(this.targetFish.trim())) {
+      console.log(this.targetFish.trim())
+      if (!isNum(this.targetFish.trim()) && (this.targetFish !== '')) {
         this.$toast.show({
           text: '请输入正确标鱼金额'
         })
@@ -140,10 +135,15 @@ export default {
       harvesting(JSON.stringify(params)).then(res => {
         console.log(res)
         this.showDialog = false
+        this.$router.go(-1)
       }).catch(err => {
         console.log(err)
         this.showDialog = false
       })
+    },
+    setTargetFish (val) {
+      console.log('setTargetFish:' + val)
+      this.targetFish = val
     }
   }
 }

@@ -9,11 +9,11 @@
       </div>
       <div class="content" id="dataList">
         <div v-if="tabFlag==1">
-          <div class="event-item" v-for="(item, index) in dataList" :key="index">
+          <div class="event-item" v-for="(item, index) in dataList" :key="index" @click="goAppEventDetails(item.id,item.type)">
             <div class="img-wrap">
               <img :src="item.coverImage">
             </div>
-            <div class="info-wrap" @click="goAppEventDetails(item.id,item.type)">
+            <div class="info-wrap">
               <div class="name text-overflowTow">{{item.name}}</div>
               <div class="tag-wrap">
                 <span class="tag">{{ item.type == '2' ? '赛事' : '活动' }}</span>

@@ -117,6 +117,19 @@ export default {
       dIndex4: 0
     }
   },
+  watch: {
+    visible (val) {
+      if (val) {
+        document.body.style.overflow = 'hidden'
+        // document.body.addEventListener('touchmove', this.bodyScroll, false) // 禁止页面滑动
+        document.body.addEventListener('touchmove', this.bodyScroll, { passive: false })
+      } else {
+        document.body.style.overflow = '' // 出现滚动条
+        // document.body.removeEventListener('touchmove', this.bodyScroll, false)
+        document.body.removeEventListener('touchmove', this.bodyScroll, { passive: false })
+      }
+    }
+  },
   computed: {
     boxHeight () {
       let itemHeight = parseInt(this.itemHeight)

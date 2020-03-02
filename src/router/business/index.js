@@ -30,6 +30,14 @@ const business = [
     meta: {
       title: 'collectFish'
     }
+  },
+  {
+    path: '/business/colleagueAnalysis',
+    name: 'colleagueAnalysis',
+    component: () => import('@/views/business/colleagueAnalysis'),
+    meta: {
+      title: 'colleagueAnalysis'
+    }
   }
 ]
 export default business

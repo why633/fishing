@@ -207,3 +207,10 @@ export function harvesting (params) {
 export function refundPrepay (params) {
   return $get('/order/application/refund/prepay', params)
 }
+
+/**
+ * 获取同行数据
+ */
+export function spotAnalyse (params) {
+  return $get('/spot/analyse/spot', params)
+}

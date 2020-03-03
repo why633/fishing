@@ -258,6 +258,9 @@ export default {
     },
     stopPropagation (e) {
       e.stopPropagation()
+    },
+    bodyScroll (e) {
+      e.preventDefault()
     }
   },
   created () {

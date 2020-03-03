@@ -18,8 +18,9 @@
               </div>
             </div>
             <div class="btn-box">
-              <div v-if="item.harvesting == 0" class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">一键收鱼</div>
+              <div class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">{{item.harvesting == 0?'一键收鱼':'已收鱼'}}</div>
               <div v-if="item.prepay == 2" class="back-deposit btn-blue" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
+              <div v-if="item.prepay == 3" class="back-deposit btn-disable">押金已退</div>
             </div>
           </div>
         </div>
@@ -170,8 +171,17 @@ export default {
     width: auto;
     padding: 0 .533333rem;
     border-radius: .16rem;
-    border-radius: .16rem;
     background: rgb(75, 175, 241);
+  }
+  .btn-disable{
+    width: auto;
+    height: 1rem;
+    line-height: 1rem;
+    padding: 0 .533333rem;
+    border-radius: .16rem;
+    color: #c0c4cc;
+    background: #ebeef5;
+    // border: 1px solid #ebeef5;
   }
 }
 .phone-input {

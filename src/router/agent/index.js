@@ -6,6 +6,14 @@ const agent = [
     meta: {
       title: 'dataSummary'
     }
+  },
+  {
+    path: '/agent/spotData',
+    name: 'spotData',
+    component: () => import('@/views/agent/spotData'),
+    meta: {
+      title: 'spotData'
+    }
   }
 ]
 

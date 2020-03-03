@@ -14,8 +14,8 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor() {
-    var DEV_HOST = 'http://47.92.169.47:9000/fishing'
-    // var DEV_HOST = 'https://fish.diaoyuphb.com/fishing'
+    // var DEV_HOST = 'http://47.92.169.47:9000/fishing' // 测试接口地址
+    var DEV_HOST = 'https://fish.diaoyuphb.com/fishing' // 正式接口地址
     this.api = DEV_HOST
     // this.apiVersion = '2.1.0'
   }

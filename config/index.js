@@ -50,8 +50,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/vue/', // 正式目录
-    // assetsPublicPath: '/fishing/', // 测试目录
+    // assetsPublicPath: '/vue/', // 正式目录
+    assetsPublicPath: '/fishing/', // 测试目录
 
     /**
      * Source Maps

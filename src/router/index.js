@@ -7,8 +7,8 @@ Vue.use(Router)
 var router = new Router({
   // router采用history的模式
   mode: 'history',
-  base: '/vue/', // 正式服
-  // base: '/fishing/', // 测试服
+  // base: '/vue/', // 正式服
+  base: '/fishing/', // 测试服
   // scrollBehavior: () => ({ y: 0 }),
   routes: routes,
   // 设置滚动位置

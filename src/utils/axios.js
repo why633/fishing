@@ -14,8 +14,8 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor() {
-    // var DEV_HOST = 'http://47.92.169.47:9000/fishing' // 测试接口地址
-    var DEV_HOST = 'https://fish.diaoyuphb.com/fishing' // 正式接口地址
+    var DEV_HOST = 'http://47.92.169.47:9000/fishing' // 测试接口地址
+    // var DEV_HOST = 'https://fish.diaoyuphb.com/fishing' // 正式接口地址
     this.api = DEV_HOST
     // this.apiVersion = '2.1.0'
   }
@@ -31,11 +31,11 @@ class HandleParamAndResult {
     }
     // 动态添加token
     // 这个是我从APP的url拿到的token
-    // headers.token = 'kKtR-LRPZWL-JYmYKWvn6gX1lIj-jdcX' // 测试token
-    headers.token = ''
-    if (handleToken.getToken()) {
-      headers.token = `${handleToken.getToken()}`
-    }
+    headers.token = 'tvvJe7HNEp_27IZoHUcUIJlgoMBRjAwP' // 测试token
+    // headers.token = ''
+    // if (handleToken.getToken()) {
+    //   headers.token = `${handleToken.getToken()}`
+    // }
     return headers
   }
   // 处理请求

@@ -214,3 +214,10 @@ export function refundPrepay (params) {
 export function spotAnalyse (params) {
   return $get('/spot/analyse/spot', params)
 }
+
+/**
+ * 代理人获取钓场数据
+ */
+export function getTask (params) {
+  return $get('/spot/task/by/user/id', params)
+}

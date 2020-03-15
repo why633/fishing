@@ -111,7 +111,7 @@ export default {
       ],
       result: '',
       // 钓场数量数据
-      spotNum: '',
+      spotNum: 0,
       spotNumOptions: {
         chart: {
           type: 'gauge',
@@ -120,6 +120,9 @@ export default {
           margin: [0, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
+        tooltip: {
+          enabled: false
+        },
         title: {
           text: ''
         },
@@ -202,11 +205,11 @@ export default {
           }
         },
         series: [{
-          data: [10]
+          data: [0]
         }]
       },
       // 赛事场次数据
-      gameNum: '',
+      gameNum: 0,
       gameNumOptions: {
         chart: {
           type: 'gauge',
@@ -215,6 +218,9 @@ export default {
           margin: [0, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
+        tooltip: {
+          enabled: false
+        },
         title: {
           text: ''
         },
@@ -297,11 +303,11 @@ export default {
           }
         },
         series: [{
-          data: [30]
+          data: [0]
         }]
       },
       // 活动场次数据
-      eventNum: '',
+      eventNum: 0,
       eventNumOptions: {
         chart: {
           type: 'gauge',
@@ -310,6 +316,9 @@ export default {
           margin: [0, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
+        tooltip: {
+          enabled: false
+        },
         title: {
           text: ''
         },
@@ -392,11 +401,11 @@ export default {
           }
         },
         series: [{
-          data: [50]
+          data: [0]
         }]
       },
       // 参赛人数数据
-      joinNum: '',
+      joinNum: 0,
       joinNumOptions: {
         chart: {
           type: 'gauge',
@@ -405,6 +414,9 @@ export default {
           margin: [0, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
+        tooltip: {
+          enabled: false
+        },
         title: {
           text: ''
         },
@@ -487,11 +499,11 @@ export default {
           }
         },
         series: [{
-          data: [80]
+          data: [0]
         }]
       },
       // 赛事服务费数据
-      feeNum: '',
+      feeNum: 0,
       feeNumOptions: {
         chart: {
           type: 'gauge',
@@ -499,6 +511,9 @@ export default {
           height: '160',
           margin: [0, 0, 0, 0],
           spacing: [0, 0, 0, 0]
+        },
+        tooltip: {
+          enabled: false
         },
         title: {
           text: ''
@@ -588,6 +603,7 @@ export default {
     }
   },
   created () {
+    this.$getAppToken()
     this.getPickerYearList()
     this.getCurrentdate()
     HighchartsMore(Highcharts)

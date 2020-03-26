@@ -11,19 +11,27 @@
                 <img :src="$globalData.defaultHeadImg" v-imgplaceholder="item.headImg">
               </div>
               <div class="info-wrap">
-                <div class="name">{{ item.nickName }}</div>
-                <div class="text">联系电话：{{ item.phone }}</div>
-                <div class="text">报名费用：{{ item.money }}元</div>
-                <div class="text">报名时间：{{ item.enrollDate | formateDateTime }}</div>
+                <div class="l">
+                  <div class="name">{{ item.nickName }}</div>
+                  <div class="text">联系电话：{{ item.phone }}</div>
+                  <div class="text">报名费用：{{ item.money }}元</div>
+                  <div class="text">报名时间：{{ item.enrollDate | formateDateTime }}</div>
+                </div>
+                <div class="r">
+                  <div class="collect-fish new-btn" @click="goCollectFish(item.applicationId)">{{item.harvesting == 0?'一键收鱼':'已收鱼'}}</div>
+                  <div v-if="item.prepay == 2" class="back-deposit new-btn" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
+                  <div v-if="item.prepay == 3" class="back-deposit new-btn">押金已退</div>
+                </div>
               </div>
             </div>
-            <div class="btn-box">
+            <!-- <div class="btn-box">
               <div class="collect-fish btn-blue" @click="goCollectFish(item.applicationId)">{{item.harvesting == 0?'一键收鱼':'已收鱼'}}</div>
               <div v-if="item.prepay == 2" class="back-deposit btn-blue" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
               <div v-if="item.prepay == 3" class="back-deposit btn-disable">押金已退</div>
-            </div>
+            </div> -->
           </div>
         </div>
+        <div class="no-data" v-if="userData.length==0">暂无数据</div>
         <Dialog
           :showDialog="depositDialog"
           :msg="''"
@@ -47,7 +55,24 @@ export default {
     return {
       isBack: true,
       errorImg: require('@/assets/defaultHeadImg.png'),
-      userData: [],
+      userData: [
+        {
+          nickName: 'why',
+          phone: '17611162633',
+          money: '200',
+          enrollDate: '2020-03',
+          harvesting: 0,
+          prepay: 2
+        },
+        {
+          nickName: '王海洋',
+          phone: '17611162633',
+          money: '200',
+          enrollDate: '2020-03',
+          harvesting: 0,
+          prepay: 2
+        }
+      ],
       depositDialog: false,
       applicationId: '',
       prepayMoney: 0
@@ -58,7 +83,7 @@ export default {
     if (this.$route.query.from === 'app') {
       this.isBack = false
     }
-    this.getUserData()
+    // this.getUserData()
   },
   methods: {
     // 获取报名用户
@@ -103,41 +128,49 @@ export default {
 .activeDetails {
   min-height: 100%;
   background: #fff;
+  color: #333;
 }
 .content {
   padding-bottom: 1.66667rem;
   .list-wrap {
-    padding: 0.4rem;
+    padding: .613333rem 0 .613333rem .213333rem;
     .item{
-      padding: .533333rem 0;
-      border-bottom: 1px solid #efefef;
-      &:last-child{
-        border: none;
-      }
       .user-info {
         display: flex;
         align-items: center;
         .img-wrap {
-          width: 1.6rem;
-          height: 1.6rem;
+          width: 1.786667rem;
+          height: 1.786667rem;
           border-radius: 50%;
           overflow: hidden;
-          margin-right: 0.26667rem;
+          margin-right: .426667rem;
           img {
             width: 100%;
             height: 100%;
           }
         }
         .info-wrap {
+          flex: 1;
+          border-top: 1px solid #EBEDEF;
+          padding: .32rem 0;
+          font-family: PingFangSC-Medium;
+          display: flex;
+          .l{
+            flex: 1;
+          }
+          .r{
+            width: 2.426667rem;
+            align-self: center;
+          }
           .name {
             // line-height: 0.93333rem;
-            margin-bottom: 0.186667rem;
-            font-size: 0.4rem;
+            margin-bottom: .24rem;
+            font-size: .426667rem;
           }
           .text {
-            margin-bottom: 0.08rem;
-            color: #747474;
-            font-size: .373333rem;
+            margin-bottom: .186667rem;
+            color: #939393;
+            font-size: .32rem;
             .gray {
               color: #747474;
             }
@@ -157,31 +190,12 @@ export default {
           }
         }
       }
+      &:last-child{
+        .info-wrap{
+          border-bottom: 1px solid #EBEDEF;
+        }
+      }
     }
-  }
-}
-.btn-box {
-  display: flex;
-  width: 100%;
-  padding: 0 1.813333rem;
-  justify-content: space-between;
-  background: #fff;
-  margin-top: .266667rem;
-  .btn-blue{
-    width: auto;
-    padding: 0 .533333rem;
-    border-radius: .16rem;
-    background: rgb(75, 175, 241);
-  }
-  .btn-disable{
-    width: auto;
-    height: 1rem;
-    line-height: 1rem;
-    padding: 0 .533333rem;
-    border-radius: .16rem;
-    color: #c0c4cc;
-    background: #ebeef5;
-    // border: 1px solid #ebeef5;
   }
 }
 .phone-input {
@@ -209,5 +223,22 @@ export default {
   .confirm-text{
     margin-bottom: .4rem;
   }
+}
+.no-data{
+  text-align: center;
+}
+.new-btn{
+  width: 2.026667rem;
+  height: .746667rem;
+  line-height: .746667rem;
+  text-align: center;
+  border: 1px solid #1062C6;
+  border-radius: .373333rem;
+  font-family: PingFangSC-Medium;
+  font-size: .32rem;
+  color: #1062C6;
+}
+.collect-fish{
+  margin-bottom: .346667rem;
 }
 </style>

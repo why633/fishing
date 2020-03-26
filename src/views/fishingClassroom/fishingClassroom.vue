@@ -1,6 +1,6 @@
 <template>
   <div class="fishingClassroom">
-    <top-title :isBackPre="false" @backClick="closeWebview">钓技课堂</top-title>
+    <top-title :isBackPre="isBackPre" @backClick="closeWebview">钓技课堂</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="public-class">
         <div class="title font-b">大众课程</div>
@@ -34,6 +34,7 @@ export default {
   name: 'fishingClassroom',
   data () {
     return {
+      isBackPre: false,
       // 模块数据
       classBlockData: [
         {
@@ -126,6 +127,10 @@ export default {
   created () {
     console.log('fresh')
     // this.getArticleList()
+    // console.log(this.$route.query.from)
+    // if (this.$route.query.from === 'score') {
+    //   this.isBackPre = true
+    // }
   },
   beforeRouteEnter (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteEnter不用写
     next(vm => {

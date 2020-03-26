@@ -1,6 +1,6 @@
 <template>
   <div class="scoreRule">
-    <top-title>会员等级权益说明</top-title>
+    <top-title :isBackPre="isBackPre" @backClick="closeWebview">会员等级权益说明</top-title>
     <div class="content">
       <div class="title">
         <span class="text">会员权益说明</span>
@@ -101,6 +101,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  data () {
+    return {
+      isBackPre: false
+    }
+  },
+  methods: {
+    closeWebview () {
+      this.$closeWebview()
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .scoreRule{
   min-height: 100%;

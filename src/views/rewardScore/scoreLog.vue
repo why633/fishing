@@ -1,6 +1,6 @@
 <template>
   <div class="scoreLog">
-    <top-title :isBackPre="false" @backClick="closeWebview">积分历史</top-title>
+    <top-title :isBackPre="isBackPre" @backClick="closeWebview">积分历史</top-title>
     <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
       <div class="content" id="dataList">
         <div class="logList">
@@ -57,10 +57,15 @@ export default {
       },
       pageNo: 1,
       pageSize: 20,
-      totalCount: 0
+      totalCount: 0,
+      isBackPre: true
     }
   },
   created () {
+    console.log(this.$route.query.from)
+    if (this.$route.query.from === 'score') {
+      this.isBackPre = false
+    }
     this.$getAppToken().then(res => {
       this.getLogData()
     })
@@ -122,6 +127,7 @@ export default {
     border-bottom: 1px solid #ebebeb;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     &:last-child {
       border-bottom: none;
     }
@@ -130,6 +136,7 @@ export default {
     }
     .title {
       width: 2.66667rem;
+      word-break: break-all;
     }
     // .data-time{
     //   flex: 2;

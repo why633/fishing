@@ -2,6 +2,7 @@
   <div class="articleDetails">
     <top-title>文章详情</top-title>
     <mescroll-vue ref="mescroll" :down="{use: false}">
+      <!-- <div @click="articleShare">分享</div> -->
       <article-content :articleInfo="articleInfo"></article-content>
     </mescroll-vue>
   </div>
@@ -34,6 +35,12 @@ export default {
         const resData = res.data.data
         this.articleInfo = resData
       })
+    },
+    articleShare () {
+      const title = '文章'
+      const description = '分享文章'
+      const webpageUrl = `http://47.92.169.47:9002/fishing/fishingClassroom/articleDetails?articleId=${this.infoId}`
+      App.articleShare(title, description, webpageUrl) // eslint-disable-line
     }
   }
 }

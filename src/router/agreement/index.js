@@ -6,6 +6,14 @@ const agreement = [
     meta: {
       title: 'agreement'
     }
+  },
+  {
+    path: '/cooperateAgreement',
+    name: 'cooperateAgreement',
+    component: () => import('@/views/agreement/cooperateAgreement'),
+    meta: {
+      title: 'cooperateAgreement'
+    }
   }
 ]
 

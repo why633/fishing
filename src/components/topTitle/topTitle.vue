@@ -89,16 +89,17 @@ export default {
   z-index: 10;
 }
 .blank {
-  height: 1.17333rem;
+  height: 1.44rem;
 }
 .title {
-  height: 1.17333rem;
-  line-height: 1.17333rem;
-  color: #fff;
+  height: 1.44rem;
+  line-height: 1.44rem;
   padding-left: 0.4rem;
   // background: #0c3255;
-  background: rgba(11, 37, 67, 1);
+  background: #52A5D4;
   position: relative;
+  font-family: PingFangSC-Medium;
+  color: #FFFFFF;
   .icon-back {
     // font-size: .48rem;
     position: absolute;
@@ -106,8 +107,9 @@ export default {
     transform: translateY(-50%);
   }
   .title-text {
-    padding-left: 0.8rem;
-    font-size: .426667rem;
+    display: block;
+    text-align: center;
+    font-size: .48rem;
   }
   .right-wrap{
     position: relative;

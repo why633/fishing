@@ -221,3 +221,17 @@ export function spotAnalyse (params) {
 export function getTask (params) {
   return $get('/spot/task/by/user/id', params)
 }
+
+/**
+ * 积分等级数据
+ */
+export function getCardLevel () {
+  return $get('/event/currency/cardLevel')
+}
+
+/**
+ * 积分页推荐数据
+ */
+export function getRecommend (params) {
+  return $get('/event/currency/recommend', params)
+}

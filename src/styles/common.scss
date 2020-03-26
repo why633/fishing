@@ -194,14 +194,14 @@ body{
 }
 
 .title-color{
-  background: #0c3255;
+  background: #52A5D4;
 }
 
 /* mescroll组件样式 */
 .mescroll {
   position: fixed;
   // padding-bottom: 1rem;
-  top: 1.17333rem;;
+  top: 1.44rem;;
   bottom: 0;
   height: auto;
 }
@@ -284,4 +284,9 @@ body{
   background: rgba(50, 50, 253, 0.993);
   border-radius: 0.5rem;
   color: #fff;
+}
+
+.swipe-wrap .mint-swipe-indicators .is-active{
+  background: #eee;
+  opacity: 0.8;
 }

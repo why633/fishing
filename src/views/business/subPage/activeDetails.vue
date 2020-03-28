@@ -20,7 +20,7 @@
                 <div class="r">
                   <div class="collect-fish new-btn" @click="goCollectFish(item.applicationId)">{{item.harvesting == 0?'一键收鱼':'已收鱼'}}</div>
                   <div v-if="item.prepay == 2" class="back-deposit new-btn" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
-                  <div v-if="item.prepay == 3" class="back-deposit new-btn">押金已退</div>
+                  <div v-if="item.prepay == 3" class="is-back new-btn">押金已退</div>
                 </div>
               </div>
             </div>
@@ -55,27 +55,11 @@ export default {
     return {
       isBack: true,
       errorImg: require('@/assets/defaultHeadImg.png'),
-      userData: [
-        {
-          nickName: 'why',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-03',
-          harvesting: 0,
-          prepay: 2
-        },
-        {
-          nickName: '王海洋',
-          phone: '17611162633',
-          money: '200',
-          enrollDate: '2020-03',
-          harvesting: 0,
-          prepay: 2
-        }
-      ],
+      userData: [],
       depositDialog: false,
       applicationId: '',
-      prepayMoney: 0
+      prepayMoney: 0,
+      backDepositLoading: false
     }
   },
   created () {
@@ -83,7 +67,7 @@ export default {
     if (this.$route.query.from === 'app') {
       this.isBack = false
     }
-    // this.getUserData()
+    this.getUserData()
   },
   methods: {
     // 获取报名用户
@@ -93,6 +77,7 @@ export default {
       }
       enrollUser(params).then(res => {
         this.userData = res.data.data
+        this.depositDialog = false
       })
     },
     // 跳转一键收鱼详情
@@ -106,17 +91,21 @@ export default {
       this.depositDialog = false
     },
     backDeposit (id, prepayMoney) {
+      if (this.backDepositLoading) {
+        return
+      }
       this.applicationId = id
       this.prepayMoney = prepayMoney
       this.depositDialog = true
     },
     // 退押金Confirm
     dialogConfirm () {
+      this.backDepositLoading = true
       refundPrepay({applicationId: this.applicationId}).then(res => {
-        this.depositDialog = false
         this.getUserData()
       }).catch(err => {
         console.log(err)
+        this.depositDialog = false
         this.depositDialog = false
       })
     }
@@ -240,5 +229,10 @@ export default {
 }
 .collect-fish{
   margin-bottom: .346667rem;
+}
+.is-back{
+  color: #909399;
+  background: #f4f4f5;
+  border-color: #d3d4d6;
 }
 </style>

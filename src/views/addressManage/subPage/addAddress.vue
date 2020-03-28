@@ -375,6 +375,8 @@ export default {
 .addAddress {
   min-height: 100%;
   background: #fff;
+  font-family: PingFangSC-Medium;
+  font-size: .32rem;
 }
 .content {
   padding-top: 0.4rem;
@@ -383,13 +385,15 @@ export default {
 }
 .add-btn {
   color: #fff;
-  background: #0c3255;
+  background: #52A5D4;
   width: 2.666667rem;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  // height: 0.8rem;
+  // line-height: 0.8rem;
   text-align: center;
   border-radius: 0.106667rem;
   margin: 4rem auto 0.8rem;
+  padding: .213333rem 0;
+  line-height:normal;
 }
 .address-popup {
   border-radius: 0.266667rem 0.266667rem 0 0;

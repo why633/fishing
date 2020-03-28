@@ -62,7 +62,8 @@ export default {
       showDialog: false,
       fishCount: '',
       price: '',
-      targetFish: ''
+      targetFish: '',
+      loading: false
     }
   },
   mounted () {
@@ -124,6 +125,9 @@ export default {
         })
         return
       }
+      if (this.loading) {
+        return
+      }
       this.showDialog = true
     },
     closeDialog () {
@@ -131,15 +135,7 @@ export default {
     },
     // 付款确认
     dialogConfirm () {
-      // delEvent({ eventId: this.eventId }).then(res => {
-      //   console.log(res)
-      //   this.activeList.splice(this.delIndex, 1)
-      //   this.$toast.show({
-      //     text: '取消成功'
-      //   })
-      // }).catch(err => {
-      //   console.log(err)
-      // })
+      this.loading = true
       const params = {
         applicationId: this.id,
         buyBackCount: this.fishCount,
@@ -159,6 +155,7 @@ export default {
       }).catch(err => {
         console.log(err)
         this.showDialog = false
+        this.loading = false
       })
     },
     setTargetFish (val) {

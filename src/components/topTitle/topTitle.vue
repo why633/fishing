@@ -7,6 +7,7 @@
           <slot>{{ title }}</slot>
         </span>
         <span v-if="rightVisible" class="right-wrap" @click="pick"><span class="icon-dis"></span>{{distance}}<span class="icon-arr a-down"></span></span>
+        <span v-if="shearVisible" class="shear-icon" @click="shear"></span>
       </div>
     </div>
     <div class="blank"></div>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { appSource } from '@/utils/appSource'
 export default {
   props: {
     title: {
@@ -36,6 +38,21 @@ export default {
     rightVisible: {
       type: Boolean,
       default: false
+    },
+    // 分享按钮
+    shearVisible: {
+      type: Boolean,
+      default: false
+    },
+    shearOpt: {
+      type: Object,
+      default: function () {
+        return {
+          title: '文章',
+          description: '钓鱼排行榜',
+          webpageUrl: ''
+        }
+      }
     }
   },
   data () {
@@ -77,6 +94,13 @@ export default {
     confirm (res) {
       this.distance = res[0].label
       this.$emit('pickDistance', res)
+    },
+    shear () {
+      console.log('fx')
+      if (appSource() === 'ios') {
+        App.articleShare(title, description, webpageUrl) // eslint-disable-line
+      }
+      if (appSource() === 'andriod') {}
     }
   }
 }
@@ -112,19 +136,19 @@ export default {
     font-size: .48rem;
   }
   .right-wrap{
-    position: relative;
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
     font-size: .426667rem;
     padding: 0 .533333rem;
     margin-right: .533333rem;
     .icon-dis{
       position: absolute;
-      left: 0;
+      left: 0.08rem;
       top: 50%;
       transform: translateY(-50%);
       width: .346667rem;
       height: .346667rem;
-      margin-right: .186667rem;
       background: url('./images/distance.png');
       background-size: 100% 100%;
     }
@@ -145,5 +169,16 @@ export default {
       background-size: 100% 100%;
     }
   }
+}
+.shear-icon{
+  display: inline-block;
+  width: .533333rem;
+  height: .533333rem;
+  background: url('./images/shear.png');
+  background-size: 100% 100%;
+  position: absolute;
+  right: .533333rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>

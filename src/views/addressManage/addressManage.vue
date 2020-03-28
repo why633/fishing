@@ -17,7 +17,7 @@
                 :class="{'radioed':item.isChose}"
                 @click="choseRadio(index)"
               ></span>
-              <div class="user-info">
+              <div class="user-info clear-fix">
                 <span class="name text-overflow">{{item.name}}</span>
                 <span class="phone">{{item.phone|encodePhone}}</span>
                 <span class="default-address" v-if="item.acquiesce==2">默认</span>
@@ -99,6 +99,8 @@ export default {
 .addressManage {
   min-height: 100%;
   background: #fff;
+  font-family: PingFangSC-Medium;
+  font-size: .32rem;
 }
 .address-list {
   padding: 0.4rem;
@@ -129,20 +131,32 @@ export default {
     .user-info {
       margin-bottom: 0.266667rem;
       width: 80%;
+      line-height: 1.2;
       .name {
-        display: inline-block;
+        display: block;
         // margin-right: 0.666667rem;
         width: 2.4rem;
+        float: left;
+        line-height:normal;
+      }
+      .phone{
+        display: block;
+        float: left;
+        line-height:normal;
       }
       .default-address {
+        display: block;
         color: #fff;
         background: red;
         padding: 0.026667rem 0.106667rem;
         margin-left: 0.4rem;
+        float: left;
+        line-height:normal;
       }
     }
     .address {
       width: 80%;
+      line-height: 1.5;
     }
     .edit {
       position: absolute;
@@ -171,7 +185,7 @@ export default {
   }
   .addAddress {
     color: #fff;
-    background: #0c3255;
+    background: #52A5D4;
     width: 2.666667rem;
     height: 0.8rem;
     line-height: 0.8rem;
@@ -183,12 +197,12 @@ export default {
 }
 .add-btn {
   color: #fff;
-  background: #0c3255;
   width: 2.666667rem;
-  height: 0.8rem;
-  line-height: 0.8rem;
   text-align: center;
   border-radius: 0.106667rem;
   margin: 0.8rem auto;
+  background: #52A5D4;
+  line-height:normal;
+  padding: .213333rem 0;
 }
 </style>

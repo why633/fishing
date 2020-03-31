@@ -1,6 +1,6 @@
 <template>
   <div class="article">
-    <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
+    <top-title :isBackPre="false" :shearVisible="true" :shearOpt="shearOpt" @backClick="closeWebview">文章详情</top-title>
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <div class="info-wrap">
         <div class="title">{{ detailsInfo.title }}</div>
@@ -72,7 +72,9 @@ export default {
       publishText: '', // 评论内容
       isInput: false, // 输入状态
       introduction: '',
-      detailsInfo: {}
+      detailsInfo: {},
+      shearVisible: true,
+      shearOpt: {}
     }
   },
   created () {

@@ -58,7 +58,7 @@ export default {
       pageNo: 1,
       pageSize: 20,
       totalCount: 0,
-      isBackPre: true
+      isBackPre: false
     }
   },
   created () {

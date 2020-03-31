@@ -1,6 +1,6 @@
 <template>
   <div class="articleDetails">
-    <top-title :isBackPre="false" @backClick="closeWebview">文章详情</top-title>
+    <top-title :isBackPre="false" :shearVisible="shearVisible" :shearOpt="shearOpt" @backClick="closeWebview">文章详情</top-title>
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <article-content :articleInfo="articleInfo"></article-content>
     </mescroll-vue>
@@ -13,7 +13,9 @@ export default {
   data () {
     return {
       infoId: '',
-      articleInfo: {}
+      articleInfo: {},
+      shearVisible: true,
+      shearOpt: {}
     }
   },
   mounted () {
@@ -33,6 +35,11 @@ export default {
         console.log(res)
         const resData = res.data.data
         this.articleInfo = resData
+        this.shearOpt = {
+          title: resData.title,
+          description: '',
+          imgUrl: resData.images.split(',')[0]
+        }
       })
     },
     closeWebview () {

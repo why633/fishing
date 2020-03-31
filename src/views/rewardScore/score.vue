@@ -21,8 +21,8 @@
         <mt-swipe class="swipe-wrap" :auto="0">
           <mt-swipe-item>
             <div class="range">
-              <highcharts ref="chart" :options="chartOptions"></highcharts>
-              <div class="logo"><img :src="logo" alt="" srcset=""></div>
+              <highcharts ref="chart" :options="chartOptions" class="chart"></highcharts>
+              <!-- <div class="logo"><img :src="logo" alt="" srcset=""></div> -->
               <div class="legend">
                 <div class="item">
                   <span class="color bc1"></span>
@@ -53,8 +53,8 @@
           </mt-swipe-item>
           <mt-swipe-item v-if="!cardData.userLevel&&cardData.userLevel != 1">
             <div class="range">
-              <highcharts ref="keepChart" :options="keepChartOptions"></highcharts>
-              <div class="logo"><img :src="logo" alt="" srcset=""></div>
+              <highcharts class="keep-chart" ref="keepChart" :options="keepChartOptions"></highcharts>
+              <!-- <div class="logo"><img :src="logo" alt="" srcset=""></div> -->
               <div class="legend">
                 <div class="item">
                   <span class="color bc1"></span>
@@ -172,8 +172,9 @@ export default {
       chartOptions: {
         chart: {
           type: 'solidgauge',
-          height: '30%',
-          margin: [0, 0, 0, 0],
+          height: 120,
+          width: 120,
+          margin: [8, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
         credits: {
@@ -183,7 +184,6 @@ export default {
           text: ''
         },
         pane: {
-          center: ['20%', '60%'],
           size: '100%',
           startAngle: -120,
           endAngle: 120,
@@ -296,8 +296,9 @@ export default {
       keepChartOptions: {
         chart: {
           type: 'solidgauge',
-          height: '30%',
-          margin: [0, 0, 0, 0],
+          height: 120,
+          width: 120,
+          margin: [8, 0, 0, 0],
           spacing: [0, 0, 0, 0]
         },
         credits: {
@@ -307,7 +308,6 @@ export default {
           text: ''
         },
         pane: {
-          center: ['20%', '60%'],
           size: '100%',
           startAngle: -120,
           endAngle: 120,
@@ -420,7 +420,8 @@ export default {
       tarTab: 1,
       hotGood: [],
       hotSpot: [],
-      baseUrl: 'http://47.92.169.47:9002/fishing' // test
+      // baseUrl: 'http://47.92.169.47:9002/fishing' // test
+      baseUrl: 'https://fish.diaoyuphb.com/vue' // test
     }
   },
   filters: {
@@ -549,7 +550,7 @@ export default {
   padding: .533333rem;
 }
 .swipe-wrap{
-  height: 6.133333rem;
+  height: 7.133333rem;
 }
 .title-wrap{
   .title{
@@ -646,9 +647,9 @@ export default {
     position: absolute;
     width: .5rem;
     height: .5rem;
-    top: 64%;
-    left: 20%;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
     img{
       width: 100%;
       height: 100%;
@@ -656,7 +657,7 @@ export default {
   }
   .legend{
     position: absolute;
-    top: 53%;
+    top: 42%;
     transform: translateY(-50%);
     right: 0;
     font-size: .293333rem;
@@ -771,6 +772,22 @@ export default {
 
       }
     }
+  }
+}
+.chart, .keep-chart{
+  width: 120px;
+  position: relative;
+  margin-top: .266667rem;
+  &::after{
+    content: '';
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('./images/logo.png');
+    background-size: 100% 100%;
   }
 }
 </style>

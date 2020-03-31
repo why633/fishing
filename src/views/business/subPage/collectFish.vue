@@ -156,6 +156,9 @@ export default {
         console.log(err)
         this.showDialog = false
         this.loading = false
+        this.fishCount = ''
+        this.price = ''
+        this.targetFish = ''
       })
     },
     setTargetFish (val) {

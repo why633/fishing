@@ -199,7 +199,7 @@ export default {
                 color: '#fff'
               },
               formatter: function () {
-                return `超过${this.y}%专员`
+                return `超过${this.y}%伙伴`
               }
             }
           }
@@ -297,7 +297,7 @@ export default {
                 color: '#fff'
               },
               formatter: function () {
-                return `超过${this.y}%专员`
+                return `超过${this.y}%伙伴`
               }
             }
           }
@@ -395,7 +395,7 @@ export default {
                 color: '#fff'
               },
               formatter: function () {
-                return `超过${this.y}%专员`
+                return `超过${this.y}%伙伴`
               }
             }
           }
@@ -493,7 +493,7 @@ export default {
                 color: '#fff'
               },
               formatter: function () {
-                return `超过${this.y}%专员`
+                return `超过${this.y}%伙伴`
               }
             }
           }
@@ -591,7 +591,7 @@ export default {
                 color: '#fff'
               },
               formatter: function () {
-                return `超过${this.y}%专员`
+                return `超过${this.y}%伙伴`
               }
             }
           }

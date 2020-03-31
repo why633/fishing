@@ -1,6 +1,6 @@
 <template>
   <div class="articleDetails">
-    <top-title>文章详情</top-title>
+    <top-title :shearVisible="shearVisible" :shearOpt="shearOpt">文章详情</top-title>
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <!-- <div @click="articleShare">分享</div> -->
       <article-content :articleInfo="articleInfo"></article-content>
@@ -14,7 +14,9 @@ export default {
   data () {
     return {
       infoId: '',
-      articleInfo: {}
+      articleInfo: {},
+      shearVisible: true,
+      shearOpt: {}
     }
   },
   mounted () {
@@ -22,6 +24,9 @@ export default {
   },
   created () {
     this.infoId = this.$route.query.articleId
+    if (this.$route.query.from === 'shear') {
+      this.shearVisible = false
+    }
     this.getArticleDetail()
   },
   methods: {
@@ -34,13 +39,12 @@ export default {
         console.log(res)
         const resData = res.data.data
         this.articleInfo = resData
+        this.shearOpt = {
+          title: resData.title,
+          description: '',
+          imgUrl: resData.images.split(',')[0]
+        }
       })
-    },
-    articleShare () {
-      const title = '文章'
-      const description = '分享文章'
-      const webpageUrl = `http://47.92.169.47:9002/fishing/fishingClassroom/articleDetails?articleId=${this.infoId}`
-      App.articleShare(title, description, webpageUrl) // eslint-disable-line
     }
   }
 }

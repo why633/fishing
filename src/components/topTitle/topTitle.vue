@@ -48,9 +48,9 @@ export default {
       type: Object,
       default: function () {
         return {
-          title: '文章',
-          description: '钓鱼排行榜',
-          webpageUrl: ''
+          title: '',
+          description: '',
+          imgUrl: ''
         }
       }
     }
@@ -74,8 +74,13 @@ export default {
           }
         ]
       ],
-      distance: '5km内'
+      distance: '5km内',
+      shearOption: {}
     }
+  },
+  watch: {
+  },
+  created () {
   },
   methods: {
     backClickHandle () {
@@ -96,11 +101,14 @@ export default {
       this.$emit('pickDistance', res)
     },
     shear () {
-      console.log('fx')
+      const href = window.location.href + '&from=shear'
+      console.log(href)
       if (appSource() === 'ios') {
-        App.articleShare(title, description, webpageUrl) // eslint-disable-line
+        App.articleShare(href, this.shearOpt.title, this.shearOpt.description, this.shearOpt.imgUrl) // eslint-disable-line
       }
-      if (appSource() === 'andriod') {}
+      if (appSource() === 'andriod') {
+        window.android.startToShare(href, this.shearOpt.title, this.shearOpt.description, this.shearOpt.imgUrl)
+      }
     }
   }
 }
@@ -172,9 +180,9 @@ export default {
 }
 .shear-icon{
   display: inline-block;
-  width: .533333rem;
-  height: .533333rem;
-  background: url('./images/shear.png');
+  width: .8rem;
+  height: .8rem;
+  background: url('./images/shear_icon.png');
   background-size: 100% 100%;
   position: absolute;
   right: .533333rem;

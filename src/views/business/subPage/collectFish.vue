@@ -135,6 +135,12 @@ export default {
     },
     // 付款确认
     dialogConfirm () {
+      console.log(this.loading)
+      if (this.loading) {
+        console.log('loading')
+        return
+      }
+      console.log('qq')
       this.loading = true
       const params = {
         applicationId: this.id,
@@ -146,6 +152,9 @@ export default {
         console.log(res)
         this.showDialog = false
         const _this = this
+        setTimeout(function () {
+          _this.loading = false
+        }, 400)
         this.$toast.show({
           text: '收鱼成功',
           callBack: function () {
@@ -154,8 +163,11 @@ export default {
         })
       }).catch(err => {
         console.log(err)
+        const _this = this
+        setTimeout(function () {
+          _this.loading = false
+        }, 400)
         this.showDialog = false
-        this.loading = false
         this.fishCount = ''
         this.price = ''
         this.targetFish = ''

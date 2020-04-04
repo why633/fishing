@@ -24,7 +24,7 @@ export default {
   },
   created () {
     this.infoId = this.$route.query.articleId
-    if (this.$route.query.from === 'shear') {
+    if (this.$route.query.isShear === '1') {
       this.shearVisible = false
     }
     this.getArticleDetail()

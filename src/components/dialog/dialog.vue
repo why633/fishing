@@ -124,7 +124,7 @@ export default {
 }
 .fadeIn-enter-active,
 .fadeIn-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.01s;
 }
 .fadeIn-enter,
 .fadeIn-leave-active {
@@ -132,7 +132,7 @@ export default {
 }
 .translate-top-enter-active,
 .translate-top-leave-active {
-  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: all 0.01s cubic-bezier(0.36, 0.66, 0.04, 1);
 }
 .translate-top-enter,
 .translate-top-leave-active {
@@ -141,7 +141,7 @@ export default {
 }
 .translate-middle-enter-active,
 .translate-middle-leave-active {
-  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: all 0.01s cubic-bezier(0.36, 0.66, 0.04, 1);
 }
 .translate-middle-enter,
 .translate-middle-leave-active {
@@ -150,7 +150,7 @@ export default {
 }
 .translate-bottom-enter-active,
 .translate-bottom-leave-active {
-  transition: all 0.3s cubic-bezier(0.36, 0.66, 0.04, 1);
+  transition: all 0.01s cubic-bezier(0.36, 0.66, 0.04, 1);
 }
 .translate-bottom-enter,
 .translate-bottom-leave-active {

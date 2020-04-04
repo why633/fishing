@@ -18,7 +18,7 @@
             <div :class="[item.isPast?'end':'going','past']">{{ item.isPast? '已过期' : '报名中' }}</div>
             <div
               class="del"
-              v-if="item.type==1&&type=='1'"
+              v-if="type=='1'"
               @click.stop="cancleEvent(item.id, index)"
             >取消</div>
           </div>

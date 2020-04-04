@@ -101,7 +101,7 @@ export default {
       this.$emit('pickDistance', res)
     },
     shear () {
-      const href = window.location.href + '&from=shear'
+      const href = window.location.href + '&isShear=1'
       console.log(href)
       if (appSource() === 'ios') {
         App.articleShare(href, this.shearOpt.title, this.shearOpt.description, this.shearOpt.imgUrl) // eslint-disable-line

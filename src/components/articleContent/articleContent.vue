@@ -62,6 +62,7 @@ export default {
     line-height: 1.5em !important;
     & >>> p {
       line-height: 1.5em;
+      min-height: .373333rem;
     }
     & >>> img {
       width: 100% !important;

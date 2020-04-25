@@ -7,6 +7,7 @@ export default function getAppToken () {
   return new Promise((resolve, reject) => {
     if (appSource() === 'ios') {
       window['getToken'] = (result) => {
+        console.log('H5获取的token:' + result)
         handleToken.setToken(result)
         resolve(appSource())
       }

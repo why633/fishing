@@ -235,3 +235,16 @@ export function getCardLevel () {
 export function getRecommend (params) {
   return $get('/event/currency/recommend', params)
 }
+
+/**
+ * 收鱼管理员-赛事活动列表
+ */
+export function getEventList (params) {
+  return $get('/event/searchEvent/fishmonger', params)
+}
+/**
+ * 鱼贩子一键收鱼
+ */
+export function fishmongerHarvesting (params) {
+  return $post('/order/application/fishmonger/harvesting', params)
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="activeDetails">
-    <top-title :isBackPre="isBack" @backClick="closeWebview">报名情况</top-title>
+    <top-title :isBackPre="isBack" @backClick="closeWebview">收鱼</top-title>
     <!-- 头像，昵称，电话，报名时间，报名费用 -->
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <div class="content">
@@ -18,13 +18,13 @@
                 <div class="l">
                   <div class="name">{{ item.nickName }}</div>
                   <div class="text">联系电话：{{ item.phone }}</div>
-                  <div class="text">报名费用：{{ item.money }}元</div>
+                  <!-- <div class="text">报名费用：{{ item.money }}元</div> -->
                   <div class="text">报名时间：{{ item.enrollDate | formateDateTime }}</div>
                 </div>
                 <div class="r">
                   <div class="collect-fish new-btn" @click="goCollectFish(item.applicationId)">{{item.harvesting == 0?'一键收鱼':'已收鱼'}}</div>
-                  <div v-if="item.prepay == 2" class="back-deposit new-btn" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div>
-                  <div v-if="item.prepay == 3" class="is-back new-btn">押金已退</div>
+                  <!-- <div v-if="item.prepay == 2" class="back-deposit new-btn" @click="backDeposit(item.applicationId, item.prepayMoney)">退押金</div> -->
+                  <!-- <div v-if="item.prepay == 3" class="is-back new-btn">押金已退</div> -->
                 </div>
               </div>
             </div>
@@ -238,7 +238,7 @@ export default {
   color: #1062C6;
 }
 .collect-fish{
-  margin-bottom: .346667rem;
+  // margin-bottom: .346667rem;
 }
 .is-back{
   color: #909399;

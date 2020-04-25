@@ -14,8 +14,8 @@ const handleToken = new HandleToken()
  */
 class HandleParamAndResult {
   constructor() {
-    // var DEV_HOST = 'http://47.92.169.47:9000/fishing' // 测试接口地址
-    var DEV_HOST = 'https://fish.diaoyuphb.com/fishing' // 正式接口地址
+    var DEV_HOST = 'http://47.92.169.47:9000/fishing' // 测试接口地址
+    // var DEV_HOST = 'https://fish.diaoyuphb.com/fishing' // 正式接口地址
     this.api = DEV_HOST
     // this.apiVersion = '2.1.0'
   }
@@ -30,11 +30,11 @@ class HandleParamAndResult {
       // 'Accept': `application/json; version=${this.apiVersion}`
     }
     // 动态添加token
-    // headers.token = 'kKtR-LRPZWInw9pgVq-HbwKvOXOiQdea' // 测试token
-    headers.token = ''
-    if (handleToken.getToken()) {
-      headers.token = `${handleToken.getToken()}`
-    }
+    headers.token = 'kKtR-LRPZWJQAgBfN8KNojE_6z7h9qHF' // 测试token
+    // headers.token = ''
+    // if (handleToken.getToken()) {
+    //   headers.token = `${handleToken.getToken()}`
+    // }
     return headers
   }
   // 处理请求

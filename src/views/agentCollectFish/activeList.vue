@@ -70,54 +70,25 @@ export default {
     }
   },
   mounted () {
-    this.type = this.$route.query.type
-    this.$getAppToken()
   },
   created () {
-    this.getEventList()
+    this.type = this.$route.query.type
+    this.$getAppToken().then(res => {
+      this.getEventList()
+    })
   },
   methods: {
-    // mescroll组件初始化的回调,可获取到mescroll对象
-    mescrollInit (mescroll) {
-      this.mescroll = mescroll
-    },
-    // 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
-    upCallback (page, mescroll) {
-      console.log('up')
-      const _this = this
-      // 数据渲染成功后,隐藏下拉刷新的状态
-      setTimeout(function () {
-        _this.getEventList(page.num).then(res => {
-          _this.$nextTick(() => {
-            mescroll.endSuccess(res)
-          })
-        }).catch(err => {
-          console.log(err)
-          mescroll.endErr()
-        })
-      }, 200)
-    },
     closeWebview () {
       console.log('closeWebview')
       this.$closeWebview()
-      // if (appSource() === 'ios') {
-      //   App.popBack('popBack') // eslint-disable-line
-      // }
-      // if (appSource() === 'andriod') {
-      //   console.log('andriod')
-      //   window.android.closePage()
-      // }
     },
     // 获取赛事活动列表
-    getEventList (pageNo) {
+    getEventList () {
       return new Promise((resolve, reject) => {
-        const params = {
-          pageNo: pageNo
-        }
-        getEventList(params).then(res => {
+        getEventList().then(res => {
           console.log(res)
           const resData = res.data.data
-          this.activeList = pageNo === 1 ? resData : this.activeList.concat(resData)
+          this.activeList = this.activeList.concat(resData)
           resolve(resData.length)
         }).catch(err => {
           console.log(err)

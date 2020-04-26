@@ -30,11 +30,11 @@ class HandleParamAndResult {
       // 'Accept': `application/json; version=${this.apiVersion}`
     }
     // 动态添加token
-    headers.token = 'kKtR-LRPZWJQAgBfN8KNojE_6z7h9qHF' // 测试token
-    // headers.token = ''
-    // if (handleToken.getToken()) {
-    //   headers.token = `${handleToken.getToken()}`
-    // }
+    // headers.token = 'kKtR-LRPZWK_cvJAXNSyu_J3Q5miG9l7' // 测试token
+    headers.token = ''
+    if (handleToken.getToken()) {
+      headers.token = `${handleToken.getToken()}`
+    }
     return headers
   }
   // 处理请求

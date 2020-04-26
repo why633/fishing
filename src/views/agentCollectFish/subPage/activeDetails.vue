@@ -1,6 +1,6 @@
 <template>
   <div class="activeDetails">
-    <top-title :isBackPre="isBack" @backClick="closeWebview">收鱼</top-title>
+    <top-title>收鱼</top-title>
     <!-- 头像，昵称，电话，报名时间，报名费用 -->
     <mescroll-vue ref="mescroll" :down="{use: false}">
       <div class="content">
@@ -92,10 +92,7 @@ export default {
     },
     // 跳转一键收鱼详情
     goCollectFish (id) {
-      this.$router.push(`/business/collectFish?id=${id}`)
-    },
-    closeWebview () {
-      this.$closeWebview()
+      this.$router.push(`/agentCollectFish/collectFish?id=${id}`)
     },
     closeDialog () {
       this.depositDialog = false

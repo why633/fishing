@@ -50,6 +50,8 @@ import { appSource } from '@/utils/appSource'
 import { getEventList, delEvent } from '@/api'
 import { formateDate } from '@/utils/formateDate'
 import keyboardHandle from '@/utils/keyboardHandle'
+import HandleToken from '@/utils/handleToken'
+const handleToken = new HandleToken()
 export default {
   data () {
     return {
@@ -73,6 +75,10 @@ export default {
   },
   created () {
     this.type = this.$route.query.type
+    if(handleToken.getToken()){
+      this.getEventList()
+      return
+    }
     this.$getAppToken().then(res => {
       this.getEventList()
     })
